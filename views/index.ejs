@@ -8,26 +8,21 @@
 </head>
 
 <body>
+    <video id="myVideoTag" autoplay></video>
+    <video id="theirVideoTag" autoplay></video>
 
-<div>
-    Video: <select id="camera"></select>
-</div>
-<p>
-    <button id="takeProfilePicture" autofocus="true">Create Profile Picture</button>
-</p>
-<video id="videoTag" autoplay></video>
+    <div>
+        <label>Your Name</label><input type="text" id="myName">
+        <label>Message</label><input type="text" id="myMessage">
+        <input type="submit" id="sendMessage">
+        <div id="chatArea">Message Output: <br></div>
+        <div id="signalingArea">Signaling Messages: <br></div>
+    </div>
 
-<div>
-    <label>Your Name</label><input type="text" id="myName">
-    <label>Message</label><input type="text" id="myMessage">
-    <input type="submit" id="sendMessage">
-    <div id="chatArea">Message Output: <br></div>
-</div>
-
-<script src="http://cdn.temasys.io/adapterjs/0.14.0/adapter.debug.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="js/socket.js"></script>
-<script src="js/webrtc.js"></script>
+    <script src="http://cdn.temasys.io/adapterjs/0.14.0/adapter.debug.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socket.js"></script>
+    <script src="js/webrtc.js"></script>
 </body>
 
 </html>
