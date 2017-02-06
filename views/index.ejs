@@ -4,7 +4,7 @@
 
 <head>
     <title>WebRTC</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -12,119 +12,22 @@
 <div>
     Video: <select id="camera"></select>
 </div>
-<p><button id="takeProfilePicture" type="button" autofocus="true">Create Profile Picture</button></p>
+<p>
+    <button id="takeProfilePicture" autofocus="true">Create Profile Picture</button>
+</p>
 <video id="videoTag" autoplay></video>
-<canvas id="profilePicCanvas" style="display: none;"></canvas>
+
 <div>
-    <img id="profilePictureOutput">
+    <label>Your Name</label><input type="text" id="myName">
+    <label>Message</label><input type="text" id="myMessage">
+    <input type="submit" id="sendMessage">
+    <div id="chatArea">Message Output: <br></div>
 </div>
 
-<script>
-
-    const videoArea = document.querySelector("video");
-    const videoSelect = document.querySelector('#camera');
-    const profilePicCanvas = document.querySelector('#profilePicCanvas');
-    const profilePictureOutput = document.querySelector('#profilePictureOutput');
-    const takePicButton = document.querySelector('#takeProfilePicture');
-    const videoTag = document.querySelector('#videoTag');
-
-    var width = 240; // profile pic
-    var height = 0; // calculate
-    var streaming = false;
-
-    takePicButton.addEventListener('click', (ev) => {
-        takeProfilePic();
-        ev.preventDefault();
-    }, false)
-
-    videoTag.addEventListener('canplay', function(ev){
-        if (!streaming) {
-            height = videoTag.videoHeight / (videoTag.videoWidth/width);
-
-            if (isNaN(height)) {
-                height = width / (4/3);
-            }
-
-            videoTag.setAttribute('width', width);
-            videoTag.setAttribute('height', height);
-            profilePicCanvas.setAttribute('width', width);
-            profilePicCanvas.setAttribute('height', height);
-            streaming = true;
-        }
-    }, false);
-
-    function takeProfilePic() {
-        const context = profilePicCanvas.getContext('2d');
-        if (width && height) {
-            profilePicCanvas.width = width;
-            profilePicCanvas.height = height;
-            context.drawImage(videoTag, 0, 0, width, height);
-
-            var data = profilePicCanvas.toDataURL('image/png');
-            profilePictureOutput.setAttribute('src', data);
-        }
-    }
-
-    navigator.mediaDevices.enumerateDevices()
-        .then(getCameras)
-        .catch((err) => {
-            console.log(err.name + ": " + err.message);
-        });
-
-    videoSelect.onchange = startStream;
-
-    startStream();
-
-    function getCameras(devices) {
-        devices.forEach(function(device) {
-            var option = document.createElement('option');
-            option.value = device.id;
-
-            if (device.kind === 'videoinput') {
-                option.text = device.label || 'camera ' + (videoSelect.length + 1);
-                videoSelect.appendChild(option);
-            }
-        });
-    }
-
-    function startStream() {
-        const videoSource = videoSelect.value;
-        const constraints = {
-            audio: false,
-            video: {
-//                width: { min: 240, ideal: 240, max: 640},
-//                height: {min: 240, ideal: 240, max: 480},
-                mandatory: {
-                    minWidth: 240,
-                    maxWidth: 240,
-                    minHeight: 240,
-                    maxHeight: 240
-                },
-                optional: [{
-                    deviceId: videoSource
-                }]
-            }
-        }
-
-        navigator.mediaDevices.getUserMedia(constraints)
-            .then(onSuccess)
-            .catch(onError);
-    }
-
-    function onSuccess(stream) {
-        console.log("Success! We have a stream");
-        videoArea.srcObject = stream;
-        videoArea.onloadedmetadata = () => {
-            videoArea.className = "grayscale_filter";
-            videoArea.play();
-        };
-    }
-
-    function onError(err) {
-        console.log(`Error with getUserMedia : ${err}`);
-    }
-
-</script>
+<script src="http://cdn.temasys.io/adapterjs/0.14.0/adapter.debug.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/socket.js"></script>
+<script src="js/webrtc.js"></script>
 </body>
 
 </html>
