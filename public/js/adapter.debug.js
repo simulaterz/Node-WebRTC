@@ -641,7 +641,7 @@ if ( (navigator.mozGetUserMedia ||
     (navigator.mediaDevices &&
     navigator.userAgent.match(/Edge\/(\d+).(\d+)$/)))
     && !((navigator.userAgent.match(/android/ig) || []).length === 0 &&
-    â€‚â€‚â€‚â€‚(navigator.userAgent.match(/chrome/ig) || []).length === 0 && navigator.userAgent.indexOf('Safari/') > 0)) {
+    (navigator.userAgent.match(/chrome/ig) || []).length === 0 && navigator.userAgent.indexOf('Safari/') > 0)) {
 
     ///////////////////////////////////////////////////////////////////
     // INJECTION OF GOOGLE'S ADAPTER.JS CONTENT
@@ -992,7 +992,7 @@ if ( (navigator.mozGetUserMedia ||
                 sdp += SDPUtils.writeFmtp(codec);
                 sdp += SDPUtils.writeRtcpFb(codec);
             });
-            // FIXME: add headerExtensions, fecMechanismÅŸ and rtcp.
+            // FIXME: add headerExtensions, fecMechanismş and rtcp.
             sdp += 'a=rtcp-mux\r\n';
             return sdp;
         };
@@ -1946,7 +1946,7 @@ if ( (navigator.mozGetUserMedia ||
 
                             var cand = evt.candidate;
                             var end = !cand || Object.keys(cand).length === 0;
-                            // Edge emits an empty object for RTCIceCandidateCompleteâ€¥
+                            // Edge emits an empty object for RTCIceCandidateComplete‥
                             if (end) {
                                 // polyfill since RTCIceGatherer.state is not implemented in
                                 // Edge 10547 yet.
