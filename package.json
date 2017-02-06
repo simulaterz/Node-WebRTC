@@ -1,0 +1,25 @@
+{
+  "name": "rtc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.1"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start-": "nodemon server.js"
+  },
+  "engines": {
+    "node": "6.9.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
