@@ -31,8 +31,8 @@ io.on('connection', (socket) => {
 
     socket.on('signal', (req) => {
         socket.broadcast.to(req.room).emit('signaling_message', {
-            type: req.type,
-            message: req.message
+            "type": req.type,
+            "message": req.message
         });
     })
 });
