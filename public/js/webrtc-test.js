@@ -46,7 +46,7 @@ function startSignaling() {
     rtcPeerConn.ontrack = function (evt) {
         if (evt.track.kind === "video") {
             displaySignalMessage("going to add their stream...");
-            theirVideoArea.srcObject = evt.streams[0];
+            theirVideoArea.srcObject = evt.stream;
         }
     };
 
