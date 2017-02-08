@@ -4,26 +4,43 @@
 
 <head>
     <title>WebRTC</title>
-    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <video id="myVideoTag" autoplay></video>
-    <video id="theirVideoTag" autoplay></video>
+    <section class="experiment">
+        <div class="make-center">
+            <input type="text" id="room-id" value="abcdef">
+            <button id="open-room">Open Room</button>
+            <button id="join-room">Join Room</button>
+            <button id="open-or-join-room">Auto Open Or Join Room</button>
 
-    <div>
-        <label>Your Name</label><input type="text" id="myName">
-        <label>Message</label><input type="text" id="myMessage">
-        <input type="submit" id="sendMessage">
-        <div id="chatArea">Message Output: <br></div>
-        <div id="signalingArea">Signaling Messages: <br></div>
-    </div>
+            <br><br>
+            <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
+            <button id="share-file" disabled>Share File</button>
+            <br><br>
+            <button id="btn-leave-room" disabled>Leave /or close the room</button>
 
-    <script src="js/adapter.debug.js"></script>
+            <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+        </div>
+
+        <div id="chat-container">
+            <div id="file-container"></div>
+            <div class="chat-output"></div>
+        </div>
+
+        <div id="videos-container"></div>
+    </section>
+
+    <script src="js/api/RTCMultiConnection.min.js"></script>
+    <!--<script src="js/api/jquery-3.1.1.min.js"></script>-->
     <script src="/socket.io/socket.io.js"></script>
+
+    <script src="js/api/getMediaElement.js"></script>
+    <script src="js/api/FileBufferReader.js"></script>
+
     <script src="js/socket.js"></script>
-    <script src="js/webrtc.js"></script>
-    <script src="js/webrtc-test.js"></script>
+    <script src="js/iceServers.js"></script>
+
 </body>
 
 </html>
