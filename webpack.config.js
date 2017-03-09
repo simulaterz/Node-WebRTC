@@ -1,5 +1,5 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+// const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: "./public/assets/scripts/App.js",
@@ -19,11 +19,4 @@ module.exports = {
       }
     ]
   }
-  // ,
-  // plugins: [
-  //   new htmlWebpackPlugin ({
-  //     inject: true,
-  //     template: 'public/index.html'
-  //   })
-  // ]
 }
