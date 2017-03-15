@@ -25,6 +25,7 @@ export default function IceServer() {
     }
     return xhr;
   }
+  
   var url = 'https://service.xirsys.com/ice';
   var xhr = createCORSRequest('POST', url);
   xhr.onload = function() {

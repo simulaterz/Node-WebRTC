@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -143,9 +143,12 @@ function Socket() {
   // ......................................................
   var connection = new RTCMultiConnection();
 
-  __webpack_require__(1);
+  // external ice server
+  // require('./IceServer');
   // by default, socket.io server is assumed to be deployed on your own URL
   connection.socketURL = '/';
+  connection.getExternalIceServers = false;
+  connection.iceServers = [];
 
   connection.socketMessageEvent = 'audio-video-file-chat-demo';
   connection.enableFileSharing = true; // by default, it is "false".
@@ -284,59 +287,6 @@ function Socket() {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = IceServer;
-function IceServer() {
-
-  // var connection = new RTCMultiConnection();
-
-  connection.getExternalIceServers = false;
-  connection.iceServers = [];
-
-  // put your data in these 6-lines
-  var ident = "simulaterz";
-  var secret = "a05bf13e-ee11-11e6-aa16-822203ca03a2";
-  var domain = "www.devgenz.com";
-  var application = "app-";
-  var room = "default";
-  var secure = "1";
-
-  function createCORSRequest(method, url) {
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) {
-      xhr.open(method, url, true);
-    } else if (typeof XDomainRequest != "undefined") {
-      xhr = new XDomainRequest();
-      xhr.open(method, url);
-    } else {
-      xhr = null;
-    }
-    return xhr;
-  }
-  var url = 'https://service.xirsys.com/ice';
-  var xhr = createCORSRequest('POST', url);
-  xhr.onload = function () {
-    var iceServers = JSON.parse(xhr.responseText).d.iceServers;
-    connection.iceServers = iceServers;
-  };
-  xhr.onerror = function () {
-    console.error('Woops, there was an error making xhr request.');
-  };
-
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  xhr.send('ident=' + ident + '&secret=' + secret + '&domain=' + domain + '&application=' + application + '&room=' + room + '&secure=' + secure);
-}
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

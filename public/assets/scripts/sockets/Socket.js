@@ -65,9 +65,12 @@ export default function Socket() {
   // ......................................................
   var connection = new RTCMultiConnection();
 
-  require('./IceServer');
+  // external ice server
+  // require('./IceServer');
   // by default, socket.io server is assumed to be deployed on your own URL
   connection.socketURL = '/';
+  connection.getExternalIceServers = false;
+  connection.iceServers = [];
 
   connection.socketMessageEvent = 'audio-video-file-chat-demo';
   connection.enableFileSharing = true; // by default, it is "false".
