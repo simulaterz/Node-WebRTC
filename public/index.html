@@ -3,44 +3,149 @@
 <html>
 
 <head>
-    <title>WebRTC</title>
+  <title>WebRTC</title>
+  <link rel="stylesheet" href="//cdn.webrtc-experiment.com/style.css">
+  <style>
+  audio,
+  video {
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+    vertical-align: top;
+  }
+
+  input {
+    border: 1px solid #d9d9d9;
+    border-radius: 1px;
+    font-size: 2em;
+    margin: .2em;
+    width: 30%;
+  }
+
+  .setup {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    font-size: 102%;
+    height: 47px;
+    margin-left: -9px;
+    margin-top: 8px;
+    position: absolute;
+  }
+
+  p {
+    padding: 1em;
+  }
+
+  li {
+    border-bottom: 1px solid rgb(189, 189, 189);
+    border-left: 1px solid rgb(189, 189, 189);
+    padding: .5em;
+  }
+
+  .video-container {
+    background: white;
+    border: 2px solid black;
+    border-radius: 0.2em;
+    display: inline-block;
+    margin: 2em .2em;
+    padding: .1em;
+    vertical-align: top;
+  }
+
+  .video-container h2 {
+    border: 0;
+    border-top: 1px solid black;
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+
+  .eject {
+    background-image: url('https://www.webrtc-experiment.com/images/eject.png') !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    border-color: white;
+    border-radius: 0;
+    height: 30px;
+    margin: .2em;
+    position: absolute;
+    width: 30px;
+    z-index: 200;
+  }
+  </style>
 </head>
 
 <body>
-    <section class="experiment">
-        <div class="status">
-          <h1></h1>
-        </div>
-        <div class="make-center">
-            <input type="text" id="room-id" value="abcdef">
-            <button id="open-room">Open Room</button>
-            <button id="join-room">Join Room</button>
-            <button id="open-or-join-room">Auto Open Or Join Room</button>
-
-            <br><br>
-            <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
-            <button id="share-file" disabled>Share File</button>
-            <br><br>
-            <button id="btn-leave-room" disabled>Leave /or close the room</button>
-
-            <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
-        </div>
-
-        <div id="chat-container">
-            <div id="file-container"></div>
-            <div class="chat-output"></div>
-        </div>
-
-        <div id="videos-container"></div>
+  <article>
+    <section>
+      <h2>New Session:</h2>
+      <button id="start-new-session">Start New Video Session</button>
     </section>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="assets/scripts/modules/RTCMultiConnection.min.js"></script>
-    <script src="assets/scripts/modules/getMediaElement.js"></script>
-    <script src="assets/scripts/modules/FileBufferReader.js"></script>
+    <table style="border-left: 1px solid black; width: 100%;">
+      <tr>
+        <td id="local-video-container">
+          <h2>Local video container</h2>
+        </td>
+        <td id="remote-videos-container" style="background: white; border-left: 1px solid black;">
+          <h2>Remote videos container
+          </h2>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table id="sessions-list" style="width: 100%;"></table>
+        </td>
+      </tr>
+    </table>
+  </article>
 
-    <script src="temp/scripts/App.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="assets/scripts/modules/RTCMultiConnection.min.js"></script>
+  <script src="assets/scripts/modules/getMediaElement.js"></script>
+  <script src="assets/scripts/modules/FileBufferReader.js"></script>
+
+  <script src="temp/scripts/App.js"></script>
 
 </body>
+
+<!-- <body>
+<section class="experiment">
+<div class="status">
+<h1></h1>
+</div>
+<div class="make-center">
+<input type="text" id="room-id" value="abcdef">
+<button id="open-room">Open Room</button>
+<button id="join-room">Join Room</button>
+<button id="open-or-join-room">Auto Open Or Join Room</button>
+
+<br><br>
+<input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
+<button id="share-file" disabled>Share File</button>
+<br><br>
+<button id="btn-leave-room" disabled>Leave /or close the room</button>
+
+<div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+</div>
+
+<div id="chat-container">
+<div id="file-container"></div>
+<div class="chat-output"></div>
+</div>
+
+<div id="videos-container"></div>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="assets/scripts/modules/RTCMultiConnection.min.js"></script>
+<script src="assets/scripts/modules/getMediaElement.js"></script>
+<script src="assets/scripts/modules/FileBufferReader.js"></script>
+
+<script src="temp/scripts/App.js"></script>
+
+</body> -->
 
 </html>

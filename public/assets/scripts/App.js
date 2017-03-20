@@ -1,4 +1,3 @@
-// import $ from 'jquery';
-import Socket from './sockets/Socket';
+var Socket = require('./sockets/Socket');
 
 var socket = new Socket();
