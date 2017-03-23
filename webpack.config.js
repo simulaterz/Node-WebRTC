@@ -1,12 +1,11 @@
-const path = require('path');
-// const htmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
   entry: "./public/assets/scripts/App.js",
   output: {
     path: "./public/temp/scripts",
     filename: "App.js"
   },
+  devtool: true,
+  devtool: 'source-map',
   module: {
     loaders: [
       {

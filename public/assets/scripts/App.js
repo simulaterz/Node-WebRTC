@@ -1,3 +1,4 @@
 var Socket = require('./sockets/Socket');
 
-var socket = new Socket();
+Socket();
+// window.socket = Socket();
