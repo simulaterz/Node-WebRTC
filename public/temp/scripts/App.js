@@ -73,7 +73,7 @@
 "use strict";
 
 
-module.exports = function Socket() {
+module.exports = exports = function Socket() {
   // ......................................................
   // .......................UI Code........................
   // ......................................................
@@ -260,7 +260,6 @@ module.exports = function Socket() {
 var Socket = __webpack_require__(0);
 
 Socket();
-// window.socket = Socket();
 
 /***/ })
 /******/ ]);
