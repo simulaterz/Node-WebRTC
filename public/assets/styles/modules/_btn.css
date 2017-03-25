@@ -1,5 +1,5 @@
 .btn {
-  color: #333;
+  color: $mainBlack;
   text-decoration: none;
   display: inline-block;
   padding: .75rem 1.2rem;
@@ -9,14 +9,11 @@
     font-size: 2.5rem;
     margin: .7rem 1.2rem;
     color: #fff;
-    background-color: rgba(#22A7F0, 0.75);
-    border: 1px solid rgba(#22A7F0, 0.5);
+    background-color: rgba($btnColor, 0.75);
+    border: 1px solid rgba($btnColor, 0.5);
     border-radius: 0.3rem;
+    text-shadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor
 
-    text-shadow: -.1rem 0 #22A7F0, 0 .1rem #22A7F0, .1rem 0 #22A7F0, 0 -.1rem #22A7F0;
-
-    &:hover {
-      background-color: rgba(#22A7F0, 0.9);
-    }
+    &:hover { background-color: rgba($btnColor, 0.9); }
   }
 }

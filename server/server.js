@@ -16,16 +16,16 @@ app.use(express.static(publicPath));
 app.set('views', viewPath);
 app.set('view engine', 'ejs');
 
-app.get('/a', (req, res) => {
-  res.render('index');
-});
-
 app.get('/', (req, res) => {
   res.render('index');
 });
 
 app.get('/login', (req, res) => {
   res.render('login');
+});
+
+app.get('/main', (req, res) => {
+  res.render('main');
 });
 
 server.listen(port, () => {

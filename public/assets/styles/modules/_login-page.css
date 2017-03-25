@@ -4,15 +4,22 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background: #3498db;
-  background: linear-gradient(to bottom, #3498db 0%,#52B3D9 100%);
+  background: $mainBlue;
+  background: linear-gradient(to bottom, $mainBlue 0%,#52B3D9 100%);
+  overflow: hidden;
 
   &__form {
     width: 550px;
-    background: rgba(250, 250, 250, 0.85);
+    background: rgba(#fff, 0.85);
     border: .1rem solid #e1e1e1;
     border-radius: .5rem;
     padding: 2rem 3rem;
+
+    &--header {
+      font-size: 4.5rem;
+      font-weight: 700;
+      padding-bottom: 1rem;
+    }
 
     &--field {
       margin: 2.5rem auto;
@@ -37,21 +44,12 @@
         border: .2rem solid rgba(#59abe3, 0.5);
         border-radius: .3rem;
 
-        &[type="text"] {
-          text-transform: uppercase;
-        }
+        &[type="text"] { text-transform: uppercase; }
 
         &:hover,
-        &:focus {
-          border: .2rem solid rgba(#59abe3, 0.9);
-        }
+        &:focus { border: .2rem solid rgba(#59abe3, 0.9); }
       }
     }
 
-    &--header {
-      font-size: 4.5rem;
-      font-weight: 700;
-      padding-bottom: 1rem;
-    }
   }
 }
