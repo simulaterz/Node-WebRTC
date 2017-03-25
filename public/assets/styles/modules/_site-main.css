@@ -1,0 +1,7 @@
+.site-main {
+  width: 85%;
+  height: 100%;
+  margin: 0 auto;
+  background: rgba(#fff, 0.9);
+  box-shadow:0 1px 35px 1px #888;
+}

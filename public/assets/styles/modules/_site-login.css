@@ -1,11 +1,7 @@
-.login-page {
+.site-login {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  background: $mainBlue;
-  background: linear-gradient(to bottom, $mainBlue 0%,#52B3D9 100%);
   overflow: hidden;
 
   &__form {
@@ -14,6 +10,7 @@
     border: .1rem solid #e1e1e1;
     border-radius: .5rem;
     padding: 2rem 3rem;
+    box-shadow:0 1px 4px 1px rgba(#b4b1b1, 0.9);
 
     &--header {
       font-size: 4.5rem;

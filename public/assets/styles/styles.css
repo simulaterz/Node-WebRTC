@@ -1,6 +1,8 @@
 @import "normalize.css";
+@import "modules/vendor/animate";
 @import "base/_variables";
 @import "base/_global";
-@import "modules/_login-page";
-@import "modules/_btn";
 @import "modules/_container";
+@import "modules/_btn";
+@import "modules/_site-login";
+@import "modules/_site-main";
