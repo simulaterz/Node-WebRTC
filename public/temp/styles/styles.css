@@ -460,6 +460,35 @@ template {
   display: none;
 }
 
+* {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #34495E;
+}
+
+h2,
+h3 {
+  /*display: block;*/
+  color: #3498DB;
+}
+
+h2 {
+  font-size: 3.5rem;
+  text-align: left;
+}
+
+h3 {
+  font-size: 2rem;
+  text-align: center;
+  padding:.5rem;
+}
+
 @charset "UTF-8";
 
 /*!
@@ -3801,16 +3830,6 @@ template {
   animation-name: slideOutUp;
 }
 
-* {
-  box-sizing: border-box;
-  font-size: 62.5%;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  color: #333;
-}
-
 .container {
   height: 100vh;
   width: 100vw;
@@ -3819,26 +3838,99 @@ body {
   background: linear-gradient(to bottom, #3498db 0%,#52B3D9 100%);
 }
 
-.btn {
-  color: #333;
-  text-decoration: none;
-  display: inline-block;
-  padding: .75rem 1.2rem;
+.row:after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
-.btn__site-login {
+.row__col-1-in-3 {
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+
+.row__col-2-in-3 {
+  width: 70%;
+  height: 100%;
+  float: left;
+  border-right: 2px solid #BDC3C7;
+}
+
+.row--main-content {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: .7rem;
+  padding: 2rem 0;
+}
+
+.btn {
+  color: #34495E;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.btn--site-login {
   display: block;
+  padding: .75rem 1.2rem;
   margin: .7rem 1.2rem;
   font-size: 2.5rem;
-  color: #fff;
-  background-color: rgba(34,167,240, 0.75);
   border: 1px solid rgba(34,167,240, 0.5);
   border-radius: 0.3rem;
   text-shadow: -.1rem 0 #22A7F0, 0 .1rem #22A7F0, .1rem 0 #22A7F0, 0 -.1rem #22A7F0;
+  background-color: rgba(34,167,240, 0.75);
 }
 
-.btn__site-login:hover {
+.btn--site-login:hover {
   background-color: rgba(34,167,240, 0.9);
+}
+
+.btn--main-header {
+  padding: .5rem 1.5rem;
+  margin: 0 0 1rem 1rem;
+  font-size: 2rem;
+  vertical-align: middle;
+  border-radius: 0.5rem;
+  background-color: rgba(242,38,19, 0.75);
+}
+
+.btn--main-header:hover {
+  background-color: rgba(242,38,19, 0.9);
+}
+
+.btn--create {
+  background-color: rgba(46,204,113, 0.8);
+  padding: .8rem .5rem;
+  border-radius: 0.5rem;
+  margin-left: 1.5rem;
+  font-size: 2rem;
+}
+
+.btn--create:hover {
+  background-color: rgba(46,204,113, 1);
+}
+
+.btn--create:last-child {
+  margin-left: 1rem;
+}
+
+.underline {
+  box-shadow:0 .1rem .1rem #7f8c8d;
+}
+
+.underline--main {
+  height: .1rem;
+  width: 100%;
+}
+
+.underline--header {
+  height: .2rem;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .site-login {
@@ -3856,29 +3948,31 @@ body {
 
 .site-login__form {
   width: 550px;
-  background: rgba(255,255,255, 0.85);
+  background: rgba(255,255,255, 0.95);
   border: .1rem solid #e1e1e1;
   border-radius: .5rem;
   padding: 2rem 3rem;
   box-shadow: 0 1px 4px 1px rgba(180,177,177, 0.9);
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
 }
 
-.site-login__form--header {
+.site-login__form__header {
   font-size: 4.5rem;
   font-weight: 700;
   padding-bottom: 1rem;
 }
 
-.site-login__form--field {
+.site-login__form__field {
   margin: 2.5rem auto;
   text-align: center;
 }
 
-.site-login__form--input {
+.site-login__form__field--input {
   margin: 1.8rem auto;
 }
 
-.site-login__form--input label {
+.site-login__form__field--input label {
   display: inline-block;
   width: 25%;
   font-size: 2.5rem;
@@ -3886,27 +3980,125 @@ body {
   margin-right: 1rem;
 }
 
-.site-login__form--input input {
+.site-login__form__field--input input {
   padding: .7rem;
   font-size: 2.5rem;
   text-align: center;
   border: .2rem solid rgba(89,171,227, 0.5);
   border-radius: .3rem;
+  -webkit-transition: border 0.2s;
+  transition: border 0.2s;
 }
 
-.site-login__form--input input[type="text"] {
+.site-login__form__field--input input[type="text"] {
   text-transform: uppercase;
 }
 
-.site-login__form--input input:hover,
-        .site-login__form--input input:focus {
-  border: .2rem solid rgba(89,171,227, 0.9);
+.site-login__form__field--input input:hover,
+          .site-login__form__field--input input:focus {
+  border: .2rem solid rgba(89,171,227, .9);
+  outline: none;
 }
 
 .site-main {
-  width: 85%;
-  height: 100%;
+  height: 100vh;
+  width: 85vw;
   margin: 0 auto;
-  background: rgba(255,255,255, 0.9);
-  box-shadow:0 1px 35px 1px #888;
+  padding: 1% 4%;
+  background: rgba(255,255,255, 0.97);
+  box-shadow:0 .1rem 3.5rem .1rem #888;
+  font-size: 1.8rem;
+}
+
+.site-main__header {
+  height: 8%;
+  width: 100%;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.site-main__content {
+  width: 100%;
+  height: 92%;
+}
+
+.field-room {
+  overflow-y: scroll;
+  width: 100%;
+  height: 94%;
+  margin: 2% .5% 2% 0;
+  padding: 0 1% 0 0;
+}
+
+.field-room__button {
+  width: 100%;
+  display: inline-block;
+  text-decoration: none;
+  background: #ECF0F1;
+  background: -webkit-linear-gradient(top, #ECF0F1 0%,#ECF0F1 100%);
+  background: linear-gradient(to bottom, #ECF0F1 0%,#ECF0F1 100%);
+  padding: 1rem;
+  margin-top: 1.1rem;
+  border-radius: .3rem;
+  color: #3498DB;
+  font-size: 3.5rem;
+  -webkit-transition: background .2s, text-shadow .2s;
+  transition: background .2s, text-shadow .2s;
+}
+
+.field-room__button:hover {/*opacity: 1;*/
+  background: #DADFE1;
+  text-shadow: .2rem .2rem .05rem rgba(255,255,255, 0.8);
+}
+
+.content-create {
+  width: 90%;
+  height: 10%;
+  position: relative;
+  font-size: 2.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+  padding-bottom: 1.5%;
+  border-bottom: .2rem solid #BDC3C7;
+}
+
+.content-create .room-name {
+  width: 35%;
+  padding: .7rem 1rem;
+  text-align: center;
+  border: .2rem solid rgba(89,171,227, 0.5);
+  border-radius: .7rem;
+  background: rgba(255,255,255, 0.7);
+}
+
+.content-create .room-name:focus {
+  outline: none;
+}
+
+.content-fav {
+  height: 35%;
+}
+
+/*background-color: blue;*/
+
+.content-fav__header {}
+
+.content-useronline {
+  height: 65%;
+}
+
+.content-useronline__header {}
+
+.content-roomlist {
+  height: 90%;
+  padding: 2% 1% 2% 3%;
 }

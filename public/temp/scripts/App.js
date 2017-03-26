@@ -78,7 +78,7 @@ var $ = __webpack_require__(2);
 module.exports = exports = function Script() {
   $(document).ready(function () {
 
-    $('.site-login__form').addClass('animated bounce');
+    $('.animation--zoomIn').addClass('animated zoomIn');
   });
 };
 

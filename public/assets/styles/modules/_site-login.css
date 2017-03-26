@@ -6,47 +6,51 @@
 
   &__form {
     width: 550px;
-    background: rgba(#fff, 0.85);
+    background: rgba(#fff, 0.95);
     border: .1rem solid #e1e1e1;
     border-radius: .5rem;
     padding: 2rem 3rem;
     box-shadow:0 1px 4px 1px rgba(#b4b1b1, 0.9);
+    animation-duration: 1.5s;
 
-    &--header {
+    &__header {
       font-size: 4.5rem;
       font-weight: 700;
       padding-bottom: 1rem;
     }
 
-    &--field {
+    &__field {
       margin: 2.5rem auto;
       text-align: center;
-    }
 
-    &--input {
-      margin: 1.8rem auto;
+      &--input {
+        margin: 1.8rem auto;
 
-      label {
-        display: inline-block;
-        width: 25%;
-        font-size: 2.5rem;
-        font-weight: 400;
-        margin-right: 1rem;
+        label {
+          display: inline-block;
+          width: 25%;
+          font-size: 2.5rem;
+          font-weight: 400;
+          margin-right: 1rem;
+        }
+
+        input {
+          padding: .7rem;
+          font-size: 2.5rem;
+          text-align: center;
+          border: .2rem solid rgba(#59abe3, 0.5);
+          border-radius: .3rem;
+          transition: border 0.2s;
+
+          &[type="text"] { text-transform: uppercase; }
+
+          &:hover,
+          &:focus {
+            border: .2rem solid rgba(#59abe3, .9);
+            outline: none;
+          }
+        }
       }
-
-      input {
-        padding: .7rem;
-        font-size: 2.5rem;
-        text-align: center;
-        border: .2rem solid rgba(#59abe3, 0.5);
-        border-radius: .3rem;
-
-        &[type="text"] { text-transform: uppercase; }
-
-        &:hover,
-        &:focus { border: .2rem solid rgba(#59abe3, 0.9); }
-      }
     }
-
   }
 }

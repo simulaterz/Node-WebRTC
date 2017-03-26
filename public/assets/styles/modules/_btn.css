@@ -2,18 +2,42 @@
   color: $mainBlack;
   text-decoration: none;
   display: inline-block;
-  padding: .75rem 1.2rem;
+  color: #fff;
+  transition: background-color .2s;
 
-  &__site-login {
+  &--site-login {
     display: block;
+    padding: .75rem 1.2rem;
     margin: .7rem 1.2rem;
     font-size: 2.5rem;
-    color: #fff;
-    background-color: rgba($btnColor, 0.75);
     border: 1px solid rgba($btnColor, 0.5);
     border-radius: 0.3rem;
     text-shadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor;
+    background-color: rgba($btnColor, 0.75);
 
     &:hover { background-color: rgba($btnColor, 0.9); }
+  }
+
+  &--main-header {
+    padding: .5rem 1.5rem;
+    margin: 0 0 1rem 1rem;
+    font-size: 2rem;
+    vertical-align: middle;
+    border-radius: 0.5rem;
+    background-color: rgba(#F22613, 0.75);
+
+    &:hover { background-color: rgba(#F22613, 0.9); }
+  }
+
+  &--create {
+    background-color: rgba(#2ECC71, 0.8);
+    padding: .8rem .5rem;
+    border-radius: 0.5rem;
+    margin-left: 1.5rem;
+    font-size: 2rem;
+
+    &:hover { background-color: rgba(#2ECC71, 1); }
+
+    &:last-child { margin-left: 1rem; }
   }
 }
