@@ -1,5 +1,23 @@
-$mainBlack: #34495E;
-$mainBlue: #3498db;
+$dirFont: ../../assets/styles/modules;
 
-$btnColor: #22A7F0;
+$mainBlue: #3498db;
+$mOrange: #db3c01;
+
+$btnColor: #00B16A;
 $lineColor: #7f8c8d;
+
+$baseGray: #BDC3C7;
+
+/* */
+
+$mainBlack: #34495E;
+$mainRed: #D91E18;
+
+$bdGray: #BDC3C7;
+
+$Orange: #F9690E;
+$midOrange: #db3c01;
+
+$Green: #00B16A;
+
+$textShadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor;

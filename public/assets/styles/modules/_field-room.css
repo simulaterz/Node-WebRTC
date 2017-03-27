@@ -6,21 +6,21 @@
   padding: 0 1% 0 0;
 
   &__button {
-width: 100%;
+    width: 100%;
     display: inline-block;
     text-decoration: none;
-    background: #ECF0F1;
-    background: linear-gradient(to bottom, #ECF0F1 0%,#ECF0F1 100%);
-    padding: 1rem;
+    background: rgba(#c9f7c6, 0.15);
+    /*background: linear-gradient(to bottom, #C8F7C5 0%,#C8F7C5 100%);*/
+    opacity: 1;
+    padding: 1.5rem;
     margin-top: 1.1rem;
     border-radius: .3rem;
-    color: #3498DB;
-    font-size: 3.5rem;
+    color: #6b6e6e;
+    font-size: 3rem;
     transition: background .2s, text-shadow .2s;
 
     &:hover {
-      /*opacity: 1;*/
-      background: #DADFE1;
+      background: rgba(#c9f7c6, 0.75);
       text-shadow: .2rem .2rem .05rem rgba(#ffffff, 0.8);
     }
   }

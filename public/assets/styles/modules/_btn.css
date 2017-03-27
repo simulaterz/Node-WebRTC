@@ -3,19 +3,21 @@
   text-decoration: none;
   display: inline-block;
   color: #fff;
-  transition: background-color .2s;
+  transition: background .2s, border .2s;
 
   &--site-login {
     display: block;
     padding: .75rem 1.2rem;
-    margin: .7rem 1.2rem;
     font-size: 2.5rem;
-    border: 1px solid rgba($btnColor, 0.5);
-    border-radius: 0.3rem;
-    text-shadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor;
-    background-color: rgba($btnColor, 0.75);
+    border: 2px solid #2C3E50;
+    border-radius: 1rem;
+    text-shadow: $textShadow;
+    background: rgba($Green, .85);
 
-    &:hover { background-color: rgba($btnColor, 0.9); }
+    &:hover {
+      background: rgba($Green, .95);
+      border: 2px solid #34495E;
+    }
   }
 
   &--main-header {
@@ -24,19 +26,21 @@
     font-size: 2rem;
     vertical-align: middle;
     border-radius: 0.5rem;
-    background-color: rgba(#F22613, 0.75);
+    background: rgba(#F22613, 0.75);
+    font-weight: 400;
 
-    &:hover { background-color: rgba(#F22613, 0.9); }
+    &:hover { background: rgba(#F22613, 0.9); }
   }
 
   &--create {
-    background-color: rgba(#2ECC71, 0.8);
-    padding: .8rem .5rem;
+    background: rgba(#2ECC71, 0.8);
+    padding: .8rem 1rem;
     border-radius: 0.5rem;
     margin-left: 1.5rem;
+    /*border: 1px solid rgba($btnColor, 0.5);*/
     font-size: 2rem;
 
-    &:hover { background-color: rgba(#2ECC71, 1); }
+    &:hover { background: rgba(#2ECC71, 1); }
 
     &:last-child { margin-left: 1rem; }
   }

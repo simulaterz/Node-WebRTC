@@ -5,11 +5,14 @@
 @import "base/_global";
 
 @import "modules/vendor/animate";
+@import "modules/vendor/ionicons.min";
+
 @import "modules/_container";
 @import "modules/_row";
 @import "modules/_btn";
 @import "modules/_underline";
 @import "modules/_site-login";
+@import "modules/_site-regis";
 @import "modules/_site-main";
 
 @import "modules/_field-room";

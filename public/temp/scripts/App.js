@@ -78,7 +78,8 @@ var $ = __webpack_require__(2);
 module.exports = exports = function Script() {
   $(document).ready(function () {
 
-    $('.animation--zoomIn').addClass('animated zoomIn');
+    // $('.animation--zoomIn').addClass('animated zoomIn');
+
   });
 };
 
