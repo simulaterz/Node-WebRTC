@@ -20,9 +20,9 @@
     }
   }
 
-  &--main-header {
+  &--main-logout {
     padding: .5rem 1.5rem;
-    margin: 0 0 1rem 1rem;
+    margin-left: 1rem;
     font-size: 2rem;
     vertical-align: middle;
     border-radius: 0.5rem;
@@ -33,14 +33,13 @@
   }
 
   &--create {
-    background: rgba(#2ECC71, 0.8);
+    background: rgba($Green, 0.8);
     padding: .8rem 1rem;
     border-radius: 0.5rem;
     margin-left: 1.5rem;
-    /*border: 1px solid rgba($btnColor, 0.5);*/
     font-size: 2rem;
 
-    &:hover { background: rgba(#2ECC71, 1); }
+    &:hover { background: rgba($Green, 1); }
 
     &:last-child { margin-left: 1rem; }
   }

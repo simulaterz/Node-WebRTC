@@ -1,4 +1,10 @@
 .content-roomlist {
   height: 90%;
-  padding: 2% 1% 2% 3%;
+  padding: 1% 1% 0 3%;
+
+  &__header {
+  height: 10%;
+
+    h2 { display: inline; }
+  }
 }

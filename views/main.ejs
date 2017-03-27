@@ -4,9 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
-
     <title>Main | WebChat</title>
-
     <link rel="stylesheet" href="temp/styles/styles.css">
 </head>
 
@@ -14,34 +12,33 @@
     <div class="container">
         <div class="site-main">
             <div class="site-main__header">
-                Hello: TestUser
-                <a href="#" class="btn btn--main-header">LogOut</a>
-                <div class="underline underline--main"></div>
+                <span class="site-main__header__uname"> Hello: TestUser </span>
+                <a href="#" class="btn btn--main-logout">LogOut</a>
             </div>
             <div class="site-main__content">
                 <div class="row row--main-content">
-                    <div class="row__col-2-in-3">
+                    <div class="row__col-2-in-3 row__col-2-in-3--border-right">
                         <div class="content-create">
-                            <input class="room-name" type="text" maxlength="15" placeholder="Room Name" />
+                            <input class="room-input" type="text" maxlength="15" placeholder="Room Name" autofocus/>
                             <a href="#" class="btn btn--create">Create Public Room</a>
                             <a href="#" class="btn btn--create">Create Private Room</a>
                         </div>
 
                         <div class="content-roomlist">
-                            <h2>Room List</h2>
+                            <div class="content-roomlist__header">
+                                <i class="ion-ios-chatboxes icon__header-room"></i>
+                                <h2>Room List</h2>
+                            </div>
                             <div class="field-room">
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
-                                <a href="#" class="field-room__button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
+                                <a href="#" class="field-room__room-button">abcde</a>
                             </div>
                         </div>
                     </div>

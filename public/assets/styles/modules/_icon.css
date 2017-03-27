@@ -1,0 +1,13 @@
+.icon {
+  &__login {
+    font-size: 6rem;
+    margin: auto 2rem auto 0;
+  }
+
+  &__header-room {
+    font-size: 4rem;
+    color: rgba($mainRed, .9);
+    padding-left: 1%;
+    margin-right: 1rem;
+  }
+}

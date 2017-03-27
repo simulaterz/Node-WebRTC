@@ -1,11 +1,6 @@
 .underline {
   box-shadow:0 .1rem .1rem $lineColor;
 
-  &--main {
-    height: .1rem;
-    width: 100%;
-  }
-
   &--header {
     height: .2rem;
     width: 60%;

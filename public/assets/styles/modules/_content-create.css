@@ -1,25 +1,29 @@
 .content-create {
   width: 90%;
   height: 10%;
-  position: relative;
   font-size: 2.2rem;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding-bottom: 1.5%;
-  border-bottom: .2rem solid #BDC3C7;
+  padding-bottom: 1%;
+  border-bottom: .2rem solid $bdGray;
 
-  .room-name {
+  .room-input {
     width: 35%;
     padding: .7rem 1rem;
     text-align: center;
-    border: .2rem solid #BDC3C7;
+    border: .2rem solid rgba($bdGray, 0.8);
     border-radius: .7rem;
     background: rgba(#fff, 0.7);
+    transition: background .2s, border .2s;
 
+    &:hover,
     &:focus {
       outline: none;
+      border: .2rem solid rgba($bdGray, 1);
+      background: rgba(#fff, 0.9);
     }
   }
 }
