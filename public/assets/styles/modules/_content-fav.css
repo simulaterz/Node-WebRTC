@@ -5,25 +5,40 @@
   &__header {
     width: 90%;
     height: 15%;
+    min-height: 39px;
     padding:0 0 1rem 1rem;
     border-bottom: 1px solid $bdGray;
 
     h3 {
       display: inline;
+      font-size: 1.6rem;
+      text-align: center;
+      padding:.3rem;
+
+      @mixin atMedium {
+        padding:.5rem;
+      }
     }
   }
 
   .room-fav {
     width: 95%;
     height: 85%;
-    background-color: green;
+    text-align: center;
+    overflow: scroll;
 
     &__list {
+      width: 95%;
+      color: #6b6e6e;
       display: inline-block;
-      width: 80%;
-      font-size: 2rem;
-      padding: .5rem;
-      background-color: #fff;
+      position: relative;
+      text-decoration: none;
+      text-align: left;
+      font-size: 1.6rem;
+      padding: .5rem .5rem .5rem 1rem;
+      margin-top: .6rem;
+      border-radius: .3rem;
+      background: rgba(#c9f7c6, 0.15);
     }
 
   }

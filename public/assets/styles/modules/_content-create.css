@@ -1,7 +1,8 @@
 .content-create {
   width: 90%;
   height: 10%;
-  font-size: 2.2rem;
+  max-height: 66.6px;
+  font-size: 1.2rem; /* size */
   position: relative;
   display: flex;
   align-items: center;
@@ -10,19 +11,28 @@
   padding-bottom: 1%;
   border-bottom: .1rem solid $bdGray;
 
+  @mixin atMedium {
+    font-size: 2.2rem;
+  }
+
   .room-input {
     width: 35%;
-    padding: .7rem 1rem;
+    padding: .3rem 1rem;
     text-align: center;
-    border: .2rem solid rgba($bdGray, 0.8);
-    border-radius: .7rem;
+    border: .1rem solid rgba($bdGray, 0.8);
+    border-radius: .4rem;
     background: rgba(#fff, 0.7);
     transition: background .2s, border .2s;
+
+    @mixin atMedium {
+      padding: .7rem 1rem;
+      border: .2rem solid rgba($bdGray, 0.8);
+    }
 
     &:hover,
     &:focus {
       outline: none;
-      border: .2rem solid rgba($bdGray, 1);
+      border: .1rem solid rgba($bdGray, 1);
       background: rgba(#fff, 0.9);
     }
   }

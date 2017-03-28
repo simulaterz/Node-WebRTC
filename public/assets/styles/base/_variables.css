@@ -21,5 +21,6 @@ $midOrange: #db3c01;
 
 $Green: #00B16A;
 
+/*$textShadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor;*/
 $textShadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor;
-$bgShadow: 0 .1rem 2rem .1rem #34495E;
+$bgShadow: 0 .1rem 1rem .1rem #34495E;

@@ -9,13 +9,16 @@
     width: 324px;
     font-size: 1.1rem;
     padding: .5rem 1rem;
-    border: 1px solid #f76817;
+    border: 1px solid #0a8252;
     border-radius: .5rem;
-    text-shadow: $textShadow;
-    background: rgba($Green, .85);
+    /*text-shadow: $textShadow;*/
+    /*background: rgba(#fff, .85);*/
+    background: rgba(#fff, 1);
+    color: $midOrange;
 
     &:hover {
-      background: rgba($Green, .95);
+      /*background: rgba($Green, .95);*/
+      background: rgba(#fff, .95)
     }
 
     @mixin atMedium {
@@ -30,27 +33,38 @@
   }
 
   &--main-logout {
-    padding: .5rem 1.5rem;
-    margin-left: 1rem;
-    font-size: 2rem;
-    vertical-align: middle;
-    border-radius: 0.5rem;
-    background: rgba(#F22613, 0.75);
+    padding: .2rem 1rem .3rem 1rem;
+    margin-left: .3rem;
+    font-size: 1.2rem;
     font-weight: 400;
+    vertical-align: middle;
+    border-radius: 0.3rem;
+    /*background: rgba(#F22613, 0.75);*/
+    background: rgba($mainRed, .85);
 
-    &:hover { background: rgba(#F22613, 0.9); }
+    &:hover {
+      /*background: rgba(#F22613, 0.9); */
+      background: rgba($mainRed, 0.95);
+    }
   }
 
   &--create {
     background: rgba($Green, 0.8);
-    padding: .8rem 1rem;
+    padding: .5rem .4rem;
     border-radius: 0.5rem;
-    margin-left: 1.5rem;
-    font-size: 2rem;
+    margin-left: .8rem;
+    font-size: 1rem;
+
+    @mixin atMedium {
+      padding: .8rem 1rem;
+      font-size: 2rem;
+      border-radius: 0.5rem;
+      margin-left: 1.5rem;
+    }
 
     &:hover { background: rgba($Green, 1); }
 
-    &:last-child { margin-left: 1rem; }
+    &:last-child { margin-left: .5rem; }
   }
 }
 

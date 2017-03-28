@@ -12,15 +12,14 @@ body {
 
 h2,
 h3 {
-  color: $mainRed;
+  /*color: $mainRed;*/
+  color: #2C3E50;
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: 2.2rem;
 }
 
 h3 { /* mod padding*/
   font-size: 2rem;
-  text-align: center;
-  padding:.5rem;
 }

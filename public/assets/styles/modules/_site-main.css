@@ -1,27 +1,33 @@
 .site-main {
-  height: 100vh;
-  width: 85vw;
+  width: 1000px;
+  height: 100%;
   margin: 0 auto;
-  padding: 1vh 3vw;
+  padding: 5px 18px;
   background: rgba(#fff, .95);
   box-shadow: $bgShadow;
 
+  @mixin atMedium {
+    padding: 8px 30px;
+  }
+
   &__header {
     width: 100%;
-    height: 6%;
+    /*max-height: 40px;*/
+    height: 5.5%;
     text-align: right;
     border-bottom: 1px solid $bdGray;
 
     &__uname {
       vertical-align: middle;
-      font-size: 2.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
     }
   }
 
   &__content {
     width: 100%;
-    height: 92%;
-    margin-top: 1%;
+    height: 93.5%;
+    /*margin-top: 1%;*/
+    margin-top: 9.625px;
   }
 }

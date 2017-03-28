@@ -4,17 +4,41 @@
   &__header {
     width: 90%;
     height: 8%;
+    min-height: 39px;
     padding:0 0 1rem 1rem;
     border-bottom: 1px solid $bdGray;
 
     h3 {
       display: inline;
+      font-size: 1.6rem;
+      text-align: center;
+      padding:.3rem;
+
+      @mixin atMedium {
+        padding:.5rem;
+      }
     }
   }
 
-  .ulist {
+  .uonline {
     width: 95%;
     height: 92%;
-    background-color: blue;
+    text-align: center;
+    padding-left: 1rem;
+    overflow: scroll;
+
+    &__list {
+      width: 95%;
+      color: #6b6e6e;
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+      text-align: left;
+      font-size: 1.5rem;
+      padding: .1rem 0 .1rem 1.6rem;
+      margin-top: .6rem;
+      border-radius: .3rem;
+      /*background: rgba(#c9f7c6, 0.15);*/
+    }
   }
 }
