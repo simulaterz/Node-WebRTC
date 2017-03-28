@@ -462,6 +462,8 @@ template {
 
 /* */
 
+/*1024, 1366, 1600*/
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5327,6 +5329,20 @@ h3 { /* mod padding*/
   margin: auto 1rem auto 0;
 }
 
+@media (min-width: 1366px) {
+
+  .icon__login {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .icon__login {
+    font-size: 2.7rem;
+  }
+}
+
 .icon__header-room {
   font-size: 3.5rem;
   color: rgba(217,30,24, .9);
@@ -5388,17 +5404,34 @@ h3 { /* mod padding*/
 }
 
 .btn--site-login {
-  display: block;
-  padding: 1.5rem 1.2rem;
-  font-size: 2.5rem;
+  width: 324px;
+  font-size: 1.1rem;
+  padding: .5rem 1rem;
   border: 1px solid #f76817;
-  border-radius: 1rem;
+  border-radius: .5rem;
   text-shadow: -.1rem 0 #00B16A, 0 .1rem #00B16A, .1rem 0 #00B16A, 0 -.1rem #00B16A;
   background: rgba(0,177,106, .85);
 }
 
 .btn--site-login:hover {
   background: rgba(0,177,106, .95);
+}
+
+@media (min-width: 1366px) {
+
+  .btn--site-login {
+    width: 410px;
+    font-size: 1.3rem;
+    padding: .6rem 1rem;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .btn--site-login {
+    width: 456px;
+    font-size: 1.6rem;
+  }
 }
 
 .btn--main-logout {
@@ -5431,6 +5464,56 @@ h3 { /* mod padding*/
   margin-left: 1rem;
 }
 
+/*.btn {
+  color: $mainBlack;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  transition: background .2s;
+
+  &--site-login {
+    display: block;
+    padding: 1.5rem 1.2rem;
+    font-size: 2.5rem;
+    border: 1px solid #f76817;
+    border-radius: 1rem;
+    text-shadow: $textShadow;
+    background: rgba($Green, .85);
+
+    &:hover {
+      background: rgba($Green, .95);
+    }
+
+    @mixin atMedium {
+
+    }
+  }
+
+  &--main-logout {
+    padding: .5rem 1.5rem;
+    margin-left: 1rem;
+    font-size: 2rem;
+    vertical-align: middle;
+    border-radius: 0.5rem;
+    background: rgba(#F22613, 0.75);
+    font-weight: 400;
+
+    &:hover { background: rgba(#F22613, 0.9); }
+  }
+
+  &--create {
+    background: rgba($Green, 0.8);
+    padding: .8rem 1rem;
+    border-radius: 0.5rem;
+    margin-left: 1.5rem;
+    font-size: 2rem;
+
+    &:hover { background: rgba($Green, 1); }
+
+    &:last-child { margin-left: 1rem; }
+  }
+}*/
+
 .underline {
   box-shadow:0 .1rem .1rem #7f8c8d;
 }
@@ -5456,8 +5539,8 @@ h3 { /* mod padding*/
 }
 
 .site-login__form {
-  width: 80%;
-  padding: 0 2%;
+  width: 330px;
+  height: 220px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -5465,46 +5548,155 @@ h3 { /* mod padding*/
           transform: translate(-50%, -50%);
 }
 
+@media (min-width: 1366px) {
+
+  .site-login__form {
+    width: 420px;
+    height: 250px;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .site-login__form {
+    width: 470px;
+    height: 270px;
+  }
+}
+
 .site-login__form__header {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  padding-bottom: 1rem;
+  padding-bottom: .2rem;
   color: #fff;
+}
+
+@media (min-width: 1366px) {
+
+  .site-login__form__header {
+    font-size: 2.3rem;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .site-login__form__header {
+    font-size: 2.5rem;
+  }
 }
 
 .site-login__form__field {
   text-align: center;
-  margin: 5% auto;
+  margin: 1rem auto;
   color: #fff;
 }
 
+@media (min-width: 1366px) {
+
+  .site-login__form__field {
+    margin: 1.3rem auto;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .site-login__form__field {
+    margin: 1.5rem auto;
+  }
+}
+
 .site-login__form__field--input {
-  margin: 1.5rem auto;
+  margin: .5rem auto;
+}
+
+@media (min-width: 1366px) {
+
+  .site-login__form__field--input {
+    margin: .8rem auto;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .site-login__form__field--input {
+    margin: 1.1rem auto;
+  }
 }
 
 .site-login__form__field--input label {
   display: inline-block;
   width: 25%;
-  font-size: 1.8rem;
+  font-size: 1.1rem;
   font-weight: 400;
-  margin-right: 4%;
+  margin-right: .3rem;
+}
+
+@media (min-width: 1366px) {
+
+  .site-login__form__field--input label {
+    font-size: 1.3rem;
+    width: 27%;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .site-login__form__field--input label {
+    font-size: 1.6rem;
+    width: 30%;
+  }
 }
 
 .site-login__form__field--input input {
   width: 70%;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   text-align: center;
-  padding: .4rem;
-  border: 1% solid rgba(189,195,199, .5);
+  padding: .15rem;
   border-radius: .3rem;
+  border: .1rem solid rgba(189,195,199, .5);
   -webkit-transition: border 0.2s;
   transition: border 0.2s;
 }
 
+@media (min-width: 1366px) {
+
+  .site-login__form__field--input input {
+    width: 68%;
+    font-size: 1.4rem;
+    border: .15rem solid rgba(189,195,199, .5);
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .site-login__form__field--input input {
+    width: 65%;
+    font-size: 1.6rem;
+    padding: .25rem;
+    border: .15rem solid rgba(189,195,199, .5);
+  }
+}
+
 .site-login__form__field--input input:hover,
           .site-login__form__field--input input:focus {
-  border: 1% solid rgba(189,195,199, .9);
+  border: .1rem solid rgba(189,195,199, .9);
   outline: none;
+}
+
+@media (min-width: 1366px) {
+
+  .site-login__form__field--input input:hover,
+          .site-login__form__field--input input:focus {
+    border: .15rem solid rgba(189,195,199, .9);
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .site-login__form__field--input input:hover,
+          .site-login__form__field--input input:focus {
+    border: .15rem solid rgba(189,195,199, .9);
+  }
 }
 
 .site-regis {

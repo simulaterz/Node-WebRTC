@@ -8,49 +8,107 @@
   @mixin clearfix;
 
   &__form {
-    width: 80%;
-    padding: 0 2%;
+    width: 330px;
+    height: 220px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
+    @mixin atMedium {
+      width: 420px;
+      height: 250px;
+    }
+    @mixin atLarge {
+      width: 470px;
+      height: 270px;
+    }
+
     &__header {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      padding-bottom: 1rem;
+      padding-bottom: .2rem;
       color: #fff;
+
+      @mixin atMedium {
+        font-size: 2.3rem;
+      }
+      @mixin atLarge {
+        font-size: 2.5rem;
+      }
     }
 
     &__field {
       text-align: center;
-      margin: 5% auto;
+      margin: 1rem auto;
       color: #fff;
 
-      &--input {
+      @mixin atMedium {
+        margin: 1.3rem auto;
+      }
+      @mixin atLarge {
         margin: 1.5rem auto;
+      }
+
+      &--input {
+        margin: .5rem auto;
+
+        @mixin atMedium {
+          margin: .8rem auto;
+        }
+        @mixin atLarge {
+          margin: 1.1rem auto;
+        }
 
         label {
           display: inline-block;
           width: 25%;
-          font-size: 1.8rem;
+          font-size: 1.1rem;
           font-weight: 400;
-          margin-right: 4%;
+          margin-right: .3rem;
+
+          @mixin atMedium {
+            font-size: 1.3rem;
+            width: 27%;
+          }
+          @mixin atLarge {
+            font-size: 1.6rem;
+            width: 30%;
+          }
         }
 
         input {
           width: 70%;
-          font-size: 1.8rem;
+          font-size: 1.3rem;
           text-align: center;
-          padding: .4rem;
-          border: 1% solid rgba($bdGray, .5);
+          padding: .15rem;
           border-radius: .3rem;
+          border: .1rem solid rgba($bdGray, .5);
           transition: border 0.2s;
+
+          @mixin atMedium {
+            width: 68%;
+            font-size: 1.4rem;
+            border: .15rem solid rgba($bdGray, .5);
+          }
+          @mixin atLarge {
+            width: 65%;
+            font-size: 1.6rem;
+            padding: .25rem;
+            border: .15rem solid rgba($bdGray, .5);
+          }
 
           &:hover,
           &:focus {
-            border: 1% solid rgba($bdGray, .9);
+            border: .1rem solid rgba($bdGray, .9);
             outline: none;
+
+            @mixin atMedium {
+              border: .15rem solid rgba($bdGray, .9);
+            }
+            @mixin atLarge {
+              border: .15rem solid rgba($bdGray, .9);
+            }
           }
         }
       }

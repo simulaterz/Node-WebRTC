@@ -6,16 +6,26 @@
   transition: background .2s;
 
   &--site-login {
-    display: block;
-    padding: 1.5rem 1.2rem;
-    font-size: 2.5rem;
+    width: 324px;
+    font-size: 1.1rem;
+    padding: .5rem 1rem;
     border: 1px solid #f76817;
-    border-radius: 1rem;
+    border-radius: .5rem;
     text-shadow: $textShadow;
     background: rgba($Green, .85);
 
     &:hover {
       background: rgba($Green, .95);
+    }
+
+    @mixin atMedium {
+      width: 410px;
+      font-size: 1.3rem;
+      padding: .6rem 1rem;
+    }
+    @mixin atLarge {
+      width: 456px;
+      font-size: 1.6rem;
     }
   }
 
@@ -43,3 +53,54 @@
     &:last-child { margin-left: 1rem; }
   }
 }
+
+
+/*.btn {
+  color: $mainBlack;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  transition: background .2s;
+
+  &--site-login {
+    display: block;
+    padding: 1.5rem 1.2rem;
+    font-size: 2.5rem;
+    border: 1px solid #f76817;
+    border-radius: 1rem;
+    text-shadow: $textShadow;
+    background: rgba($Green, .85);
+
+    &:hover {
+      background: rgba($Green, .95);
+    }
+
+    @mixin atMedium {
+
+    }
+  }
+
+  &--main-logout {
+    padding: .5rem 1.5rem;
+    margin-left: 1rem;
+    font-size: 2rem;
+    vertical-align: middle;
+    border-radius: 0.5rem;
+    background: rgba(#F22613, 0.75);
+    font-weight: 400;
+
+    &:hover { background: rgba(#F22613, 0.9); }
+  }
+
+  &--create {
+    background: rgba($Green, 0.8);
+    padding: .8rem 1rem;
+    border-radius: 0.5rem;
+    margin-left: 1.5rem;
+    font-size: 2rem;
+
+    &:hover { background: rgba($Green, 1); }
+
+    &:last-child { margin-left: 1rem; }
+  }
+}*/
