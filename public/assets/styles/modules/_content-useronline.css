@@ -1,5 +1,6 @@
 .content-useronline {
-  height: 65%;
+  height: 68%;
+  padding-top: 2%;
 
   &__header {
     width: 90%;

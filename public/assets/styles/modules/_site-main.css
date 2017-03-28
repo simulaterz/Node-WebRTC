@@ -12,7 +12,7 @@
 
   &__header {
     width: 100%;
-    /*max-height: 40px;*/
+    min-height: 40.5px;
     height: 5.5%;
     text-align: right;
     border-bottom: 1px solid $bdGray;

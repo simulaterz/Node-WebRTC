@@ -5793,7 +5793,8 @@ h3 { /* mod padding*/
 }
 
 .site-main__header {
-  width: 100%;/*max-height: 40px;*/
+  width: 100%;
+  min-height: 40.5px;
   height: 5.5%;
   text-align: right;
   border-bottom: 1px solid #BDC3C7;
@@ -5906,7 +5907,8 @@ h3 { /* mod padding*/
 }
 
 .content-fav {
-  height: 35%;
+  height: 32%;
+  min-height: 227px;
   margin: 0 auto;
 }
 
@@ -5933,10 +5935,10 @@ h3 { /* mod padding*/
 }
 
 .content-fav .room-fav {
+  overflow-y: scroll;
   width: 95%;
   height: 85%;
   text-align: center;
-  overflow: scroll;
 }
 
 .content-fav .room-fav__list {
@@ -5947,14 +5949,15 @@ h3 { /* mod padding*/
   text-decoration: none;
   text-align: left;
   font-size: 1.6rem;
-  padding: .5rem .5rem .5rem 1rem;
+  padding: .5rem .5rem .5rem ;
   margin-top: .6rem;
   border-radius: .3rem;
   background: rgba(201,247,198, 0.15);
 }
 
 .content-useronline {
-  height: 65%;
+  height: 68%;
+  padding-top: 2%;
 }
 
 .content-useronline__header {
@@ -5984,7 +5987,7 @@ h3 { /* mod padding*/
   height: 92%;
   text-align: center;
   padding-left: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .content-useronline .uonline__list {
