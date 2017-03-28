@@ -24,7 +24,7 @@
   .uonline {
     width: 95%;
     height: 92%;
-    text-align: center;
+    /*text-align: center;*/
     padding-left: 1rem;
     overflow-y: scroll;
 
@@ -34,7 +34,6 @@
       display: inline-block;
       position: relative;
       text-decoration: none;
-      text-align: left;
       font-size: 1.5rem;
       padding: .1rem 0 .1rem 1.6rem;
       margin-top: .6rem;
