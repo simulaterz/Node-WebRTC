@@ -1,6 +1,5 @@
 .content-fav {
   height: 32%;
-  min-height: 227px;
   margin: 0 auto;
   overflow: hidden;
 
@@ -24,14 +23,11 @@
   }
 
   .room-fav {
-    overflow-y: scroll;
-    overflow-x: hidden;
     width: 93%;
     height: 85%;
     margin-left: 1rem;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     &__list {
       width: 95%;
@@ -41,7 +37,7 @@
       text-decoration: none;
       text-align: left;
       font-size: 1.6rem;
-      padding: .5rem .5rem .5rem ;
+      padding: .5rem;
       margin-top: .6rem;
       border-radius: .3rem;
       background: rgba(#c9f7c6, 0.15);
