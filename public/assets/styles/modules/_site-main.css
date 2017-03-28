@@ -2,7 +2,7 @@
   width: 1000px;
   height: 100%;
   margin: 0 auto;
-  padding: 5px 18px;
+  padding: 10px 18px 5px 18px;
   background: rgba(#fff, .95);
   box-shadow: $bgShadow;
 

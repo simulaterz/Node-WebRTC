@@ -7,7 +7,6 @@
   &__header {
     width: 90%;
     height: 8%;
-    min-height: 39px;
     padding:0 0 1rem 1rem;
     border-bottom: 1px solid $bdGray;
 

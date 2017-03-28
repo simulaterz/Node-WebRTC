@@ -5319,6 +5319,7 @@ h3 { /* mod padding*/
 
 .container {
   height: 100vh;
+  min-height: 768px;
   width: 100vw;
   background: #db3c01;
   /*background: linear-gradient(to bottom, $Orange 20%,$midOrange 100%);*/
@@ -5780,7 +5781,7 @@ h3 { /* mod padding*/
   width: 1000px;
   height: 100%;
   margin: 0 auto;
-  padding: 5px 18px;
+  padding: 10px 18px 5px 18px;
   background: rgba(255,255,255, .95);
   box-shadow: 0 .1rem 1rem .1rem #34495E;
 }
@@ -5915,7 +5916,6 @@ h3 { /* mod padding*/
 .content-fav__header {
   width: 90%;
   height: 15%;
-  min-height: 39px;
   padding:0 0 1rem 1rem;
   border-bottom: 1px solid #BDC3C7;
 }
@@ -5966,7 +5966,6 @@ h3 { /* mod padding*/
 .content-useronline__header {
   width: 90%;
   height: 8%;
-  min-height: 39px;
   padding:0 0 1rem 1rem;
   border-bottom: 1px solid #BDC3C7;
 }
