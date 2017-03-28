@@ -1,8 +1,30 @@
 .content-fav {
   height: 35%;
-  /*background-color: blue;*/
+  margin: 0 auto;
 
   &__header {
+    width: 90%;
+    height: 15%;
+    padding:0 0 1rem 1rem;
+    border-bottom: 1px solid $bdGray;
+
+    h3 {
+      display: inline;
+    }
+  }
+
+  .room-fav {
+    width: 95%;
+    height: 85%;
+    background-color: green;
+
+    &__list {
+      display: inline-block;
+      width: 80%;
+      font-size: 2rem;
+      padding: .5rem;
+      background-color: #fff;
+    }
 
   }
 }

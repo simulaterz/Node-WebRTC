@@ -3,20 +3,19 @@
   text-decoration: none;
   display: inline-block;
   color: #fff;
-  transition: background .2s, border .2s;
+  transition: background .2s;
 
   &--site-login {
     display: block;
-    padding: .75rem 1.2rem;
+    padding: 1.5rem 1.2rem;
     font-size: 2.5rem;
-    border: 2px solid #2C3E50;
+    border: 1px solid #f76817;
     border-radius: 1rem;
     text-shadow: $textShadow;
     background: rgba($Green, .85);
 
     &:hover {
       background: rgba($Green, .95);
-      border: 2px solid #34495E;
     }
   }
 

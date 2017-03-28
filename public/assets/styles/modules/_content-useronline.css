@@ -2,6 +2,19 @@
   height: 65%;
 
   &__header {
+    width: 90%;
+    height: 8%;
+    padding:0 0 1rem 1rem;
+    border-bottom: 1px solid $bdGray;
 
+    h3 {
+      display: inline;
+    }
+  }
+
+  .ulist {
+    width: 95%;
+    height: 92%;
+    background-color: blue;
   }
 }

@@ -10,7 +10,7 @@
     width: 100%;
     height: 6%;
     text-align: right;
-    border-bottom: 2px solid $bdGray;
+    border-bottom: 1px solid $bdGray;
 
     &__uname {
       vertical-align: middle;

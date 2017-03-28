@@ -464,7 +464,6 @@ template {
 
 * {
   box-sizing: border-box;
-  font-size: 62.5%;
   margin: 0;
   padding: 0;
 }
@@ -472,6 +471,7 @@ template {
 body {
   font-family: 'Lato', sans-serif;
   color: #34495E;
+  font-size: 62.5%;
 }
 
 h2,
@@ -5323,15 +5323,29 @@ h3 { /* mod padding*/
 }
 
 .icon__login {
-  font-size: 6rem;
-  margin: auto 2rem auto 0;
+  font-size: 2.4rem;
+  margin: auto 1rem auto 0;
 }
 
 .icon__header-room {
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: rgba(217,30,24, .9);
   padding-left: 1%;
   margin-right: 1rem;
+}
+
+.icon__fav {
+  font-size: 2.5rem;
+  color: rgba(217,30,24, .9);
+  padding-left: 1%;
+  margin-right: .5rem;
+}
+
+.icon__useronline {
+  font-size: 2.5rem;
+  color: rgba(217,30,24, .9);
+  padding-left: 1%;
+  margin-right: .5rem;
 }
 
 .row:after {
@@ -5353,7 +5367,7 @@ h3 { /* mod padding*/
 }
 
 .row__col-2-in-3--border-right {
-  border-right: 2px solid #BDC3C7;
+  border-right: 1px solid #BDC3C7;
 }
 
 .row--main-content {
@@ -5369,15 +5383,15 @@ h3 { /* mod padding*/
   text-decoration: none;
   display: inline-block;
   color: #fff;
-  -webkit-transition: background .2s, border .2s;
-  transition: background .2s, border .2s;
+  -webkit-transition: background .2s;
+  transition: background .2s;
 }
 
 .btn--site-login {
   display: block;
-  padding: .75rem 1.2rem;
+  padding: 1.5rem 1.2rem;
   font-size: 2.5rem;
-  border: 2px solid #2C3E50;
+  border: 1px solid #f76817;
   border-radius: 1rem;
   text-shadow: -.1rem 0 #00B16A, 0 .1rem #00B16A, .1rem 0 #00B16A, 0 -.1rem #00B16A;
   background: rgba(0,177,106, .85);
@@ -5385,7 +5399,6 @@ h3 { /* mod padding*/
 
 .btn--site-login:hover {
   background: rgba(0,177,106, .95);
-  border: 2px solid #34495E;
 }
 
 .btn--main-logout {
@@ -5453,7 +5466,7 @@ h3 { /* mod padding*/
 }
 
 .site-login__form__header {
-  font-size: 4.5rem;
+  font-size: 2.4rem;
   font-weight: 700;
   padding-bottom: 1rem;
   color: #fff;
@@ -5466,22 +5479,22 @@ h3 { /* mod padding*/
 }
 
 .site-login__form__field--input {
-  margin: 1.8rem auto;
+  margin: 1.5rem auto;
 }
 
 .site-login__form__field--input label {
   display: inline-block;
-  width: 27%;
-  font-size: 2.2rem;
+  width: 25%;
+  font-size: 1.8rem;
   font-weight: 400;
-  margin-right: 2%;
+  margin-right: 4%;
 }
 
 .site-login__form__field--input input {
   width: 70%;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   text-align: center;
-  padding: .7rem;
+  padding: .4rem;
   border: 1% solid rgba(189,195,199, .5);
   border-radius: .3rem;
   -webkit-transition: border 0.2s;
@@ -5490,7 +5503,8 @@ h3 { /* mod padding*/
 
 .site-login__form__field--input input:hover,
           .site-login__form__field--input input:focus {
-  border: .2rem solid rgba(189,195,199, .9);
+  border: 1% solid rgba(189,195,199, .9);
+  outline: none;
 }
 
 .site-regis {
@@ -5515,7 +5529,7 @@ h3 { /* mod padding*/
   width: 100%;
   height: 6%;
   text-align: right;
-  border-bottom: 2px solid #BDC3C7;
+  border-bottom: 1px solid #BDC3C7;
 }
 
 .site-main__header__uname {
@@ -5578,7 +5592,7 @@ h3 { /* mod padding*/
           justify-content: center;
   margin: 0 auto;
   padding-bottom: 1%;
-  border-bottom: .2rem solid #BDC3C7;
+  border-bottom: .1rem solid #BDC3C7;
 }
 
 .content-create .room-input {
@@ -5601,17 +5615,54 @@ h3 { /* mod padding*/
 
 .content-fav {
   height: 35%;
+  margin: 0 auto;
 }
 
-/*background-color: blue;*/
+.content-fav__header {
+  width: 90%;
+  height: 15%;
+  padding:0 0 1rem 1rem;
+  border-bottom: 1px solid #BDC3C7;
+}
 
-.content-fav__header {}
+.content-fav__header h3 {
+  display: inline;
+}
+
+.content-fav .room-fav {
+  width: 95%;
+  height: 85%;
+  background-color: green;
+}
+
+.content-fav .room-fav__list {
+  display: inline-block;
+  width: 80%;
+  font-size: 2rem;
+  padding: .5rem;
+  background-color: #fff;
+}
 
 .content-useronline {
   height: 65%;
 }
 
-.content-useronline__header {}
+.content-useronline__header {
+  width: 90%;
+  height: 8%;
+  padding:0 0 1rem 1rem;
+  border-bottom: 1px solid #BDC3C7;
+}
+
+.content-useronline__header h3 {
+  display: inline;
+}
+
+.content-useronline .ulist {
+  width: 95%;
+  height: 92%;
+  background-color: blue;
+}
 
 .content-roomlist {
   height: 90%;
