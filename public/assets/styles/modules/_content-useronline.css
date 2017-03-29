@@ -1,6 +1,8 @@
 .content-useronline {
+  width: 100%;
   height: 68%;
-  padding-top: 2%;
+  padding: 2% 0 0 0;
+  overflow: hidden;
 
   @mixin atMedium {
     padding-top: 1.5%;
@@ -14,8 +16,8 @@
     border-bottom: 1px solid $bdGray;
 
     @mixin atMedium {
-      height: 12%;
-      min-height: 51px;
+      height: 9.7%;
+      min-height: 42.55px;
     }
 
     h3 {
@@ -25,15 +27,15 @@
       padding:.3rem;
 
       @mixin atMedium {
-        padding:.5rem;
+        font-size: 1.8rem;
       }
     }
   }
 
   &__field-user {
     width: 100%;
-    height: 92%;
-    margin-top: 1px;
+    height: 90%;
+    margin-bottom: 3%;
     padding-left: 1rem;
     overflow-y: scroll;
     overflow-x: hidden;

@@ -1,7 +1,7 @@
 .content-fav {
   height: 32%;
-  min-height: 193.2px;
   overflow: hidden;
+  min-height: 209.8px;
 
 
   &__header {
@@ -12,7 +12,7 @@
 
     @mixin atMedium {
       height: 20%;
-      min-height: 42.56px;
+      min-height: 42.5px;
     }
 
     h3 {

@@ -23,8 +23,9 @@
 
   &__field-room {
     width: 100%;
-    height: 92%;
+    height: 90%;
     padding: 1% 2% 0 0;
+    margin-bottom: 2%;
     overflow-y: scroll;
     overflow-x: hidden;
   }

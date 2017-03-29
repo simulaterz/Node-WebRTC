@@ -73,8 +73,8 @@
     color: rgba($mainBlack, .85);
     background: rgba(#c9f7c6, 0.15);
     border-radius: .3rem;
-    transition: background .2s, text-shadow .2s;
     margin-top: .6rem;
+    transition: background .2s;
 
     @mixin atMedium {
       font-size: 2rem;
@@ -84,7 +84,6 @@
 
     &:hover {
       background: rgba(#c9f7c6, 0.55);
-      text-shadow: .2rem .2rem .05rem rgba(#fff, 0.8);
     }
 
     &--main {
@@ -120,58 +119,6 @@
 
     &:hover {
       background: rgba($mainBlack, 0.05);
-      text-shadow: .2rem .2rem .05rem rgba(#fff, 0.8);
     }
   }
 }
-
-
-/*.btn {
-color: $mainBlack;
-text-decoration: none;
-display: inline-block;
-color: #fff;
-transition: background .2s;
-
-&--site-login {
-display: block;
-padding: 1.5rem 1.2rem;
-font-size: 2.5rem;
-border: 1px solid #f76817;
-border-radius: 1rem;
-text-shadow: $textShadow;
-background: rgba($Green, .85);
-
-&:hover {
-background: rgba($Green, .95);
-}
-
-@mixin atMedium {
-
-}
-}
-
-&--main-logout {
-padding: .5rem 1.5rem;
-margin-left: 1rem;
-font-size: 2rem;
-vertical-align: middle;
-border-radius: 0.5rem;
-background: rgba(#F22613, 0.75);
-font-weight: 400;
-
-&:hover { background: rgba(#F22613, 0.9); }
-}
-
-&--create {
-background: rgba($Green, 0.8);
-padding: .8rem 1rem;
-border-radius: 0.5rem;
-margin-left: 1.5rem;
-font-size: 2rem;
-
-&:hover { background: rgba($Green, 1); }
-
-&:last-child { margin-left: 1rem; }
-}
-}*/
