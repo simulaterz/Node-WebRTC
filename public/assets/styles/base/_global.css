@@ -6,20 +6,24 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  color: $mainBlack;
+  color: $mainBlackHeader;
   font-size: 62.5%;
 }
 
 h2,
 h3 {
-  /*color: $mainRed;*/
-  color: #2C3E50;
+  color: $mainBlackHeader;
 }
 
 h2 {
   font-size: 2.2rem;
 }
 
-h3 { /* mod padding*/
+h3 {
   font-size: 2rem;
+}
+
+a {
+  color: rgba($mainBlack, .85);
+  text-decoration: none;
 }

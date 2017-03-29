@@ -84,18 +84,21 @@
           padding: .15rem;
           border-radius: .3rem;
           border: .1rem solid rgba($bdGray, .5);
+          outline: none;
           transition: border 0.2s;
 
           @mixin atMedium {
             width: 68%;
             font-size: 1.4rem;
-            border: .15rem solid rgba($bdGray, .5);
+            border: .1rem solid rgba($bdGray, .5);
+            outline: none;
           }
           @mixin atLarge {
             width: 65%;
             font-size: 1.6rem;
             padding: .25rem;
-            border: .15rem solid rgba($bdGray, .5);
+            border: .1rem solid rgba($bdGray, .5);
+            outline: none;
           }
 
           &:hover,
@@ -104,10 +107,12 @@
             outline: none;
 
             @mixin atMedium {
-              border: .15rem solid rgba($bdGray, .9);
+              border: .1rem solid rgba($bdGray, .9);
+              outline: none;
             }
             @mixin atLarge {
-              border: .15rem solid rgba($bdGray, .9);
+              border: .1rem solid rgba($bdGray, .9);
+              outline: none;
             }
           }
         }

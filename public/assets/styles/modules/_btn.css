@@ -1,8 +1,6 @@
 .btn {
-  color: $mainBlack;
-  text-decoration: none;
-  display: inline-block;
   color: #fff;
+  display: inline-block;
   transition: background .2s;
 
   &--site-login {
@@ -11,13 +9,10 @@
     padding: .5rem 1rem;
     border: 1px solid #0a8252;
     border-radius: .5rem;
-    /*text-shadow: $textShadow;*/
-    /*background: rgba(#fff, .85);*/
     background: rgba(#fff, 1);
     color: $midOrange;
 
     &:hover {
-      /*background: rgba($Green, .95);*/
       background: rgba(#fff, .95)
     }
 
@@ -33,27 +28,26 @@
   }
 
   &--main-logout {
-    padding: .2rem 1rem .3rem 1rem;
-    margin-left: .3rem;
     font-size: 1.2rem;
     font-weight: 400;
     vertical-align: middle;
-    border-radius: 0.3rem;
-    /*background: rgba(#F22613, 0.75);*/
+    padding: .2rem .7rem .3rem .7rem;
+    margin-left: .3rem;
+    border-radius: 0.2rem;
     background: rgba($mainRed, .85);
 
     &:hover {
-      /*background: rgba(#F22613, 0.9); */
       background: rgba($mainRed, 0.95);
     }
   }
 
   &--create {
-    background: rgba($Green, 0.8);
-    padding: .5rem .4rem;
-    border-radius: 0.5rem;
-    margin-left: .8rem;
     font-size: 1rem;
+    padding: .5rem .4rem;
+    margin-left: .8rem;
+    border-radius: .3rem;
+    background: rgba($Green, 0.85);
+
 
     @mixin atMedium {
       padding: .8rem 1rem;
@@ -62,59 +56,108 @@
       margin-left: 1.5rem;
     }
 
-    &:hover { background: rgba($Green, 1); }
+    &:hover {
+      background: rgba($Green, 1);
+    }
 
-    &:last-child { margin-left: .5rem; }
+    &:last-child {
+      margin-left: .5rem;
+    }
+  }
+
+  &--room {
+    font-size: 1.8rem;
+    color: rgba($mainBlack, .85);
+    background: rgba(#c9f7c6, 0.15);
+    border-radius: .3rem;
+    transition: background .2s, text-shadow .2s;
+    margin-top: .6rem;
+
+    &:hover {
+      background: rgba(#c9f7c6, 0.55);
+      text-shadow: .2rem .2rem .05rem rgba(#fff, 0.8);
+    }
+
+    &--main {
+      width: 100%;
+      padding: .5rem 0 .5rem .8rem;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    &--fav {
+      width: 100%;
+      position: relative;
+      font-size: 1.6rem;
+      padding: .5rem;
+    }
+  }
+
+  &--online-user {
+    position: relative;
+    width: 99%;
+    color: rgba($mainBlack, .85);
+    font-size: 1.5rem;
+    padding: .2rem 0 .2rem 1.6rem;
+    margin-top: .5rem;
+    border-radius: .2rem;
+
+    &:hover {
+      background: rgba($mainBlack, 0.05);
+      text-shadow: .2rem .2rem .05rem rgba(#fff, 0.8);
+    }
   }
 }
 
 
 /*.btn {
-  color: $mainBlack;
-  text-decoration: none;
-  display: inline-block;
-  color: #fff;
-  transition: background .2s;
+color: $mainBlack;
+text-decoration: none;
+display: inline-block;
+color: #fff;
+transition: background .2s;
 
-  &--site-login {
-    display: block;
-    padding: 1.5rem 1.2rem;
-    font-size: 2.5rem;
-    border: 1px solid #f76817;
-    border-radius: 1rem;
-    text-shadow: $textShadow;
-    background: rgba($Green, .85);
+&--site-login {
+display: block;
+padding: 1.5rem 1.2rem;
+font-size: 2.5rem;
+border: 1px solid #f76817;
+border-radius: 1rem;
+text-shadow: $textShadow;
+background: rgba($Green, .85);
 
-    &:hover {
-      background: rgba($Green, .95);
-    }
+&:hover {
+background: rgba($Green, .95);
+}
 
-    @mixin atMedium {
+@mixin atMedium {
 
-    }
-  }
+}
+}
 
-  &--main-logout {
-    padding: .5rem 1.5rem;
-    margin-left: 1rem;
-    font-size: 2rem;
-    vertical-align: middle;
-    border-radius: 0.5rem;
-    background: rgba(#F22613, 0.75);
-    font-weight: 400;
+&--main-logout {
+padding: .5rem 1.5rem;
+margin-left: 1rem;
+font-size: 2rem;
+vertical-align: middle;
+border-radius: 0.5rem;
+background: rgba(#F22613, 0.75);
+font-weight: 400;
 
-    &:hover { background: rgba(#F22613, 0.9); }
-  }
+&:hover { background: rgba(#F22613, 0.9); }
+}
 
-  &--create {
-    background: rgba($Green, 0.8);
-    padding: .8rem 1rem;
-    border-radius: 0.5rem;
-    margin-left: 1.5rem;
-    font-size: 2rem;
+&--create {
+background: rgba($Green, 0.8);
+padding: .8rem 1rem;
+border-radius: 0.5rem;
+margin-left: 1.5rem;
+font-size: 2rem;
 
-    &:hover { background: rgba($Green, 1); }
+&:hover { background: rgba($Green, 1); }
 
-    &:last-child { margin-left: 1rem; }
-  }
+&:last-child { margin-left: 1rem; }
+}
 }*/

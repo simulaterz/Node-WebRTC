@@ -1,9 +1,7 @@
 .content-create {
   width: 90%;
   height: 10%;
-  max-height: 66.6px;
-  font-size: 1.2rem; /* size */
-  position: relative;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,13 +14,13 @@
   }
 
   .room-input {
-    width: 35%;
-    padding: .3rem 1rem;
+    width: 40%;
     text-align: center;
+    padding: .3rem 1rem;
     border: .1rem solid rgba($bdGray, 0.8);
-    border-radius: .4rem;
+    border-radius: .3rem;
     background: rgba(#fff, 0.7);
-    transition: background .2s, border .2s;
+    transition:  border .2s, background .2s;
 
     @mixin atMedium {
       padding: .7rem 1rem;
@@ -31,9 +29,9 @@
 
     &:hover,
     &:focus {
-      outline: none;
       border: .1rem solid rgba($bdGray, 1);
       background: rgba(#fff, 0.9);
+      outline: none;
     }
   }
 }

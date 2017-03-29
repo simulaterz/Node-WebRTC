@@ -5,16 +5,16 @@
     width: 30%;
     height: 100%;
     float: left;
+
+    &--border-left {
+      border-left: 1px solid $bdGray;
+    }
   }
 
   &__col-2-in-3 {
     width: 70%;
     height: 100%;
     float: left;
-
-    &--border-right {
-      border-right: 1px solid $bdGray;
-    }
   }
 
   &--main-content {
@@ -22,7 +22,7 @@
     height: 100%;
     background-color: #fff;
     border-radius: .3rem;
-    padding: 1rem 0;
+    padding: 1rem 1.2rem;
 
     @mixin atMedium {
       border-radius: .5rem;

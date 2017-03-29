@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container container--main">
         <div class="site-main">
             <div class="site-main__header">
                 <span class="site-main__header__uname"> Hello: TestUser </span>
@@ -17,9 +17,9 @@
             </div>
             <div class="site-main__content">
                 <div class="row row--main-content">
-                    <div class="row__col-2-in-3 row__col-2-in-3--border-right">
+                    <div class="row__col-2-in-3">
                         <div class="content-create">
-                            <input class="room-input" type="text" maxlength="10" placeholder="Room Name" autofocus/>
+                            <input class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room Name'"/>
                             <a href="#" class="btn btn--create">Create Public Room</a>
                             <a href="#" class="btn btn--create">Create Private Room</a>
                         </div>
@@ -29,29 +29,30 @@
                                 <i class="ion-chatboxes icon__header-room"></i>
                                 <h2>Room List</h2>
                             </div>
-                            <div class="field-room">
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
-                                <a href="#" class="field-room__room-button">abcde</a>
+                            <div class="content-roomlist__field-room">
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
+                                <a href="#" class="btn btn--room btn--room--main">abcde</a>
                             </div>
                         </div>
                     </div>
-                    <div class="row__col-1-in-3">
+                    <div class="row__col-1-in-3 row__col-1-in-3--border-left">
                         <div class="content-fav">
                             <div class="content-fav__header">
-                                <i class="ion-android-bookmark icon__fav"></i>
+                                <i class="ion-android-bookmark icon__header-right"></i>
                                 <h3>Favorite Room</h3>
                             </div>
-                            <div class="room-fav">
-                                <a href="#" class="room-fav__list">testing name<span class="ion-android-delete icon__del"></span></a>
-                                <a href="#" class="room-fav__list">Test room<span class="ion-android-delete icon__del"></span></a>
-                                <a href="#" class="room-fav__list">myroom for chat<span class="ion-android-delete icon__del"></span></a>
+                            <div class="content-fav__field-room">
+                                <a href="#" class="btn btn--room btn btn--room--fav">testing name<span class="ion-android-delete icon__del"></span></a>
+                                <a href="#" class="btn btn--room btn btn--room--fav">Test room<span class="ion-android-delete icon__del"></span></a>
+                                <a href="#" class="btn btn--room btn btn--room--fav">myroom for chat<span class="ion-android-delete icon__del"></span></a>
                             </div>
                         </div>
                         <div class="content-useronline">
@@ -59,10 +60,10 @@
                                 <i class="ion-android-contacts icon__useronline"></i>
                                 <h3>Online User List</h3>
                             </div>
-                            <div class="uonline">
-                              <a href="#" class="uonline__list"><span class="ion-ios-circle-filled icon__user"></span>My USer</a>
-                              <a href="#" class="uonline__list"><span class="ion-ios-circle-filled icon__user"></span>Test USer</a>
-                              <a href="#" class="uonline__list"><span class="ion-ios-circle-filled icon__user"></span>test Test</a>
+                            <div class="content-useronline__field-user">
+                                <a href="#" class="btn btn--online-user"><span class="ion-ios-circle-filled icon__status"></span>My USer</a>
+                                <a href="#" class="btn btn--online-user"><span class="ion-ios-circle-filled icon__status"></span>Test USer</a>
+                                <a href="#" class="btn btn--online-user"><span class="ion-ios-circle-filled icon__status"></span>test Test</a>
 
                             </div>
                         </div>

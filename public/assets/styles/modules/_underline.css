@@ -1,9 +1,0 @@
-.underline {
-  box-shadow:0 .1rem .1rem $lineColor;
-
-  &--header {
-    height: .2rem;
-    width: 60%;
-    margin: 0 auto;
-  }
-}

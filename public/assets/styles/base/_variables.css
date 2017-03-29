@@ -1,17 +1,16 @@
-
-
-$mainBlue: #3498db;
+/*$mainBlue: #3498db;
 $mOrange: #db3c01;
 
 $btnColor: #00B16A;
 $lineColor: #7f8c8d;
 
-$baseGray: #BDC3C7;
+$baseGray: #BDC3C7;*/
 
 /* */
 $dirFont: ../../assets/styles/modules;
 
 $mainBlack: #34495E;
+$mainBlackHeader: #2C3E50;
 $mainRed: #D91E18;
 
 $bdGray: #BDC3C7;
@@ -21,6 +20,5 @@ $midOrange: #db3c01;
 
 $Green: #00B16A;
 
-/*$textShadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor;*/
-$textShadow: -.1rem 0 $btnColor, 0 .1rem $btnColor, .1rem 0 $btnColor, 0 -.1rem $btnColor;
+$textShadow: -.1rem 0 $Green, 0 .1rem $Green, .1rem 0 $Green, 0 -.1rem $Green;
 $bgShadow: 0 .1rem 1rem .1rem #34495E;
