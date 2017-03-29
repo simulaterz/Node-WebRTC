@@ -1,6 +1,7 @@
 .content-create {
   width: 90%;
   height: 10%;
+  min-height: 67.2px;
   font-size: 1.2rem;
   display: flex;
   align-items: center;

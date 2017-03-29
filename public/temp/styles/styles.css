@@ -460,16 +460,6 @@ template {
   display: none;
 }
 
-/*$mainBlue: #3498db;
-$mOrange: #db3c01;
-
-$btnColor: #00B16A;
-$lineColor: #7f8c8d;
-
-$baseGray: #BDC3C7;*/
-
-/* */
-
 /*1024, 1366, 1600*/
 
 * {
@@ -5336,10 +5326,6 @@ a {
   background: linear-gradient(to bottom, #F9690E 13%,#00B16A 87%);
 }
 
-.container--main {
-  min-height: 768px;
-}
-
 .icon__login {
   font-size: 2.4rem;
   margin: auto 1rem auto 0;
@@ -5844,6 +5830,7 @@ font-size: 2rem;
 .site-main__header {
   width: 100%;
   height: 5.5%;
+  min-height: 41.41px;
   text-align: right;
   border-bottom: 1px solid #BDC3C7;
 }
@@ -5857,12 +5844,14 @@ font-size: 2rem;
 .site-main__content {
   width: 100%;
   height: 93.5%;
+  min-height: 182.78;
   margin-top: 1%;
 }
 
 .content-create {
   width: 90%;
   height: 10%;
+  min-height: 67.2px;
   font-size: 1.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5913,6 +5902,7 @@ font-size: 2rem;
 
 .content-fav {
   height: 32%;
+  min-height: 193.2px;
   overflow: hidden;
 }
 
@@ -5951,6 +5941,7 @@ font-size: 2rem;
 .content-useronline__header {
   width: 100%;
   height: 8%;
+  min-height: 36.11px;
   padding-left: .5rem;
   border-bottom: 1px solid #BDC3C7;
 }
@@ -5985,6 +5976,7 @@ font-size: 2rem;
 
 .content-roomlist__header {
   height: 8%;
+  min-height: 46.83px;
 }
 
 @media (min-width: 1360px) {

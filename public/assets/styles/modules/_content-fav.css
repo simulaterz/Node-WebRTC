@@ -1,5 +1,6 @@
 .content-fav {
   height: 32%;
+  min-height: 193.2px;
   overflow: hidden;
 
   &__header {

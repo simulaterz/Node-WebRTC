@@ -4,6 +4,7 @@
 
   &__header {
     height: 8%;
+    min-height: 46.83px;
 
     @mixin atMedium {
       height: 10%;

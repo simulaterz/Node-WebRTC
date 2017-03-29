@@ -4,8 +4,4 @@
   background: $midOrange;
   /*background: linear-gradient(to bottom, $Orange 20%,#a42e02 85%);*/
   background: linear-gradient(to bottom, $Orange 13%,$Green 87%);
-
-  &--main {
-    min-height: 768px;
-  }
 }
