@@ -7,27 +7,36 @@
   box-shadow: $bgShadow;
 
   @mixin atMedium {
-    /*padding: 8px 30px;*/
+    width: 1200px;
+    padding: 12px 25px 12px 25px;
   }
 
   &__header {
     width: 100%;
     height: 5.5%;
-    min-height: 41.41px;
+    min-height: 35px;
     text-align: right;
     border-bottom: 1px solid $bdGray;
+
+    @mixin atMedium {
+      border-bottom: 1.3px solid $bdGray;
+    }
 
     &__uname {
       vertical-align: middle;
       font-size: 1.2rem;
       font-weight: 700;
+
+      @mixin atMedium {
+        font-size: 1.3rem;
+      }
     }
   }
 
   &__content {
     width: 100%;
-    height: 93.5%;
-    min-height: 182.78;
+    height: 92%;
     margin-top: 1%;
+    overflow: hidden;
   }
 }

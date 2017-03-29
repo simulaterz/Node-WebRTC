@@ -1,7 +1,8 @@
 .content-create {
   width: 90%;
   height: 10%;
-  min-height: 67.2px;
+  
+  min-height: 65px;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
@@ -11,7 +12,8 @@
   border-bottom: .1rem solid $bdGray;
 
   @mixin atMedium {
-    font-size: 2.2rem;
+    font-size: 1.3rem;
+    padding-bottom: .8%;
   }
 
   .room-input {
@@ -24,8 +26,8 @@
     transition:  border .2s, background .2s;
 
     @mixin atMedium {
-      padding: .7rem 1rem;
-      border: .2rem solid rgba($bdGray, 0.8);
+      padding: .3rem 1rem;
+      border: .13rem solid rgba($bdGray, 0.8);
     }
 
     &:hover,
@@ -33,6 +35,10 @@
       border: .1rem solid rgba($bdGray, 1);
       background: rgba(#fff, 0.9);
       outline: none;
+
+      @mixin atMedium {
+        border: .13rem solid rgba($bdGray, 1);
+      }
     }
   }
 }

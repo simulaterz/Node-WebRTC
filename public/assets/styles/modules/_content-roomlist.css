@@ -1,23 +1,31 @@
 .content-roomlist {
+  width: 100%;
   height: 90%;
   padding: 3% 1% 0 0;
+  overflow: hidden;
+
+  @mixin atMedium {
+    padding-top: 2%;
+  }
 
   &__header {
     height: 8%;
-    min-height: 46.83px;
+    min-height: 45px;
 
-    @mixin atMedium {
-      height: 10%;
+    h2 {
+      display: inline;
+
+      @mixin atMedium {
+        font-size: 2.4rem;
+      }
     }
-
-    h2 { display: inline; }
   }
 
   &__field-room {
     width: 100%;
     height: 92%;
-    margin: 0 .5% 0 0;
-    padding: 1% 1% 0 0;
+    padding: 1% 2% 0 0;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 }

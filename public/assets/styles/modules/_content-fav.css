@@ -3,11 +3,17 @@
   min-height: 193.2px;
   overflow: hidden;
 
+
   &__header {
     width: 100%;
     height: 15%;
     padding-left: .5rem;
     border-bottom: 1px solid $bdGray;
+
+    @mixin atMedium {
+      height: 20%;
+      min-height: 42.56px;
+    }
 
     h3 {
       display: inline;
@@ -16,7 +22,7 @@
       padding:.3rem;
 
       @mixin atMedium {
-        padding:.5rem;
+        font-size: 1.8rem;
       }
     }
   }
@@ -25,5 +31,9 @@
     width: 100%;
     height: 85%;
     padding-left: 1rem;
+
+    @mixin atMedium {
+      height: 80%;
+    }
   }
 }

@@ -460,7 +460,7 @@ template {
   display: none;
 }
 
-/*1024, 1366, 1600*/
+/*1024, 1300, 1600*/
 
 * {
   box-sizing: border-box;
@@ -5321,7 +5321,6 @@ a {
   height: 100vh;
   width: 100vw;
   background: #db3c01;
-  /*background: linear-gradient(to bottom, $Orange 20%,#a42e02 85%);*/
   background: -webkit-linear-gradient(top, #F9690E 13%,#00B16A 87%);
   background: linear-gradient(to bottom, #F9690E 13%,#00B16A 87%);
 }
@@ -5331,7 +5330,7 @@ a {
   margin: auto 1rem auto 0;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .icon__login {
     font-size: 2.5rem;
@@ -5352,11 +5351,11 @@ a {
   margin-right: .7rem;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .icon__header-room {
-    font-size: 3.5rem;
-    margin-right: 1rem;
+    font-size: 2.4rem;
+    margin-right: .9rem;
   }
 }
 
@@ -5367,10 +5366,10 @@ a {
   margin-right: .3rem;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .icon__header-right {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-right: .5rem;
   }
 }
@@ -5393,7 +5392,7 @@ a {
   margin-right: .3rem;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .icon__useronline {
     font-size: 2.5rem;
@@ -5441,11 +5440,11 @@ a {
   padding: 1rem 1.2rem;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .row--main-content {
-    border-radius: .5rem;
-    padding: 2rem 0;
+    border-radius: .4rem;
+    padding: 1.1rem 1.2rem;
   }
 }
 
@@ -5470,7 +5469,7 @@ a {
   background: rgba(255,255,255, .95)
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .btn--site-login {
     width: 410px;
@@ -5497,6 +5496,13 @@ a {
   background: rgba(217,30,24, .85);
 }
 
+@media (min-width: 1300px) {
+
+  .btn--main-logout {
+    font-size: 1.3rem;
+  }
+}
+
 .btn--main-logout:hover {
   background: rgba(217,30,24, 0.95);
 }
@@ -5509,13 +5515,13 @@ a {
   background: rgba(0,177,106, 0.85);
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .btn--create {
-    padding: .8rem 1rem;
-    font-size: 2rem;
-    border-radius: 0.5rem;
-    margin-left: 1.5rem;
+    padding: .49rem .5rem;
+    font-size: 1.18rem;
+    border-radius: 0.4rem;
+    margin-left: 1rem;
   }
 }
 
@@ -5537,6 +5543,15 @@ a {
   margin-top: .6rem;
 }
 
+@media (min-width: 1300px) {
+
+  .btn--room {
+    font-size: 2rem;
+    margin-top: .8rem;
+    border-radius: .4rem;
+  }
+}
+
 .btn--room:hover {
   background: rgba(201,247,198, 0.55);
   text-shadow: .2rem .2rem .05rem rgba(255,255,255, 0.8);
@@ -5556,6 +5571,14 @@ a {
   position: relative;
   font-size: 1.6rem;
   padding: .5rem;
+}
+
+@media (min-width: 1300px) {
+
+  .btn--room--fav {
+    margin-top: .5rem;
+    padding: .5rem;
+  }
 }
 
 .btn--online-user {
@@ -5647,7 +5670,7 @@ font-size: 2rem;
           transform: translate(-50%, -50%);
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .site-login__form {
     width: 420px;
@@ -5670,7 +5693,7 @@ font-size: 2rem;
   color: #fff;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .site-login__form__header {
     font-size: 2.3rem;
@@ -5690,7 +5713,7 @@ font-size: 2rem;
   color: #fff;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .site-login__form__field {
     margin: 1.3rem auto;
@@ -5708,7 +5731,7 @@ font-size: 2rem;
   margin: .5rem auto;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .site-login__form__field--input {
     margin: .8rem auto;
@@ -5730,7 +5753,7 @@ font-size: 2rem;
   margin-right: .3rem;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .site-login__form__field--input label {
     font-size: 1.3rem;
@@ -5758,7 +5781,7 @@ font-size: 2rem;
   transition: border 0.2s;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .site-login__form__field--input input {
     width: 68%;
@@ -5785,7 +5808,7 @@ font-size: 2rem;
   outline: none;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .site-login__form__field--input input:hover,
           .site-login__form__field--input input:focus {
@@ -5821,18 +5844,27 @@ font-size: 2rem;
   box-shadow: 0 .1rem 1rem .1rem #34495E;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
-  .site-main {/*padding: 8px 30px;*/
+  .site-main {
+    width: 1200px;
+    padding: 12px 25px 12px 25px;
   }
 }
 
 .site-main__header {
   width: 100%;
   height: 5.5%;
-  min-height: 41.41px;
+  min-height: 35px;
   text-align: right;
   border-bottom: 1px solid #BDC3C7;
+}
+
+@media (min-width: 1300px) {
+
+  .site-main__header {
+    border-bottom: 1.3px solid #BDC3C7;
+  }
 }
 
 .site-main__header__uname {
@@ -5841,17 +5873,25 @@ font-size: 2rem;
   font-weight: 700;
 }
 
+@media (min-width: 1300px) {
+
+  .site-main__header__uname {
+    font-size: 1.3rem;
+  }
+}
+
 .site-main__content {
   width: 100%;
-  height: 93.5%;
-  min-height: 182.78;
+  height: 92%;
   margin-top: 1%;
+  overflow: hidden;
 }
 
 .content-create {
   width: 90%;
   height: 10%;
-  min-height: 67.2px;
+  
+  min-height: 65px;
   font-size: 1.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5867,10 +5907,11 @@ font-size: 2rem;
   border-bottom: .1rem solid #BDC3C7;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .content-create {
-    font-size: 2.2rem;
+    font-size: 1.3rem;
+    padding-bottom: .8%;
   }
 }
 
@@ -5885,11 +5926,11 @@ font-size: 2rem;
   transition:  border .2s, background .2s;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .content-create .room-input {
-    padding: .7rem 1rem;
-    border: .2rem solid rgba(189,195,199, 0.8);
+    padding: .3rem 1rem;
+    border: .13rem solid rgba(189,195,199, 0.8);
   }
 }
 
@@ -5898,6 +5939,14 @@ font-size: 2rem;
   border: .1rem solid rgba(189,195,199, 1);
   background: rgba(255,255,255, 0.9);
   outline: none;
+}
+
+@media (min-width: 1300px) {
+
+  .content-create .room-input:hover,
+    .content-create .room-input:focus {
+    border: .13rem solid rgba(189,195,199, 1);
+  }
 }
 
 .content-fav {
@@ -5913,6 +5962,14 @@ font-size: 2rem;
   border-bottom: 1px solid #BDC3C7;
 }
 
+@media (min-width: 1300px) {
+
+  .content-fav__header {
+    height: 20%;
+    min-height: 42.56px;
+  }
+}
+
 .content-fav__header h3 {
   display: inline;
   font-size: 1.6rem;
@@ -5920,10 +5977,10 @@ font-size: 2rem;
   padding:.3rem;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .content-fav__header h3 {
-    padding: .5rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -5933,9 +5990,23 @@ font-size: 2rem;
   padding-left: 1rem;
 }
 
+@media (min-width: 1300px) {
+
+  .content-fav__field-room {
+    height: 80%;
+  }
+}
+
 .content-useronline {
   height: 68%;
   padding-top: 2%;
+}
+
+@media (min-width: 1300px) {
+
+  .content-useronline {
+    padding-top: 1.5%;
+  }
 }
 
 .content-useronline__header {
@@ -5946,6 +6017,14 @@ font-size: 2rem;
   border-bottom: 1px solid #BDC3C7;
 }
 
+@media (min-width: 1300px) {
+
+  .content-useronline__header {
+    height: 12%;
+    min-height: 51px;
+  }
+}
+
 .content-useronline__header h3 {
   display: inline;
   font-size: 1.6rem;
@@ -5953,7 +6032,7 @@ font-size: 2rem;
   padding:.3rem;
 }
 
-@media (min-width: 1360px) {
+@media (min-width: 1300px) {
 
   .content-useronline__header h3 {
     padding: .5rem;
@@ -5969,31 +6048,47 @@ font-size: 2rem;
   overflow-x: hidden;
 }
 
+@media (min-width: 1300px) {
+
+  .content-useronline__field-user {
+    height: 88%;
+  }
+}
+
 .content-roomlist {
+  width: 100%;
   height: 90%;
   padding: 3% 1% 0 0;
+  overflow: hidden;
+}
+
+@media (min-width: 1300px) {
+
+  .content-roomlist {
+    padding-top: 2%;
+  }
 }
 
 .content-roomlist__header {
   height: 8%;
-  min-height: 46.83px;
-}
-
-@media (min-width: 1360px) {
-
-  .content-roomlist__header {
-    height: 10%;
-  }
+  min-height: 45px;
 }
 
 .content-roomlist__header h2 {
   display: inline;
 }
 
+@media (min-width: 1300px) {
+
+  .content-roomlist__header h2 {
+    font-size: 2.4rem;
+  }
+}
+
 .content-roomlist__field-room {
   width: 100%;
   height: 92%;
-  margin: 0 .5% 0 0;
-  padding: 1% 1% 0 0;
+  padding: 1% 2% 0 0;
   overflow-y: scroll;
+  overflow-x: hidden;
 }

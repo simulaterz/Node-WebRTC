@@ -36,6 +36,10 @@
     border-radius: 0.2rem;
     background: rgba($mainRed, .85);
 
+    @mixin atMedium {
+      font-size: 1.3rem;
+    }
+
     &:hover {
       background: rgba($mainRed, 0.95);
     }
@@ -48,12 +52,11 @@
     border-radius: .3rem;
     background: rgba($Green, 0.85);
 
-
     @mixin atMedium {
-      padding: .8rem 1rem;
-      font-size: 2rem;
-      border-radius: 0.5rem;
-      margin-left: 1.5rem;
+      padding: .49rem .5rem;
+      font-size: 1.18rem;
+      border-radius: 0.4rem;
+      margin-left: 1rem;
     }
 
     &:hover {
@@ -72,6 +75,12 @@
     border-radius: .3rem;
     transition: background .2s, text-shadow .2s;
     margin-top: .6rem;
+
+    @mixin atMedium {
+      font-size: 2rem;
+      margin-top: .8rem;
+      border-radius: .4rem;
+    }
 
     &:hover {
       background: rgba(#c9f7c6, 0.55);
@@ -92,6 +101,11 @@
       position: relative;
       font-size: 1.6rem;
       padding: .5rem;
+
+      @mixin atMedium {
+        margin-top: .5rem;
+        padding: .5rem;
+      }
     }
   }
 
