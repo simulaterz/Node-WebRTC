@@ -120,5 +120,9 @@
     &:hover {
       background: rgba($mainBlack, 0.05);
     }
+
+    &:first-child {
+      margin-top: .1rem;
+    }
   }
 }

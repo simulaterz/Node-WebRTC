@@ -5596,6 +5596,10 @@ a {
   background: rgba(52,73,94, 0.05);
 }
 
+.btn--online-user:first-child {
+  margin-top: .1rem;
+}
+
 .site-login {
   width: 35%;
   height: 100%;
@@ -5993,7 +5997,8 @@ a {
 
 .content-useronline__field-user {
   width: 100%;
-  height: 90%;
+  height: 89%;
+  margin-top: 5px;
   padding-left: 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
