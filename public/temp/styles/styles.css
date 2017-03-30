@@ -5431,6 +5431,7 @@ a {
   width: 70%;
   height: 100%;
   float: left;
+  overflow: hidden;
 }
 
 .row--main-content {
@@ -5992,10 +5993,22 @@ a {
 
 .content-useronline__field-user {
   width: 100%;
-  height: 90%;/*margin-bottom: 3%;*/
+  height: 90%;
   padding-left: 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.content-useronline__field-user::-webkit-scrollbar
+    {
+  width: 10px;
+  background-color: rgba(245,245,245, 0.7);
+}
+
+.content-useronline__field-user::-webkit-scrollbar-thumb
+    {
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);
+  background-color: #EEEEEE;
 }
 
 @media (min-width: 1300px) {
@@ -6042,4 +6055,16 @@ a {
   margin-bottom: 2%;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.content-roomlist__field-room::-webkit-scrollbar
+    {
+  width: 10px;
+  background-color: rgba(245,245,245, 0.7);
+}
+
+.content-roomlist__field-room::-webkit-scrollbar-thumb
+    {
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);
+  background-color: #EEEEEE;
 }
