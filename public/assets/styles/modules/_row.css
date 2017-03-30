@@ -5,6 +5,7 @@
     width: 30%;
     height: 100%;
     float: left;
+    overflow: hidden;
 
     &--border-left {
       border-left: 1px solid $bdGray;

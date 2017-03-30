@@ -5420,6 +5420,7 @@ a {
   width: 30%;
   height: 100%;
   float: left;
+  overflow: hidden;
 }
 
 .row__col-1-in-3--border-left {
@@ -5803,7 +5804,7 @@ a {
 .site-main__header {
   width: 100%;
   height: 5.5%;
-  min-height: 35px;
+  min-height: 38px;
   text-align: right;
   border-bottom: 1px solid #BDC3C7;
 }
@@ -5831,8 +5832,8 @@ a {
 .site-main__content {
   width: 100%;
   height: 92%;
-  margin-top: 1%;
-  overflow: hidden;
+  padding-top: 1%;
+  overflow-y: hidden;
 }
 
 .content-create {
@@ -5991,8 +5992,7 @@ a {
 
 .content-useronline__field-user {
   width: 100%;
-  height: 90%;
-  margin-bottom: 3%;
+  height: 90%;/*margin-bottom: 3%;*/
   padding-left: 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
