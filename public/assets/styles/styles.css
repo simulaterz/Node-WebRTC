@@ -14,7 +14,8 @@
 
 @import "modules/_site-login";
 @import "modules/_site-regis";
-@import "modules/_site-main";
+@import "modules/_site-chat";
+@import "modules/_inner-site";
 
 @import "modules/_content-create";
 @import "modules/_content-fav";

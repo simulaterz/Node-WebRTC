@@ -28,6 +28,10 @@ app.get('/main', (req, res) => {
   res.render('main');
 });
 
+app.get('/chat', (req, res) => {
+  res.render('chat');
+});
+
 server.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });

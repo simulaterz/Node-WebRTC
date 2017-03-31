@@ -125,4 +125,24 @@
       margin-top: .1rem;
     }
   }
+
+  &--online-list {
+    position: relative;
+    width: 98%;
+    font-size: 1.5rem;
+    margin-top: .7rem;
+    padding: .6rem;
+    border-radius: .2rem;
+    color: $mainBlack;
+    background: rgba(#BDC3C7, .2);
+  }
+
+  &--send {
+    width: 15%;
+    font-size: 1.3rem;
+    padding: .5rem 1rem;
+    background: rgba($Orange, .85);
+    border-radius: .2rem;
+    outline: none;
+  }
 }

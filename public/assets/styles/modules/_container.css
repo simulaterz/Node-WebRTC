@@ -3,4 +3,10 @@
   width: 100vw;
   background: $midOrange;
   background: linear-gradient(to bottom, $Orange 13%,$Green 87%);
+  /*background: linear-gradient(to bottom, rgba($Green, .2) 0%,$Green 100%);*/
+  /*background: linear-gradient(to bottom, rgba(#22313F, .5) 0%,#22313F 100%);*/
+
+  &--login-site {
+    min-width: 1000px;
+  }
 }
