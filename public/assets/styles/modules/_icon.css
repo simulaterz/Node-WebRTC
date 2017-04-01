@@ -13,14 +13,14 @@
   }
 
   &__header-room {
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: rgba($mainRed, .9);
     padding-left: 1%;
-    margin-right: .7rem;
+    margin-right: .5rem;
 
     @mixin atMedium {
-      font-size: 2.4rem;
-      margin-right: .9rem;
+      font-size: 2.1rem;
+      margin-right: .5rem;
     }
   }
 
@@ -63,7 +63,7 @@
     top: 50%;
     left: 4px;
     transform: translateY(-50%);
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #019875;
   }
 

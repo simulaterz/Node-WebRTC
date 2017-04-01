@@ -28,7 +28,7 @@
   }
 
   &--main-logout {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 400;
     vertical-align: middle;
     padding: .2rem .7rem .3rem .7rem;
@@ -37,7 +37,7 @@
     background: rgba($mainRed, .85);
 
     @mixin atMedium {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
 
     &:hover {
@@ -46,15 +46,15 @@
   }
 
   &--create {
-    font-size: 1rem;
-    padding: .5rem .4rem;
+    font-size: .7rem;
+    padding: .5rem;
     margin-left: .8rem;
     border-radius: .3rem;
     background: rgba($Green, 0.85);
 
     @mixin atMedium {
-      padding: .49rem .5rem;
-      font-size: 1.18rem;
+      padding: .5rem .8rem;
+      font-size: .9rem;
       border-radius: 0.4rem;
       margin-left: 1rem;
     }
@@ -69,16 +69,13 @@
   }
 
   &--room {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: rgba($mainBlack, .85);
     background: rgba(#c9f7c6, 0.15);
     border-radius: .3rem;
-    margin-top: .6rem;
-    transition: background .2s;
 
     @mixin atMedium {
-      font-size: 2rem;
-      margin-top: .8rem;
+      font-size: 1.8rem;
       border-radius: .4rem;
     }
 
@@ -88,33 +85,34 @@
 
     &--main {
       width: 100%;
-      padding: .5rem 0 .5rem .8rem;
+      padding: .7rem 0 .7rem .8rem;
 
-      &:first-of-type {
-        margin-top: 0;
+      @mixin atMedium {
+          padding: .9rem 0 .9rem .8rem;
       }
     }
 
     &--fav {
       width: 100%;
       position: relative;
-      font-size: 1.6rem;
-      padding: .5rem;
+      font-size: 1.5rem;
+      padding: .7rem 0 .7rem .7rem;
 
       @mixin atMedium {
-        margin-top: .5rem;
-        padding: .5rem;
+        padding: .75rem 0 .75rem .7rem;
       }
     }
   }
 
-  &--online-user {
+  &--online {
     position: relative;
     width: 99%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     color: rgba($mainBlack, .85);
     font-size: 1.5rem;
-    padding: .2rem 0 .2rem 1.6rem;
-    margin-top: .5rem;
+    padding: .3rem 0 .65rem 1.7rem;
     border-radius: .2rem;
 
     &:hover {
@@ -122,7 +120,7 @@
     }
 
     &:first-child {
-      margin-top: .1rem;
+      /*margin-top: .1rem;*/
     }
   }
 
