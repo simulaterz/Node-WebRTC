@@ -5422,7 +5422,7 @@ ul {
   left: 4px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #019875;
 }
 
@@ -5673,16 +5673,20 @@ ul {
       -ms-flex-align: center;
           align-items: center;
   color: rgba(52,73,94, .85);
-  font-size: 1.5rem;
-  padding: .3rem 0 .65rem 1.7rem;
+  font-size: 1.3rem;
+  padding: .3rem 0 .7rem 1.7rem;
   border-radius: .2rem;
+}
+
+@media (min-width: 1300px) {
+
+  .btn--online {
+    padding: .3rem 0 .65rem 1.7rem;
+  }
 }
 
 .btn--online:hover {
   background: rgba(52,73,94, 0.05);
-}
-
-.btn--online:first-child {/*margin-top: .1rem;*/
 }
 
 .btn--online-list {
