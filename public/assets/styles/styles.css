@@ -16,9 +16,12 @@
 @import "modules/_site-regis";
 @import "modules/_site-main";
 @import "modules/_site-chat";
-@import "modules/_inner-site";
 
 @import "modules/_content-create";
 @import "modules/_content-fav";
 @import "modules/_content-useronline";
 @import "modules/_content-roomlist";
+
+
+@import "modules/_chat-online-list";
+@import "modules/_chat-box";

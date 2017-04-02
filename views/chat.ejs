@@ -9,21 +9,21 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="inner-site">
-            <div class="inner-site__header">
-                <span class="inner-site__header__uname"> Hello: TestUser </span>
+    <div class="container container--chat-site">
+        <div class="site-chat">
+            <div class="site-chat__header">
+                <span class="site-chat__header__uname"> Hello: TestUser </span>
                 <a href="#" class="btn btn--main-logout">LogOut</a>
             </div>
-            <div class="inner-site__content">
+            <div class="site-chat__content">
                 <div class="row row--main-content row--main-content--main-chat">
                     <div class="row__col-1-in-4 row__col-1-in-4--border-right">
-                        <div class="site_chat__online-list">
-                            <div class="site_chat__online-list__header">
+                        <div class="online-list">
+                            <div class="online-list__header">
                                 <i class="ion-android-contact icon__online-list"></i>
                                 <h2>Online Member</h2>
                             </div>
-                            <div class="site_chat__online-list__content">
+                            <div class="online-list__content">
                                 <ul>
                                     <li>
                                         <div class="btn btn--online-list">testuserja<span class="ion-mic-a icon__mic"></span> </div>
@@ -42,20 +42,21 @@
                         </div>
                     </div>
                     <div class="row__col-3-in-4">
-                        <div class="site_chat__chat-box__headroom">
-                            <span class="ion-android-bookmark icon__fav"></span>
-                            <i class="ion-chatboxes icon__headroom"></i>
-                            <h2>testing room</h2>
-                        </div>
-                        <div class="site_chat__chat-box">
-                            <ol class="site_chat__chat-box__chat">
+                        <div class="chat-box">
+                            <div class="chat-box__header">
+                                <span class="ion-android-bookmark icon__fav"></span><i class="ion-chatboxes icon__head-chat-box"></i>
+                                <h2>testing room</h2>
+                            </div>
+                            <div class="chat-box__content">
+                                <ol class="chat-box__content__chat">
 
-                            </ol>
-                            <div class="site_chat__chat-box__input">
-                                <form action="#">
-                                    <input class="site_chat__chat-box__input__message" type="text" placeholder="Message" autofocus/>
-                                    <button class="btn btn--send">Send</button>
-                                </form>
+                                </ol>
+                                <div class="chat-box__content__input">
+                                    <form action="#">
+                                        <input type="text" placeholder="Message" autofocus/>
+                                        <button class="btn btn--send">Send</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

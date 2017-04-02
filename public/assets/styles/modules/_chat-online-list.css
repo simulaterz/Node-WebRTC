@@ -1,8 +1,8 @@
-.content-fav {
+.online-list {
   display: flex;
   flex-direction: column;
-  flex-basis: 230px;
-  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
 
   &__header {
     display: flex;
@@ -10,26 +10,19 @@
     flex-shrink: 0;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
     padding-left: .5rem;
     border-bottom: 1px solid $bdGray;
 
-    h3 {
+    h2 {
+      font-size: 1.6rem;
       display: inline;
 
       @mixin atMedium {
-        font-size: 1.7rem;
+        font-size: 1.85rem;
       }
     }
   }
-
-  &__field-room {
-    width: 100%;
-    height: 100%;
-    padding-left: .5rem;
-
-    li {
-      margin-top: .5rem;
-    }
+  &__content {
+    margin-right: 5px;
   }
 }

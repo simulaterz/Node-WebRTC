@@ -14,4 +14,8 @@
   &--main-site {
     min-height: 500px;
   }
+
+  &--chat-site {
+    min-height: 500px;
+  }
 }
