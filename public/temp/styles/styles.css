@@ -5663,25 +5663,10 @@ ul {
 .btn--online {
   position: relative;
   width: 99%;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   color: rgba(52,73,94, .85);
   font-size: 1.3rem;
-  padding: .3rem 0 .6rem 1.7rem;
+  padding: .3rem 0 .65rem 1.7rem;
   border-radius: .2rem;
-}
-
-@media (min-width: 1300px) {
-
-  .btn--online {
-    padding: .3rem 0 .6rem 1.7rem;
-  }
 }
 
 .btn--online:hover {
