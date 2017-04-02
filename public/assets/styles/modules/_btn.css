@@ -88,7 +88,7 @@
       padding: .7rem 0 .7rem .8rem;
 
       @mixin atMedium {
-          padding: .9rem 0 .9rem .8rem;
+        padding: .9rem 0 .9rem .8rem;
       }
     }
 
@@ -107,16 +107,16 @@
   &--online {
     position: relative;
     width: 99%;
-    display: flex;
+    flex-shrink: 0;
     justify-content: flex-start;
     align-items: center;
     color: rgba($mainBlack, .85);
     font-size: 1.3rem;
-    padding: .3rem 0 .7rem 1.7rem;
+    padding: .3rem 0 .6rem 1.7rem;
     border-radius: .2rem;
 
     @mixin atMedium {
-      padding: .3rem 0 .65rem 1.7rem;
+      padding: .3rem 0 .6rem 1.7rem;
     }
 
     &:hover {
