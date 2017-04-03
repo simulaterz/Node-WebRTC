@@ -71,7 +71,8 @@
   &--room {
     font-size: 1.7rem;
     color: rgba($mainBlack, .85);
-    background: rgba(#c9f7c6, 0.15);
+    background: rgba(#BDC3C7, .15);
+    /*background: rgba(#c9f7c6, 0.15);*/
     border-radius: .3rem;
 
     @mixin atMedium {
@@ -80,7 +81,8 @@
     }
 
     &:hover {
-      background: rgba(#c9f7c6, 0.55);
+      background: rgba(#BDC3C7, .4);
+      /*background: rgba(#c9f7c6, 0.55);*/
     }
 
     &--main {
@@ -132,7 +134,7 @@
     width: 15%;
     font-size: 1.3rem;
     padding: .5rem 1rem;
-    background: rgba($Orange, .85);
+    background: rgba($Orange, .95);
     border-radius: .2rem;
     outline: none;
   }

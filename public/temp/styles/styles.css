@@ -5327,8 +5327,8 @@ ul,ol {
   background: #db3c01;
   /*background: linear-gradient(to bottom, $Orange 13%,$Green 87%);*/
   /*background: linear-gradient(to bottom, rgba($Green, .2) 0%,$Green 100%);*/
-  background: -webkit-linear-gradient(top, rgba(34,49,63, .6) 20%,#22313F 100%);
-  background: linear-gradient(to bottom, rgba(34,49,63, .6) 20%,#22313F 100%);
+  background: -webkit-linear-gradient(top, rgba(34,49,63, .6) 30%,#22313F 100%);
+  background: linear-gradient(to bottom, rgba(34,49,63, .6) 30%,#22313F 100%);
 }
 
 /*background: linear-gradient(to bottom, rgba(#34495E, .55) 20%,#34495E 100%);*/
@@ -5426,7 +5426,7 @@ ul,ol {
   left: 4px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #019875;
 }
 
@@ -5632,7 +5632,7 @@ ul,ol {
 .btn--room {
   font-size: 1.7rem;
   color: rgba(52,73,94, .85);
-  background: rgba(201,247,198, 0.15);
+  background: rgba(189,195,199, .15);/*background: rgba(#c9f7c6, 0.15);*/
   border-radius: .3rem;
 }
 
@@ -5645,7 +5645,7 @@ ul,ol {
 }
 
 .btn--room:hover {
-  background: rgba(201,247,198, 0.55);
+  background: rgba(189,195,199, .4);/*background: rgba(#c9f7c6, 0.55);*/
 }
 
 .btn--room--main {
@@ -5702,7 +5702,7 @@ ul,ol {
   width: 15%;
   font-size: 1.3rem;
   padding: .5rem 1rem;
-  background: rgba(249,105,14, .85);
+  background: rgba(249,105,14, .95);
   border-radius: .2rem;
   outline: none;
 }
