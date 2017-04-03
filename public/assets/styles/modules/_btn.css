@@ -130,6 +130,20 @@
     background: rgba(#BDC3C7, .2);
   }
 
+  &--message {
+    color: $mainBlack;
+    background: #fff;
+    padding: .5rem;
+    border-radius: .3rem;
+
+    &--title {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
+      padding: 0;
+    }
+  }
+
   &--send {
     width: 15%;
     font-size: 1.3rem;
