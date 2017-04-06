@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <div id="videos-container">
+      aa
+    </div>
     <div class="container container--main-site">
         <div class="site-main">
             <div class="site-main__header">
@@ -19,9 +22,9 @@
                 <div class="row row--main-content">
                     <div class="row__col-2-in-3">
                         <div class="content-create">
-                            <input class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room Name'" />
-                            <a href="#" class="btn btn--create">Create Public Room</a>
-                            <a href="#" class="btn btn--create">Create Private Room</a>
+                                <input id="room-id" class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room Name'" />
+                                <button id="open-public-room" class="btn btn--create"">Create Public Room</button>
+                                <button class="btn btn--create">Create Private Room</button>
                         </div>
                         <div class="content-roomlist">
                             <div class="content-roomlist__header">
@@ -29,37 +32,10 @@
                                 <h2>Room List</h2>
                             </div>
                             <div class="content-roomlist__field-room">
-                                <ul>
-                                    <li>
+                                <ul id="public-rooms">
+                                    <!-- <li>
                                         <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
-                                    <li>
-                                        <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -97,56 +73,56 @@
                             </div>
                             <div class="content-useronline__field-user">
                                 <ul>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#" class="btn btn--online">
-                                        <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                      </a>
-                                  </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn--online">
+                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -154,6 +130,13 @@
                 </div>
             </div>
         </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
+        <!-- <script src="assets/scripts/modules/getMediaElement.js"></script>
+        <script src="assets/scripts/modules/FileBufferReader.js"></script> -->
+
+        <script src="temp/scripts/App.js"></script>
 </body>
 
 </html>

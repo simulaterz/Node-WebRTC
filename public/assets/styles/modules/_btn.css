@@ -51,6 +51,8 @@
     margin-left: .8rem;
     border-radius: .3rem;
     background: rgba($Green, 0.85);
+    border: 2px solid #E8E8E8;
+    cursor: pointer;
 
     @mixin atMedium {
       padding: .5rem .8rem;
@@ -59,12 +61,16 @@
       margin-left: 1rem;
     }
 
-    &:hover {
-      background: rgba($Green, 1);
-    }
+    &:focus { outline:0 !important; }
 
-    &:last-child {
-      margin-left: .5rem;
+    &:hover { background: rgba($Green, 1); }
+
+    &:last-child { margin-left: .5rem; }
+
+    &:disabled {
+      background-color: rgba(#E8E8E8, 0.7);
+      color: #666;
+      cursor: not-allowed;
     }
   }
 

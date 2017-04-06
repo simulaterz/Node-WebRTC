@@ -5609,6 +5609,8 @@ ul,ol {
   margin-left: .8rem;
   border-radius: .3rem;
   background: rgba(0,177,106, 0.85);
+  border: 2px solid #E8E8E8;
+  cursor: pointer;
 }
 
 @media (min-width: 1300px) {
@@ -5621,12 +5623,22 @@ ul,ol {
   }
 }
 
+.btn--create:focus {
+  outline:0 !important;
+}
+
 .btn--create:hover {
   background: rgba(0,177,106, 1);
 }
 
 .btn--create:last-child {
   margin-left: .5rem;
+}
+
+.btn--create:disabled {
+  background-color: rgba(232,232,232, 0.7);
+  color: #666;
+  cursor: not-allowed;
 }
 
 .btn--room {
