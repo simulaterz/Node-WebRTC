@@ -1,8 +1,10 @@
 module.exports = {
-  entry: "./public/assets/scripts/App.js",
+  entry: {
+        Main: "./public/assets/scripts/Main.js",
+        Chat: "./public/assets/scripts/Chat.js",
+  },
   output: {
-    path: "./public/temp/scripts",
-    filename: "App.js"
+    path: "./public/temp/scripts"
   },
   module: {
     loaders: [

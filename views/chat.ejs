@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
     <title>Chat Room | WebChat</title>
+    <link rel="stylesheet" href="https://cdn.WebRTC-Experiment.com/getMediaElement.css">
     <link rel="stylesheet" href="temp/styles/styles.css">
 </head>
 
@@ -24,19 +25,10 @@
                                 <h2>Online Member</h2>
                             </div>
                             <div class="online-list__content">
-                                <ul>
-                                    <li>
+                                <ul id="audios-container">
+                                    <!-- <li>
                                         <div class="btn btn--online-list">testuserja<span class="ion-mic-a icon__mic"></span> </div>
-                                    </li>
-                                    <li>
-                                        <div class="btn btn--online-list">testuserja<span class="ion-mic-a icon__mic"></span> </div>
-                                    </li>
-                                    <li>
-                                        <div class="btn btn--online-list">testuserja<span class="ion-mic-a icon__mic"></span> </div>
-                                    </li>
-                                    <li>
-                                        <div class="btn btn--online-list">testuserja<span class="ion-mic-a icon__mic"></span> </div>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -94,6 +86,12 @@
             </div>
         </div>
     </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
+    <!-- <script src="assets/scripts/api/getMediaElement.js"></script> -->
+
+    <script src="temp/scripts/Chat.js"></script>
 </body>
 
 </html>

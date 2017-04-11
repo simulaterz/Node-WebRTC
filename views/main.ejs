@@ -9,9 +9,6 @@
 </head>
 
 <body>
-    <div id="videos-container">
-      aa
-    </div>
     <div class="container container--main-site">
         <div class="site-main">
             <div class="site-main__header">
@@ -24,7 +21,7 @@
                         <div class="content-create">
                                 <input id="room-id" class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room Name'" />
                                 <button id="open-public-room" class="btn btn--create"">Create Public Room</button>
-                                <button class="btn btn--create">Create Private Room</button>
+                                <button id="testing" class="btn btn--create">Create Private Room</button>
                         </div>
                         <div class="content-roomlist">
                             <div class="content-roomlist__header">
@@ -72,57 +69,12 @@
                                 <h3>Online User List</h3>
                             </div>
                             <div class="content-useronline__field-user">
-                                <ul>
-                                    <li>
+                                <ul id="online-list">
+                                    <!-- <li>
                                         <a href="#" class="btn btn--online">
                                             <span class="ion-ios-chatbubble icon__status"></span>myuser
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn--online">
-                                            <span class="ion-ios-chatbubble icon__status"></span>myuser
-                                        </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -136,7 +88,7 @@
         <!-- <script src="assets/scripts/modules/getMediaElement.js"></script>
         <script src="assets/scripts/modules/FileBufferReader.js"></script> -->
 
-        <script src="temp/scripts/App.js"></script>
+        <script src="temp/scripts/Main.js"></script>
 </body>
 
 </html>
