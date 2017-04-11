@@ -51,8 +51,12 @@ connection.onstreamended = function(event) {
 
 getParams();
 
-if(window.params.public === 'true'){
-  connection.openOrJoin(window.params.roomid, true);
-} else {
-  connection.openOrJoin(window.params.roomid, true);
-}
+var roomid = window.params.roomid;
+
+connection.checkPresence(roomid, function(isRoomExist, roomid) {
+  if (isRoomExist === true) {
+    connection.join(roomid);
+  } else {
+    connection.open(roomid, true);
+  }
+});

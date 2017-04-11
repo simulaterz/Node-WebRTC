@@ -1,7 +1,7 @@
 document.getElementById('open-public-room').onclick = function() {
   this.disabled = true;
   var isPublicModerator = true;
-  location.href='/chat?roomid='+ document.getElementById('room-id').value + '&public=' + isPublicModerator;
+  location.href='/chat?roomid='+ document.getElementById('room-id').value;
 };
 
 var connection = new RTCMultiConnection('Main');
