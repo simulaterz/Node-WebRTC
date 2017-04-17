@@ -5719,9 +5719,20 @@ ul,ol {
 
 .btn--message--title {
   display: block;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 1.5rem;
   margin-bottom: 4px;
   padding: 0;
+  text-align: left;
+}
+
+.btn--message--title--time {
+  float: right;
+  height: auto;
+  font-weight: 300;
+  font-size: 1rem;
+  margin-left: 2rem;
+  color: rgba(52,73,94, .8);
 }
 
 .btn--send {

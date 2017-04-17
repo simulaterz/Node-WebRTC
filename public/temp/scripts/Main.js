@@ -63,11 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 124);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -92,7 +93,8 @@ var getParams = function getParams() {
 module.exports = { getParams: getParams };
 
 /***/ }),
-/* 1 */
+
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,7 +114,7 @@ var checkRoom = function checkRoom() {
       link.id = moderator.userid;
       link.className = "btn btn--room btn--room--main";
       link.href = '/chat?roomid=' + moderator.userid; // send params to join
-      link.innerHTML = 'Create by ' + moderator.userid;
+      link.innerHTML = 'Create by ' + moderator.extra.uname;
 
       li.appendChild(link);
 
@@ -125,8 +127,8 @@ var checkRoom = function checkRoom() {
 module.exports = { checkRoom: checkRoom };
 
 /***/ }),
-/* 2 */,
-/* 3 */
+
+/***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140,10 +142,10 @@ document.getElementById('open-public-room').onclick = function () {
 
 var connection = new RTCMultiConnection('Main');
 
-var _require = __webpack_require__(1),
+var _require = __webpack_require__(117),
     checkRoom = _require.checkRoom;
 
-var _require2 = __webpack_require__(0),
+var _require2 = __webpack_require__(1),
     getParams = _require2.getParams;
 
 connection.autoCloseEntireSession = true;
@@ -240,4 +242,5 @@ document.getElementById('room-id').onkeyup = function () {
 module.exports = { connection: connection };
 
 /***/ })
-/******/ ]);
+
+/******/ });
