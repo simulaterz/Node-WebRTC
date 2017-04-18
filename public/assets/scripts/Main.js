@@ -15,7 +15,7 @@ connection.socketMessageEvent = 'Main-RoomList';
 connection.session = { data: true };
 connection.enableLogs = false;
 
-connection.extra = { realid: connection.userid };
+connection.extra = { uname: connection.userid };
 
 connection.onmessage(event);
 
@@ -35,7 +35,7 @@ var onlineListDiv = document.getElementById('online-list');
 
   connection.getAllParticipants().forEach(function(participantId) {
     var user = connection.peers[participantId];
-    var hisUID = user.extra.realid;
+    var hisUID = user.extra.uname;
     var li = document.createElement('li');
     var link = document.createElement('a');
     var span = document.createElement('span');
@@ -57,30 +57,6 @@ console.log('userid = ', connection.userid);
 checkRoom();
 
 var publicRoomsDiv = document.getElementById('public-rooms');
-
-// (function checkRoom() {
-//   connection.getPublicModerators(function(array) {
-//     publicRoomsDiv.innerHTML = '';
-//     array.forEach(function(moderator) {
-//
-//       console.log('m = ', moderator.userid);
-//       console.log('c = ', connection.userid);
-//
-//       var li = document.createElement('li');
-//       var link = document.createElement('a');
-//
-//       link.id = moderator.userid;
-//       link.className = "btn btn--room btn--room--main";
-//       link.href = '/chat?roomid='+ moderator.userid; // send params to join
-//       link.innerHTML = 'Create by ' + moderator.userid;
-//
-//       li.appendChild(link);
-//
-//       publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
-//     });
-//     setTimeout(checkRoom, 3000);
-//   });
-// })();
 
 getParams();
 

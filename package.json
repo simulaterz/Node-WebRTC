@@ -8,6 +8,8 @@
     "express": "^4.14.1",
     "jquery": "^3.1.1",
     "moment": "^2.18.1",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.5",
     "normalize.css": "^5.0.0",
     "socket.io": "^1.7.2"
   },
@@ -34,7 +36,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-    "start-": "nodemon server/server.js"
+    "start-": "nodemon server/server.js",
+    "db": "node playground/mongodb-connect.js"
   },
   "engines": {
     "node": "6.9.2"
