@@ -42,7 +42,8 @@
     "db-cn": "node server/playground/mongodb-connect.js",
     "db-fd": "node server/playground/mongodb-find.js",
     "db-dl": "node server/playground/mongodb-delete.js",
-    "db-ud": "node server/playground/mongodb-update.js"
+    "db-ud": "node server/playground/mongodb-update.js",
+    "db-mq": "node server/playground/mongoose-queries.js"
   },
   "engines": {
     "node": "6.9.2"
