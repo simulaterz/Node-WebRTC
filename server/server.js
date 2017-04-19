@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const path = require('path');
 const ejs = require('ejs');
+const {ObjectID} = require('mongodb');
 
 const {mongoose} = require('./db/mongoose');
 const {Todo} = require('./models/todo');
@@ -43,6 +44,25 @@ app.get('/todos', (req, res) => {
   })
 });
 
+// GET /todos/12345
+app.get('/todos/:id', (req, res) => {
+  var id = req.params.id;
+  // res.send(req.params);
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+
+  Todo.findById(id).then((todo) => {
+    if (!todo) {
+      return res.status(404).send();
+    }
+    res.send({todo});
+  }).catch((e) => {
+    res.status(400).send();
+  });
+});
+
 // end mongoose zone //
 
 app.get('/', (req, res) => {
@@ -62,7 +82,7 @@ app.get('/chat', (req, res) => {
 });
 
 server.listen(port, () => {
-    console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${port}`);
 });
 
 require('./modules/Signaling-Server')(server);
