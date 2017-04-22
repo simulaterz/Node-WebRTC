@@ -36,7 +36,8 @@
     "webpack": "^2.2.1"
   },
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
+    "start-": "nodemon server/server.js",
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec 'npm test'",
     "db-cn": "node server/playground/mongodb-connect.js",
