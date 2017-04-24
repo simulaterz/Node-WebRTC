@@ -13,7 +13,7 @@ const {User} = require('./models/user');
 
 const publicPath = path.join(__dirname, '..', '/public');
 const viewPath = path.join(__dirname, '..', '/views');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 const app = express();
 const server = http.createServer(app);
