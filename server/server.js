@@ -5,8 +5,9 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const path = require('path');
 const ejs = require('ejs');
-const {ObjectID} = require('mongodb');
+const _ = require('lodash');
 
+const {ObjectID} = require('mongodb');
 const {mongoose} = require('./db/mongoose');
 const {Todo} = require('./models/todo');
 const {User} = require('./models/user');
@@ -63,6 +64,21 @@ app.get('/todos/:id', (req, res) => {
   }).catch((e) => {
     res.status(400).send();
   });
+});
+
+// POST /users
+app.post('/users', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+  var user = new User(body);
+
+  user.save().then(() => {
+    return user.generateAuthToken();
+  }).then((token) => {
+    res.header('x-auth', token).send(user);
+    // console.log(token);
+  }).catch((e) => {
+    res.status(400).send(e);
+  })
 });
 
 // end mongoose zone //
