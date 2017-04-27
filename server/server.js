@@ -147,10 +147,6 @@ app.post('/users/login', (req, res) => {
 // end mongoose zone //
 
 app.get('/', (req, res) => {
-  res.render('index');
-});
-
-app.get('/login', (req, res) => {
   res.render('login');
 });
 

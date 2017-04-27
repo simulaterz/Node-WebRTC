@@ -241,10 +241,12 @@ connection.openOrJoin('Main', function () {
   var loading = document.getElementById('loading');
   var content = document.getElementById('content');
 
-  loading.style.visibility = 'hidden';
-  content.style.visibility = 'visible';
+  loading.className += ' animated';
+  loading.className += ' fadeOut';
+
   content.className += ' animated';
   content.className += ' fadeIn';
+  content.style.visibility = 'visible';
 
   console.log('Connected to Server');
 });
