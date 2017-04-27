@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 124);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -73,8 +73,6 @@
 
 "use strict";
 
-
-/* function deparams setting params to global */
 
 var getParams = function getParams() {
   var params = {},
@@ -94,138 +92,128 @@ module.exports = { getParams: getParams };
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var connection = new RTCMultiConnection();
 var publicRoomsDiv = document.getElementById('public-rooms');
 
 var checkRoom = function checkRoom() {
-  connection.getPublicModerators(function (array) {
-    publicRoomsDiv.innerHTML = '';
-    array.forEach(function (moderator) {
+  function loopCheckRoom() {
+    var _require = __webpack_require__(2),
+        connection = _require.connection;
 
-      var li = document.createElement('li');
-      var link = document.createElement('a');
-
-      link.id = moderator.userid;
-      link.className = "btn btn--room btn--room--main";
-      link.href = '/chat?roomid=' + moderator.userid; // send params to join
-      link.innerHTML = 'Create by ' + moderator.extra.uname;
-
-      li.appendChild(link);
-
-      publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
+    connection.getPublicModerators(function (array) {
+      publicRoomsDiv.innerHTML = '';
+      array.forEach(function (moderator) {
+        var li = document.createElement('li');
+        var link = document.createElement('a');
+        link.id = moderator.userid;
+        link.className = "btn btn--room btn--room--main";
+        link.href = '/chat?roomid=' + moderator.userid; // send params to join
+        link.innerHTML = 'Create by ' + moderator.extra.uname;
+        li.appendChild(link);
+        publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
+      });
+      setTimeout(loopCheckRoom, 1000);
     });
-    setTimeout(checkRoom, 3000);
-  });
+  };
+
+  setTimeout(loopCheckRoom, 1); // setTimeout
 };
 
 module.exports = { checkRoom: checkRoom };
 
 /***/ }),
 
-/***/ 124:
+/***/ 119:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-document.getElementById('open-public-room').onclick = function () {
-  this.disabled = true;
-  var isPublicModerator = true;
-  location.href = '/chat?roomid=' + document.getElementById('room-id').value;
-};
-
-var connection = new RTCMultiConnection('Main');
-
-var _require = __webpack_require__(117),
-    checkRoom = _require.checkRoom;
-
-var _require2 = __webpack_require__(1),
-    getParams = _require2.getParams;
-
-connection.autoCloseEntireSession = true;
-
-connection.socketURL = '/';
-connection.socketMessageEvent = 'Main-RoomList';
-connection.session = { data: true };
-connection.enableLogs = false;
-
-connection.extra = { realid: connection.userid };
-
-connection.onmessage(event);
-
-connection.onleave = function (event) {
-  var remoteUserId = event.userid;
-  if (remoteUserId === 'Main') {
-    console.log('Host leaved you');
-  }
-};
-
-connection.openOrJoin();
-
 var onlineListDiv = document.getElementById('online-list');
 
-(function checkParticipants() {
-  onlineListDiv.innerHTML = '';
+var checkUser = function checkUser() {
+  function loopCheckUser() {
+    var _require = __webpack_require__(2),
+        connection = _require.connection;
 
-  connection.getAllParticipants().forEach(function (participantId) {
-    var user = connection.peers[participantId];
-    var hisUID = user.extra.realid;
-    var li = document.createElement('li');
-    var link = document.createElement('a');
-    var span = document.createElement('span');
+    onlineListDiv.innerHTML = '';
 
-    link.className = "btn btn--online";
-    span.className = "ion-ios-chatbubble icon__status";
-    link.innerHTML = hisUID;
-    span.innerHTML = '';
-    link.appendChild(span);
-    li.appendChild(link);
+    connection.getAllParticipants().forEach(function (participantId) {
+      var user = connection.peers[participantId];
+      var hisUID = user.extra.uname;
+      var li = document.createElement('li');
+      var link = document.createElement('a');
+      var span = document.createElement('span');
 
-    onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
-  });
-  setTimeout(checkParticipants, 3000);
-})();
+      if (connection.extra.uname === hisUID) return;
+
+      link.className = "btn btn--online";
+      span.className = "ion-ios-chatbubble icon__status";
+      link.innerHTML = hisUID;
+      span.innerHTML = '';
+      link.appendChild(span);
+      li.appendChild(link);
+      onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
+    });
+    setTimeout(loopCheckUser, 3000);
+  };
+
+  setTimeout(loopCheckUser, 1); // setTimeout
+};
+
+module.exports = { checkUser: checkUser };
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var connection = new RTCMultiConnection();
+
+var _require = __webpack_require__(118),
+    checkRoom = _require.checkRoom;
+
+var _require2 = __webpack_require__(119),
+    checkUser = _require2.checkUser;
+
+var _require3 = __webpack_require__(1),
+    getParams = _require3.getParams;
+
+connection.socketURL = '/';
+connection.autoCloseEntireSession = false;
+connection.socketMessageEvent = 'Main-RoomList'; // for setting params
+connection.session = { data: true };
+connection.enableLogs = false;
+connection.extra = { uname: connection.userid };
+
+connection.openOrJoin('Main', function () {
+  // callback show content
+  var loading = document.getElementById('loading');
+  var content = document.getElementById('content');
+
+  loading.style.visibility = 'hidden';
+  content.style.visibility = 'visible';
+  content.className += ' animated';
+  content.className += ' fadeIn';
+
+  console.log('Connected to Server');
+});
 
 console.log('userid = ', connection.userid);
 
+checkUser();
 checkRoom();
-
-var publicRoomsDiv = document.getElementById('public-rooms');
-
-// (function checkRoom() {
-//   connection.getPublicModerators(function(array) {
-//     publicRoomsDiv.innerHTML = '';
-//     array.forEach(function(moderator) {
-//
-//       console.log('m = ', moderator.userid);
-//       console.log('c = ', connection.userid);
-//
-//       var li = document.createElement('li');
-//       var link = document.createElement('a');
-//
-//       link.id = moderator.userid;
-//       link.className = "btn btn--room btn--room--main";
-//       link.href = '/chat?roomid='+ moderator.userid; // send params to join
-//       link.innerHTML = 'Create by ' + moderator.userid;
-//
-//       li.appendChild(link);
-//
-//       publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
-//     });
-//     setTimeout(checkRoom, 3000);
-//   });
-// })();
-
 getParams();
 
 // ......................Handling Room-ID................
-
 var roomid = '';
 if (localStorage.getItem(connection.socketMessageEvent)) {
   // check room name in localStorage
@@ -237,6 +225,12 @@ document.getElementById('room-id').value = roomid; // setting roomid to input
 document.getElementById('room-id').onkeyup = function () {
   // insert roomid to localStorage
   localStorage.setItem(connection.socketMessageEvent, this.value);
+};
+
+document.getElementById('open-public-room').onclick = function () {
+  this.disabled = true;
+  var isPublicModerator = true;
+  location.href = '/chat?roomid=' + document.getElementById('room-id').value;
 };
 
 module.exports = { connection: connection };

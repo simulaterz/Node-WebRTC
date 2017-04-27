@@ -1,5 +1,3 @@
-/* function deparams setting params to global */
-
 var getParams = function() {
   var params = {},
   r = /([^&=]+)=?([^&]*)/g;

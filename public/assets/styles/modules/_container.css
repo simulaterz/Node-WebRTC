@@ -3,9 +3,6 @@
   width: 100vw;
   background: rgba($Orange, .9);
   background: linear-gradient(to bottom, rgba($Orange, .9) 85%,rgba($Orange, .9) 15%);
-  /*background: linear-gradient(to bottom, rgba($Orange, .2) 0%,$Orange 100%);*/
-  /*background: linear-gradient(to bottom, rgba(#22313F, .6) 30%,#22313F 100%);*/
-  /*background: linear-gradient(to bottom, rgba(#34495E, .55) 20%,#34495E 100%);*/
 
   &--login-site {
     min-width: 1000px;

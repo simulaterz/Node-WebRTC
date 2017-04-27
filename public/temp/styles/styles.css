@@ -460,6 +460,117 @@ template {
   display: none;
 }
 
+.cssload-thecube {
+	width: 73px;
+	height: 73px;
+	left: 50%;
+	top: 40%;
+	-webkit-transform: translate(-50%,-50%);
+	        transform: translate(-50%,-50%);
+	position: absolute;
+	-webkit-transform: rotateZ(45deg);
+	        transform: rotateZ(45deg);
+}
+
+.cssload-thecube .cssload-cube {
+	position: relative;
+	-webkit-transform: rotateZ(45deg);
+	        transform: rotateZ(45deg);
+}
+
+.cssload-thecube .cssload-cube {
+	float: left;
+	width: 50%;
+	height: 50%;
+	position: relative;
+	-webkit-transform: scale(1.1);
+	        transform: scale(1.1);
+}
+
+.cssload-thecube .cssload-cube:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(219,60,1);
+	-webkit-animation: cssload-fold-thecube 2.76s infinite linear both;
+	        animation: cssload-fold-thecube 2.76s infinite linear both;
+	-webkit-transform-origin: 100% 100%;
+	        transform-origin: 100% 100%;
+}
+
+.cssload-thecube .cssload-c2 {
+	-webkit-transform: scale(1.1) rotateZ(90deg);
+	        transform: scale(1.1) rotateZ(90deg);
+}
+
+.cssload-thecube .cssload-c3 {
+	-webkit-transform: scale(1.1) rotateZ(180deg);
+	        transform: scale(1.1) rotateZ(180deg);
+}
+
+.cssload-thecube .cssload-c4 {
+	-webkit-transform: scale(1.1) rotateZ(270deg);
+	        transform: scale(1.1) rotateZ(270deg);
+}
+
+.cssload-thecube .cssload-c2:before {
+	-webkit-animation-delay: 0.35s;
+	        animation-delay: 0.35s;
+}
+
+.cssload-thecube .cssload-c3:before {
+	-webkit-animation-delay: 0.69s;
+	        animation-delay: 0.69s;
+}
+
+.cssload-thecube .cssload-c4:before {
+	-webkit-animation-delay: 1.04s;
+	        animation-delay: 1.04s;
+}
+
+@-webkit-keyframes cssload-fold-thecube {
+	0%, 10% {
+		-webkit-transform: perspective(136px) rotateX(-180deg);
+		        transform: perspective(136px) rotateX(-180deg);
+		opacity: 0;
+	}
+	25%,
+	75% {
+		-webkit-transform: perspective(136px) rotateX(0deg);
+		        transform: perspective(136px) rotateX(0deg);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		-webkit-transform: perspective(136px) rotateY(180deg);
+		        transform: perspective(136px) rotateY(180deg);
+		opacity: 0;
+	}
+}
+
+@keyframes cssload-fold-thecube {
+	0%, 10% {
+		-webkit-transform: perspective(136px) rotateX(-180deg);
+		        transform: perspective(136px) rotateX(-180deg);
+		opacity: 0;
+	}
+	25%,
+	75% {
+		-webkit-transform: perspective(136px) rotateX(0deg);
+		        transform: perspective(136px) rotateX(0deg);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		-webkit-transform: perspective(136px) rotateY(180deg);
+		        transform: perspective(136px) rotateY(180deg);
+		opacity: 0;
+	}
+}
+
 /*1024, 1300, 1600*/
 
 * {
@@ -5329,19 +5440,13 @@ ul,ol {
   background: linear-gradient(to bottom, rgba(249,105,14, .9) 85%,rgba(249,105,14, .9) 15%);
 }
 
-/*background: linear-gradient(to bottom, rgba(#34495E, .55) 20%,#34495E 100%);*/
-
 .container--login-site {
   min-width: 1000px;
 }
 
-/*background: linear-gradient(to bottom, rgba(#22313F, .6) 30%,#22313F 100%);*/
-
 .container--main-site {
   min-height: 500px;
 }
-
-/*background: linear-gradient(to bottom, rgba($Orange, .2) 0%,$Orange 100%);*/
 
 .container--chat-site {
   min-height: 500px;
@@ -5557,7 +5662,6 @@ ul,ol {
   width: 324px;
   font-size: 1.1rem;
   padding: .5rem 1rem;
-  border: 1px solid #0a8252;
   border-radius: .5rem;
   background: rgba(255,255,255, 1);
   color: #db3c01;
@@ -5941,7 +6045,7 @@ ul,ol {
   margin: 0 auto;
   padding: 10px 15px 5px 15px;
   background: rgba(255,255,255, .95);
-  box-shadow: 0 .1rem 1rem .1rem #34495E;
+  box-shadow: 0 0 1rem .01rem #34495E;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6012,7 +6116,7 @@ ul,ol {
   margin: 0 auto;
   padding: 10px 15px 5px 15px;
   background: rgba(255,255,255, .95);
-  box-shadow: 0 .1rem 1rem .1rem #34495E;
+  box-shadow: 0 0 1rem .01rem #34495E;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

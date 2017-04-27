@@ -1,67 +1,35 @@
-document.getElementById('open-public-room').onclick = function() {
-  this.disabled = true;
-  var isPublicModerator = true;
-  location.href='/chat?roomid='+ document.getElementById('room-id').value;
-};
-
-var connection = new RTCMultiConnection('Main');
-var { checkRoom } = require('./modules/_checkRoom');
-var { getParams } = require('./modules/_getParams');
-
-connection.autoCloseEntireSession = true;
+const connection = new RTCMultiConnection();
+const { checkRoom } = require('./modules/_checkRoom');
+const { checkUser } = require('./modules/_checkUser');
+const { getParams } = require('./modules/_getParams');
 
 connection.socketURL = '/';
-connection.socketMessageEvent = 'Main-RoomList';
+connection.autoCloseEntireSession = false;
+connection.socketMessageEvent = 'Main-RoomList'; // for setting params
 connection.session = { data: true };
 connection.enableLogs = false;
-
 connection.extra = { uname: connection.userid };
 
-connection.onmessage(event);
 
-connection.onleave = function(event) {
-  var remoteUserId = event.userid;
-  if (remoteUserId === 'Main') {
-    console.log('Host leaved you');
-  }
-};
+connection.openOrJoin('Main' , function() { // callback show content
+  var loading = document.getElementById('loading');
+  var content = document.getElementById('content');
 
-connection.openOrJoin();
+  loading.style.visibility = 'hidden';
+  content.style.visibility = 'visible';
+  content.className += ' animated';
+  content.className += ' fadeIn';
 
-var onlineListDiv = document.getElementById('online-list');
-
-(function checkParticipants() {
-  onlineListDiv.innerHTML = '';
-
-  connection.getAllParticipants().forEach(function(participantId) {
-    var user = connection.peers[participantId];
-    var hisUID = user.extra.uname;
-    var li = document.createElement('li');
-    var link = document.createElement('a');
-    var span = document.createElement('span');
-
-    link.className = "btn btn--online";
-    span.className = "ion-ios-chatbubble icon__status";
-    link.innerHTML = hisUID;
-    span.innerHTML = '';
-    link.appendChild(span);
-    li.appendChild(link);
-
-    onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
-  });
-  setTimeout(checkParticipants, 3000);
-})();
+  console.log('Connected to Server');
+});
 
 console.log('userid = ', connection.userid);
 
+checkUser();
 checkRoom();
-
-var publicRoomsDiv = document.getElementById('public-rooms');
-
 getParams();
 
 // ......................Handling Room-ID................
-
 var roomid = '';
 if (localStorage.getItem(connection.socketMessageEvent)) { // check room name in localStorage
   roomid = localStorage.getItem(connection.socketMessageEvent);
@@ -71,4 +39,10 @@ document.getElementById('room-id').onkeyup = function() { // insert roomid to lo
   localStorage.setItem(connection.socketMessageEvent, this.value);
 };
 
-module.exports = { connection };
+document.getElementById('open-public-room').onclick = function() {
+  this.disabled = true;
+  var isPublicModerator = true;
+  location.href='/chat?roomid='+ document.getElementById('room-id').value;
+};
+
+module.exports = {connection};

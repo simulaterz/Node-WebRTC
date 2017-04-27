@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "modules/vendor/loading";
 
 @import "base/_variables";
 @import "base/_mixins";

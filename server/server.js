@@ -129,6 +129,21 @@ app.get('/users/me', authenticate, (req, res) => {
   res.send(req.user); // user obj
 });
 
+
+//POST /users/login (email, password)
+app.post('/users/login', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+  User.findByCredentials(body.email, body.password).then((user) => {
+    // res.send(user);
+    user.generateAuthToken().then((token) => {
+      res.header('x-auth', token).send(user);
+    })
+  }).catch((e) => {
+    res.status(400).send();
+  });
+});
+
+
 // end mongoose zone //
 
 app.get('/', (req, res) => {

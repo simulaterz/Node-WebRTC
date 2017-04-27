@@ -12,4 +12,4 @@ $midOrange: #db3c01;
 $Green: #00B16A;
 
 $textShadow: -.1rem 0 $Green, 0 .1rem $Green, .1rem 0 $Green, 0 -.1rem $Green;
-$bgShadow: 0 .1rem 1rem .1rem #34495E;
+$bgShadow: 0 0 1rem .01rem #34495E;
