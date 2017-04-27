@@ -1,7 +1,9 @@
 const connection = new RTCMultiConnection();
+
 const { checkRoom } = require('./modules/_checkRoom');
 const { checkUser } = require('./modules/_checkUser');
 const { getParams } = require('./modules/_getParams');
+const { handleRoomid } = require('./modules/_handleRoomid');
 
 connection.socketURL = '/';
 connection.autoCloseEntireSession = false;
@@ -28,21 +30,6 @@ console.log('userid = ', connection.userid);
 checkUser();
 checkRoom();
 getParams();
-
-// ......................Handling Room-ID................
-var roomid = '';
-if (localStorage.getItem(connection.socketMessageEvent)) { // check room name in localStorage
-  roomid = localStorage.getItem(connection.socketMessageEvent);
-} else { roomid = connection.token(); }
-document.getElementById('room-id').value = roomid; // setting roomid to input
-document.getElementById('room-id').onkeyup = function() { // insert roomid to localStorage
-  localStorage.setItem(connection.socketMessageEvent, this.value);
-};
-
-document.getElementById('open-public-room').onclick = function() {
-  this.disabled = true;
-  var isPublicModerator = true;
-  location.href='/chat?roomid='+ document.getElementById('room-id').value;
-};
+handleRoomid();
 
 module.exports = {connection};

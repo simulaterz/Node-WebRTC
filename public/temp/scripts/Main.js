@@ -100,29 +100,29 @@ module.exports = { getParams: getParams };
 
 var publicRoomsDiv = document.getElementById('public-rooms');
 
-var checkRoom = function checkRoom() {
-  function loopCheckRoom() {
-    var _require = __webpack_require__(2),
-        connection = _require.connection;
+function loopCheckRoom() {
+  var _require = __webpack_require__(2),
+      connection = _require.connection;
 
-    connection.getPublicModerators(function (array) {
-      publicRoomsDiv.innerHTML = '';
-      array.forEach(function (moderator) {
-        var li = document.createElement('li');
-        var link = document.createElement('a');
-        link.id = moderator.userid;
-        link.className = "btn btn--room btn--room--main";
-        link.href = '/chat?roomid=' + moderator.userid; // send params to join
-        link.innerHTML = 'Create by ' + moderator.extra.uname;
-        li.appendChild(link);
-        publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
-      });
-      setTimeout(loopCheckRoom, 1000);
+  connection.getPublicModerators(function (array) {
+    publicRoomsDiv.innerHTML = '';
+    array.forEach(function (moderator) {
+      var li = document.createElement('li');
+      var link = document.createElement('a');
+      link.id = moderator.userid;
+      link.className = "btn btn--room btn--room--main";
+      link.href = '/chat?roomid=' + moderator.userid; // send params to join
+      link.innerHTML = 'Create by ' + moderator.extra.uname;
+      li.appendChild(link);
+      publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
     });
-  };
-
-  setTimeout(loopCheckRoom, 1); // setTimeout
+    setTimeout(loopCheckRoom, 1000);
+  });
 };
+
+function checkRoom() {
+  setTimeout(loopCheckRoom, 1);
+}
 
 module.exports = { checkRoom: checkRoom };
 
@@ -136,37 +136,76 @@ module.exports = { checkRoom: checkRoom };
 
 var onlineListDiv = document.getElementById('online-list');
 
-var checkUser = function checkUser() {
-  function loopCheckUser() {
-    var _require = __webpack_require__(2),
-        connection = _require.connection;
+function loopCheckUser() {
+  var _require = __webpack_require__(2),
+      connection = _require.connection;
 
-    onlineListDiv.innerHTML = '';
+  onlineListDiv.innerHTML = '';
 
-    connection.getAllParticipants().forEach(function (participantId) {
-      var user = connection.peers[participantId];
-      var hisUID = user.extra.uname;
-      var li = document.createElement('li');
-      var link = document.createElement('a');
-      var span = document.createElement('span');
+  connection.getAllParticipants().forEach(function (participantId) {
+    var user = connection.peers[participantId];
+    var hisUID = user.extra.uname;
+    var li = document.createElement('li');
+    var link = document.createElement('a');
+    var span = document.createElement('span');
 
-      if (connection.extra.uname === hisUID) return;
+    if (connection.extra.uname === hisUID) return;
 
-      link.className = "btn btn--online";
-      span.className = "ion-ios-chatbubble icon__status";
-      link.innerHTML = hisUID;
-      span.innerHTML = '';
-      link.appendChild(span);
-      li.appendChild(link);
-      onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
-    });
-    setTimeout(loopCheckUser, 3000);
-  };
+    link.className = "btn btn--online";
+    span.className = "ion-ios-chatbubble icon__status";
+    link.innerHTML = hisUID;
+    span.innerHTML = '';
+    link.appendChild(span);
+    li.appendChild(link);
+    onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
+  });
+  setTimeout(loopCheckUser, 3000);
+};
 
+function checkUser() {
   setTimeout(loopCheckUser, 1); // setTimeout
 };
 
 module.exports = { checkUser: checkUser };
+
+/***/ }),
+
+/***/ 120:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var checkRoomid = function checkRoomid() {
+  var _require = __webpack_require__(2),
+      connection = _require.connection;
+
+  var roomid = '';
+
+  if (localStorage.getItem(connection.socketMessageEvent)) {
+    // check room name in localStorage
+    roomid = localStorage.getItem(connection.socketMessageEvent);
+  } else {
+    roomid = connection.token();
+  }
+  document.getElementById('room-id').value = roomid; // setting roomid to input
+  document.getElementById('room-id').onkeyup = function () {
+    // insert roomid to localStorage
+    localStorage.setItem(connection.socketMessageEvent, this.value);
+  };
+
+  document.getElementById('open-public-room').onclick = function () {
+    this.disabled = true;
+    var isPublicModerator = true;
+    location.href = '/chat?roomid=' + document.getElementById('room-id').value;
+  };
+};
+
+function handleRoomid() {
+  setTimeout(checkRoomid, 1);
+}
+
+module.exports = { handleRoomid: handleRoomid };
 
 /***/ }),
 
@@ -186,6 +225,9 @@ var _require2 = __webpack_require__(119),
 
 var _require3 = __webpack_require__(1),
     getParams = _require3.getParams;
+
+var _require4 = __webpack_require__(120),
+    handleRoomid = _require4.handleRoomid;
 
 connection.socketURL = '/';
 connection.autoCloseEntireSession = false;
@@ -212,26 +254,7 @@ console.log('userid = ', connection.userid);
 checkUser();
 checkRoom();
 getParams();
-
-// ......................Handling Room-ID................
-var roomid = '';
-if (localStorage.getItem(connection.socketMessageEvent)) {
-  // check room name in localStorage
-  roomid = localStorage.getItem(connection.socketMessageEvent);
-} else {
-  roomid = connection.token();
-}
-document.getElementById('room-id').value = roomid; // setting roomid to input
-document.getElementById('room-id').onkeyup = function () {
-  // insert roomid to localStorage
-  localStorage.setItem(connection.socketMessageEvent, this.value);
-};
-
-document.getElementById('open-public-room').onclick = function () {
-  this.disabled = true;
-  var isPublicModerator = true;
-  location.href = '/chat?roomid=' + document.getElementById('room-id').value;
-};
+handleRoomid();
 
 module.exports = { connection: connection };
 
