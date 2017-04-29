@@ -21,12 +21,15 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.static(publicPath));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 
 app.set('views', viewPath);
 app.set('view engine', 'ejs');
 
-// mongoose zone //
+// mongoose zone // ------------------------------------------------------------
 
 app.post('/todos', (req, res) => {
   var todo = new Todo({
@@ -143,19 +146,60 @@ app.post('/users/login', (req, res) => {
   });
 });
 
-
-// end mongoose zone //
+// end mongoose zone // --------------------------------------------------------
 
 app.get('/', (req, res) => {
   res.render('login');
 });
 
+app.post('/main', (req, res) => {
+  // var body = _.pick(req.body, ['uname', 'pass']);
+  var uname = 'aa@aa.com';
+  var pass = 'aaaaaa';
+  User.findByCredentials(uname, pass).then((user) => {
+    user.generateAuthToken().then((token) => {
+      res.render('main', {token: token});
+    })
+  }).catch((e) => {
+    console.log('Error ', e);
+    res.redirect('/');
+  })
+});
+
 app.get('/main', (req, res) => {
-  res.render('main');
+  res.render('main', {token: ''});
+});
+
+var auth = (req, res, next) => {
+  var token = req.params.id;
+  User.findByToken(token).then((user) => {
+    if(!user) {
+      // res.status(401).send();
+      return Promise.reject();
+    }
+
+    req.user = user;
+    req.token = token;
+    next(); // for next fnc
+  }).catch((e) => {
+    res.status(401).send();
+  });
+};
+
+app.get('/check/:id', auth, (req, res) => {
+  var id = req.user._id;
+  console.log(id);
+  // var num = Math.random();
+  res.send({ user : { _id : id }});
 });
 
 app.get('/chat', (req, res) => {
   res.render('chat');
+  console.log(req.header['x-auth']);
+});
+
+app.get('*', function(req, res) {
+  res.redirect('/');
 });
 
 server.listen(port, () => {

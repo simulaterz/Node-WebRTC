@@ -2,40 +2,43 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
-    <title>LogIn | WebChat</title>
-    <link rel="stylesheet" href="temp/styles/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
+  <title>LogIn | WebChat</title>
+  <link rel="stylesheet" href="temp/styles/styles.css">
 </head>
 
 <body>
-    <div class="container container--login-site">
-        <div class="site-regis">
-          <!-- site regis or bg -->
-        </div>
-        <div class="site-login">
-            <form action="#" class="site-login__form">
-                <div class="site-login__form__field">
-                    <h2 class="site-login__form__header"><i class="ion-android-desktop icon__login"></i>User Login</h2>
-                </div>
-                <div class="site-login__form__field site-login__form__field--input">
-                    <label for="uname"> Username </label>
-                    <input type="text" name="uname" autofocus/>
-                </div>
-                <div class="site-login__form__field site-login__form__field--input">
-                    <label for="password"> Password </label>
-                    <input type="password" name="pass" />
-                </div>
-                <div class="site-login__form__field">
-                    <a class="btn btn--site-login" href="/main">
-                        Login
-                    </a>
-                </div>
-            </form>
-        </div>
+  <div class="container container--login-site">
+    <div class="site-regis">
+      <!-- site regis or bg -->
     </div>
-    </div>
-    <script src="/temp/scripts/App.js"></script>
+    <div class="site-login">
+      <form action="/main" method="post" class="site-login__form">
+        <div class="site-login__form__field">
+          <h2 class="site-login__form__header"><i class="ion-android-desktop icon__login"></i>User Login</h2>
+        </div>
+        <div class="site-login__form__field site-login__form__field--input">
+          <label for="uname"> Username </label>
+          <input type="text" name="uname" autofocus/>
+        </div>
+        <div class="site-login__form__field site-login__form__field--input">
+          <label for="password"> Password </label>
+          <input type="password" name="pass" />
+        </div>
+        <div class="site-login__form__field">
+          <!-- <a class="btn btn--site-login" href="/main">
+          Login
+        </a> -->
+        <input type="submit" value="Login" class="btn btn--site-login"></input>
+      </div>
+    </form>
+  </div>
+  <script>
+  if (localStorage.getItem("RTCToken")) {
+    window.location.href = '/main';
+  }
+  </script>
+</div>
 </body>
-
 </html>

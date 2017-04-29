@@ -38,61 +38,71 @@
               <div class="content-roomlist__field-room">
                 <ul id="public-rooms">
                   <!-- <li>
-                    <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                  </li> -->
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="row__col-1-in-3 row__col-1-in-3--border-left">
-            <div class="content-fav">
-              <div class="content-fav__header">
-                <i class="ion-android-bookmark icon__header-right"></i>
-                <h3>Favorite Room</h3>
-              </div>
-              <div class="content-fav__field-room">
-                <ul>
-                  <li>
-                    <a href="/chat" class="btn btn--room btn--room--fav">abcde
-                      <span class="ion-android-delete icon__del"></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/chat" class="btn btn--room btn--room--fav">abcde
-                      <span class="ion-android-delete icon__del"></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/chat" class="btn btn--room btn--room--fav">abcde
-                      <span class="ion-android-delete icon__del"></span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="content-useronline">
-              <div class="content-useronline__header">
-                <i class="ion-android-contacts icon__header-right"></i>
-                <h3>Online User List</h3>
-              </div>
-              <div class="content-useronline__field-user">
-                <ul id="online-list">
-                  <!-- <li>
-                    <a href="#" class="btn btn--online">
-                      <span class="ion-ios-chatbubble icon__status"></span>myuser
-                    </a>
-                  </li> -->
-                </ul>
-              </div>
+                  <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
+                </li> -->
+              </ul>
             </div>
           </div>
         </div>
+        <div class="row__col-1-in-3 row__col-1-in-3--border-left">
+          <div class="content-fav">
+            <div class="content-fav__header">
+              <i class="ion-android-bookmark icon__header-right"></i>
+              <h3>Favorite Room</h3>
+            </div>
+            <div class="content-fav__field-room">
+              <ul>
+                <li>
+                  <a href="/chat" class="btn btn--room btn--room--fav">abcde
+                    <span class="ion-android-delete icon__del"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/chat" class="btn btn--room btn--room--fav">abcde
+                    <span class="ion-android-delete icon__del"></span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/chat" class="btn btn--room btn--room--fav">abcde
+                    <span class="ion-android-delete icon__del"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="content-useronline">
+            <div class="content-useronline__header">
+              <i class="ion-android-contacts icon__header-right"></i>
+              <h3>Online User List</h3>
+            </div>
+            <div class="content-useronline__field-user">
+              <ul id="online-list">
+                <!-- <li>
+                <a href="#" class="btn btn--online">
+                <span class="ion-ios-chatbubble icon__status"></span>myuser
+              </a>
+            </li> -->
+          </ul>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+</div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
-    <script src="temp/scripts/Main.js"></script>
-    </body>
+<script>
+  var token;
+  if (localStorage.getItem("RTCToken")) {
+    token = localStorage.getItem("RTCToken");
+  } else {
+    token = '<%= token %>';
+    if (token === "") { window.location.href = '/'; }
+  }
+</script>
 
-    </html>
+<script src="/socket.io/socket.io.js"></script>
+<script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
+<script src="temp/scripts/Main.js"></script>
+</body>
+
+</html>

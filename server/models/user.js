@@ -93,9 +93,9 @@ UserSchema.statics.findByCredentials = function (email, password) {
         } else {
           reject();
         }
-      })
+      });
     });
-  })
+  });
 };
 
 // middleware
