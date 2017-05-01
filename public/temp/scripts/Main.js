@@ -92,7 +92,33 @@ module.exports = { getParams: getParams };
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var $ = __webpack_require__(3);
+
+function authUser(clientToken) {
+  return $.ajax({
+    url: '/check/' + clientToken, type: "get",
+    success: function success(res) {
+      var num = Math.floor(Math.random() * 3) + 1;
+      res.user._id = num.toString();
+      res.var = 'aaa'; // add some res
+    },
+    error: function error(err) {
+      window.location = "/";
+    }
+  });
+}
+
+module.exports = { authUser: authUser };
+
+/***/ }),
+
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -128,7 +154,7 @@ module.exports = { checkRoom: checkRoom };
 
 /***/ }),
 
-/***/ 119:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -148,6 +174,10 @@ function loopCheckUser() {
     var li = document.createElement('li');
     var link = document.createElement('a');
     var span = document.createElement('span');
+
+    /*TESTING*/
+
+    console.log('Form checkUser => extra =', connection.extra);
 
     if (connection.extra.uname === hisUID) return;
 
@@ -170,7 +200,7 @@ module.exports = { checkUser: checkUser };
 
 /***/ }),
 
-/***/ 120:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,33 +239,171 @@ module.exports = { handleRoomid: handleRoomid };
 
 /***/ }),
 
-/***/ 121:
+/***/ 123:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
+var _require = __webpack_require__(126),
+    getCookies = _require.getCookies;
+
+var _require2 = __webpack_require__(125),
+    deleteAllCookies = _require2.deleteAllCookies;
+
 var clientToken;
 
-if (localStorage.getItem("RTCToken") && token !== "") {
-  var local = localStorage.getItem("RTCToken");
-  var server = token;
-
-  if (local !== server) {
-    clientToken = server;
-    localStorage.setItem("RTCToken", clientToken);
-  }
-  clientToken = localStorage.getItem("RTCToken");
-} else {
-  clientToken = token;
-  localStorage.setItem("RTCToken", clientToken);
+if (getCookies().token) {
+  localStorage.setItem("RTCToken", getCookies().token);
 }
+clientToken = localStorage.getItem("RTCToken");
+
+deleteAllCookies();
 
 module.exports = { clientToken: clientToken };
 
 /***/ }),
 
-/***/ 122:
+/***/ 125:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
+module.exports = { deleteAllCookies: deleteAllCookies };
+
+/***/ }),
+
+/***/ 126:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function getCookies() {
+    var cookies = {};
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = document.cookie.split('; ')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var cookie = _step.value;
+
+            var _cookie$split = cookie.split("="),
+                _cookie$split2 = _slicedToArray(_cookie$split, 2),
+                name = _cookie$split2[0],
+                value = _cookie$split2[1];
+
+            cookies[name] = decodeURIComponent(value);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+
+    return cookies;
+};
+
+module.exports = { getCookies: getCookies };
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var connection = new RTCMultiConnection();
+var $ = __webpack_require__(3);
+
+var _require = __webpack_require__(120),
+    checkRoom = _require.checkRoom;
+
+var _require2 = __webpack_require__(121),
+    checkUser = _require2.checkUser;
+
+var _require3 = __webpack_require__(1),
+    getParams = _require3.getParams;
+
+var _require4 = __webpack_require__(122),
+    handleRoomid = _require4.handleRoomid;
+
+var _require5 = __webpack_require__(123),
+    clientToken = _require5.clientToken;
+
+var _require6 = __webpack_require__(119),
+    authUser = _require6.authUser;
+
+console.log(clientToken);
+if (!clientToken) {
+  alert("Please Login");window.location = "/";
+}
+
+$.when(authUser(clientToken)).then(function (res) {
+  console.log('res ******', res); // Checking RES
+
+  connection.socketURL = '/';
+  connection.autoCloseEntireSession = false;
+  connection.socketMessageEvent = 'Main-RoomList'; // for setting params roomid
+  connection.session = { data: true };
+  connection.enableLogs = false;
+  connection.userid = res.user._id;
+  connection.extra = { uname: res.user._id };
+
+  connection.openOrJoin('Main', function () {
+    // Callback to show content
+    var loading = document.getElementById('loading');
+    var content = document.getElementById('content');
+
+    loading.className += ' animated';
+    loading.className += ' fadeOut';
+    content.className += ' animated';
+    content.className += ' fadeIn';
+    content.style.visibility = 'visible';
+
+    console.log('Connected to Server');
+  });
+
+  checkUser();
+  checkRoom();
+  getParams();
+  handleRoomid();
+  // renderPage();
+
+  module.exports = { connection: connection }; // export module to recall
+}).catch(function (e) {
+  alert("Login Fail");
+  window.location = "/";
+});
+
+/***/ }),
+
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10460,84 +10628,6 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var connection = new RTCMultiConnection();
-var $ = __webpack_require__(122);
-// const request = require('request'); // test
-
-var _require = __webpack_require__(118),
-    checkRoom = _require.checkRoom;
-
-var _require2 = __webpack_require__(119),
-    checkUser = _require2.checkUser;
-
-var _require3 = __webpack_require__(1),
-    getParams = _require3.getParams;
-
-var _require4 = __webpack_require__(120),
-    handleRoomid = _require4.handleRoomid;
-
-var _require5 = __webpack_require__(121),
-    clientToken = _require5.clientToken;
-
-console.log(clientToken);
-
-$.ajax({ url: '/check/' + clientToken, type: "get", success: function success(res) {
-    console.log(res);
-    // var num = Math.floor(Math.random() * 3) + 1;
-    //
-    connection.userid = res.user._id;
-    connection.extra = { uname: res.user._id };
-    console.log(connection.userid);
-    openConnection();
-  },
-  error: function error(err) {
-    console.log('err');
-  }
-});
-
-if (!clientToken) {
-  alert("Please Log in");
-  window.location = "/";
-}
-
-connection.socketURL = '/';
-connection.autoCloseEntireSession = false;
-connection.socketMessageEvent = 'Main-RoomList'; // for setting params
-connection.session = { data: true };
-connection.enableLogs = false;
-
-function openConnection() {
-  connection.openOrJoin('Main', function () {
-    // callback show content
-    var loading = document.getElementById('loading');
-    var content = document.getElementById('content');
-
-    loading.className += ' animated';
-    loading.className += ' fadeOut';
-    content.className += ' animated';
-    content.className += ' fadeIn';
-    content.style.visibility = 'visible';
-
-    console.log('Connected to Server');
-  });
-}
-
-// console.log('userid = ', connection.userid);
-checkUser();
-checkRoom();
-getParams();
-handleRoomid();
-
-module.exports = { connection: connection };
 
 /***/ })
 

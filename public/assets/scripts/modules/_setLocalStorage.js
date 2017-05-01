@@ -1,17 +1,12 @@
+var { getCookies } = require('./_getCookies');
+var { deleteAllCookies } = require('./_deleteAllCookies');
 var clientToken;
 
-if (localStorage.getItem("RTCToken") && token !== "") {
-  var local = localStorage.getItem("RTCToken");
-  var server = token;
-  
-  if (local !== server) {
-    clientToken = server;
-    localStorage.setItem("RTCToken", clientToken);
-  }
-  clientToken = localStorage.getItem("RTCToken");
-} else {
-  clientToken = token;
-  localStorage.setItem("RTCToken", clientToken);
+if (getCookies().token) {
+  localStorage.setItem("RTCToken", getCookies().token);
 }
+clientToken = localStorage.getItem("RTCToken");
+
+deleteAllCookies();
 
 module.exports = { clientToken };

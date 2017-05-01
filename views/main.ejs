@@ -90,16 +90,6 @@
 </div>
 </div>
 
-<script>
-  var token;
-  if (localStorage.getItem("RTCToken")) {
-    token = localStorage.getItem("RTCToken");
-  } else {
-    token = '<%= token %>';
-    if (token === "") { window.location.href = '/'; }
-  }
-</script>
-
 <script src="/socket.io/socket.io.js"></script>
 <script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
 <script src="temp/scripts/Main.js"></script>

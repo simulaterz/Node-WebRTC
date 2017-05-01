@@ -11,6 +11,10 @@ function loopCheckUser() {
     var link = document.createElement('a');
     var span = document.createElement('span');
 
+    /*TESTING*/
+
+    console.log('Form checkUser => extra =',connection.extra);
+
     if (connection.extra.uname === hisUID) return;
 
     link.className = "btn btn--online";

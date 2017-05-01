@@ -7,11 +7,14 @@ const path = require('path');
 const ejs = require('ejs');
 const _ = require('lodash');
 
+var cookieParser = require('cookie-parser');
+
 const {ObjectID} = require('mongodb');
 const {mongoose} = require('./db/mongoose');
 const {Todo} = require('./models/todo');
 const {User} = require('./models/user');
 const {authenticate} = require('./middleware/authenticate');
+const {authUser} = require('./middleware/authUser');
 
 const publicPath = path.join(__dirname, '..', '/public');
 const viewPath = path.join(__dirname, '..', '/views');
@@ -21,10 +24,10 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(express.static(publicPath));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cookieParser());
 
 app.set('views', viewPath);
 app.set('view engine', 'ejs');
@@ -154,11 +157,11 @@ app.get('/', (req, res) => {
 
 app.post('/main', (req, res) => {
   // var body = _.pick(req.body, ['uname', 'pass']);
-  var uname = 'aa@aa.com';
-  var pass = 'aaaaaa';
+  var uname = 'aa@aa.com'; var pass = 'aaaaaa';
   User.findByCredentials(uname, pass).then((user) => {
     user.generateAuthToken().then((token) => {
-      res.render('main', {token: token});
+      res.cookie( 'token', token, { maxAge: 1000 * 60 * 10, httpOnly: false })
+      .render('main');
     })
   }).catch((e) => {
     console.log('Error ', e);
@@ -167,35 +170,18 @@ app.post('/main', (req, res) => {
 });
 
 app.get('/main', (req, res) => {
-  res.render('main', {token: ''});
+  res.render('main');
 });
 
-var auth = (req, res, next) => {
-  var token = req.params.id;
-  User.findByToken(token).then((user) => {
-    if(!user) {
-      // res.status(401).send();
-      return Promise.reject();
-    }
-
-    req.user = user;
-    req.token = token;
-    next(); // for next fnc
-  }).catch((e) => {
-    res.status(401).send();
-  });
-};
-
-app.get('/check/:id', auth, (req, res) => {
-  var id = req.user._id;
-  console.log(id);
-  // var num = Math.random();
-  res.send({ user : { _id : id }});
+app.get('/check/:id', authUser, (req, res) => {
+  console.log(req.user);
+  var id = req.user._id.toHexString();
+  res.send({ user : req.user});
 });
 
 app.get('/chat', (req, res) => {
+  console.log(req.headers['x-auth']);
   res.render('chat');
-  console.log(req.header['x-auth']);
 });
 
 app.get('*', function(req, res) {
