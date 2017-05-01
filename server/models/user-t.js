@@ -5,22 +5,24 @@ var _ = require('lodash');
 var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
-  username: {
+  email: {
     type: String,
     required: true,
     trim: true,
     minlength: 1,
-    unique: true
+    unique: true,
+    validate: {
+      validator: (value) => {
+        return /([A-Z0-9])\w+/g.test(value);
+      },
+      message: '{VALUE} is not a valid email'
+    }
   },
   password: {
     type: String,
     require: true,
     minlength: 6
   },
-  favroom: [{
-    type: String,
-    default: null
-  }],
   tokens: [{
     access: {
       type: String,
@@ -37,7 +39,7 @@ UserSchema.methods.toJSON = function () { // override
   var user = this;
   var userObject = user.toObject();
 
-  return _.pick(userObject, ['_id', 'username', 'favroom']);
+  return _.pick(userObject, ['_id', 'email']);
 };
 
 UserSchema.methods.generateAuthToken = function () {
@@ -55,6 +57,7 @@ UserSchema.methods.generateAuthToken = function () {
   });
 };
 
+//global method
 UserSchema.statics.findByToken = function (token) {
   var User = this;
   var decoded;
@@ -72,10 +75,10 @@ UserSchema.statics.findByToken = function (token) {
   });
 };
 
-UserSchema.statics.findByCredentials = function (username, password) {
+UserSchema.statics.findByCredentials = function (email, password) {
   var User = this;
 
-  return User.findOne({username}).then((user) => {
+  return User.findOne({email}).then((user) => {
     if (!user) {
       return Promise.reject();
     }
@@ -92,6 +95,7 @@ UserSchema.statics.findByCredentials = function (username, password) {
   });
 };
 
+// middleware
 UserSchema.pre('save', function (next) {
   var user = this;
 
