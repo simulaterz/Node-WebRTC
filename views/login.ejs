@@ -6,12 +6,14 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
   <title>LogIn | WebChat</title>
   <link rel="stylesheet" href="temp/styles/styles.css">
+
+  <script src="temp/scripts/Login.js"></script>
 </head>
 
 <body>
   <div class="container container--login-site">
     <div class="site-regis">
-      <!-- site regis or bg -->
+      <!-- left container -->
     </div>
     <div class="site-login">
       <form action="/main" method="post" class="site-login__form">
@@ -27,18 +29,10 @@
           <input type="password" name="password" />
         </div>
         <div class="site-login__form__field">
-          <!-- <a class="btn btn--site-login" href="/main">
-          Login
-        </a> -->
-        <input type="submit" value="Login" class="btn btn--site-login"></input>
-      </div>
-    </form>
+          <input type="submit" value="Login" class="btn btn--site-login"></input>
+        </div>
+      </form>
+    </div>
   </div>
-  <script>
-  if (localStorage.getItem("RTCToken")) {
-    window.location.href = '/main';
-  }
-  </script>
-</div>
 </body>
 </html>

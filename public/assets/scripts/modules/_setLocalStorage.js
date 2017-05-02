@@ -1,12 +1,11 @@
 var { getCookies } = require('./_getCookies');
 var { deleteAllCookies } = require('./_deleteAllCookies');
-var clientToken;
 
 if (getCookies().token) {
   localStorage.setItem("RTCToken", getCookies().token);
+  localStorage.setItem("isLoggedIn", true);
 }
-clientToken = localStorage.getItem("RTCToken");
-
+var clientToken = localStorage.getItem("RTCToken");
 deleteAllCookies();
 
-module.exports = { clientToken };
+module.exports = { clientToken};

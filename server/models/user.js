@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var validator = require('validator');
+var validator = require('validator'); // remove;
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 var bcrypt = require('bcryptjs');
@@ -17,10 +17,10 @@ var UserSchema = new mongoose.Schema({
     require: true,
     minlength: 6
   },
-  favroom: [{
+  favroom: {
     type: String,
-    default: null
-  }],
+    default: null,
+  },
   tokens: [{
     access: {
       type: String,
@@ -32,6 +32,10 @@ var UserSchema = new mongoose.Schema({
     }
   }]
 });
+
+function arrayLimit(val) {
+  return val.length <= 3;
+}
 
 UserSchema.methods.toJSON = function () { // override
   var user = this;
@@ -54,6 +58,14 @@ UserSchema.methods.generateAuthToken = function () {
     return token;
   });
 };
+
+UserSchema.methods.addFavRoom = function (room) {
+  var user = this;
+  user.favroom = room;
+  return user.save().then((user) => {
+    return user;
+  });
+}
 
 UserSchema.statics.findByToken = function (token) {
   var User = this;

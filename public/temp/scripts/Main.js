@@ -102,11 +102,10 @@ var $ = __webpack_require__(3);
 
 function authUser(clientToken) {
   return $.ajax({
-    url: '/check/' + clientToken, type: "get",
+    url: "/check/" + clientToken, type: "get",
     success: function success(res) {
       var num = Math.floor(Math.random() * 3) + 1;
-      res.user._id = num.toString();
-      res.var = 'aaa'; // add some res
+      res.user.username = num.toString(); // rewrite userid
     },
     error: function error(err) {
       window.location = "/";
@@ -164,33 +163,47 @@ var onlineListDiv = document.getElementById('online-list');
 
 function loopCheckUser() {
   var _require = __webpack_require__(2),
-      connection = _require.connection;
+      connection = _require.connection,
+      userObject = _require.userObject;
 
   onlineListDiv.innerHTML = '';
+
+  listUser(userObject.username);
 
   connection.getAllParticipants().forEach(function (participantId) {
     var user = connection.peers[participantId];
     var hisUID = user.extra.uname;
-    var li = document.createElement('li');
-    var link = document.createElement('a');
-    var span = document.createElement('span');
-
-    /*TESTING*/
-
-    console.log('Form checkUser => extra =', connection.extra);
 
     if (connection.extra.uname === hisUID) return;
+    listUser(hisUID);
+    // var li = document.createElement('li');
+    // var link = document.createElement('a');
+    // var span = document.createElement('span');
 
-    link.className = "btn btn--online";
-    span.className = "ion-ios-chatbubble icon__status";
-    link.innerHTML = hisUID;
-    span.innerHTML = '';
-    link.appendChild(span);
-    li.appendChild(link);
-    onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
+    // link.className = "btn btn--online";
+    // link.innerHTML = hisUID;
+    // span.className = "ion-ios-chatbubble icon__status";
+    // span.innerHTML = '';
+    // link.appendChild(span);
+    // li.appendChild(link);
+    // onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
   });
   setTimeout(loopCheckUser, 3000);
 };
+
+function listUser(username) {
+  var li = document.createElement('li');
+  var link = document.createElement('a');
+  var span = document.createElement('span');
+
+  link.className = "btn btn--online";
+  link.innerHTML = username;
+  span.className = "ion-ios-chatbubble icon__status";
+  span.innerHTML = '';
+  link.appendChild(span);
+  li.appendChild(link);
+  onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
+}
 
 function checkUser() {
   setTimeout(loopCheckUser, 1); // setTimeout
@@ -251,13 +264,11 @@ var _require = __webpack_require__(126),
 var _require2 = __webpack_require__(125),
     deleteAllCookies = _require2.deleteAllCookies;
 
-var clientToken;
-
 if (getCookies().token) {
   localStorage.setItem("RTCToken", getCookies().token);
+  localStorage.setItem("isLoggedIn", true);
 }
-clientToken = localStorage.getItem("RTCToken");
-
+var clientToken = localStorage.getItem("RTCToken");
 deleteAllCookies();
 
 module.exports = { clientToken: clientToken };
@@ -365,6 +376,7 @@ if (!clientToken) {
 }
 
 $.when(authUser(clientToken)).then(function (res) {
+  var userObject = res.user;
   console.log('res ******', res); // Checking RES
 
   connection.socketURL = '/';
@@ -372,8 +384,8 @@ $.when(authUser(clientToken)).then(function (res) {
   connection.socketMessageEvent = 'Main-RoomList'; // for setting params roomid
   connection.session = { data: true };
   connection.enableLogs = false;
-  connection.userid = res.user._id;
-  connection.extra = { uname: res.user._id };
+  connection.userid = userObject.username; // seting form authUser = Math Random
+  connection.extra = { uname: userObject.username };
 
   connection.openOrJoin('Main', function () {
     // Callback to show content
@@ -395,9 +407,31 @@ $.when(authUser(clientToken)).then(function (res) {
   handleRoomid();
   // renderPage();
 
-  module.exports = { connection: connection }; // export module to recall
+  var favroomDiv = document.getElementById('favroomDiv');
+  favroomDiv.innerHTML = '';
+  var userSpan = document.getElementById('userSpan');
+  userSpan.innerHTML = userObject.username;
+
+  var li = document.createElement('li');
+  var link = document.createElement('a');
+  var span = document.createElement('span');
+  var favroom = userObject.favroom;
+
+  link.className = "btn btn--room btn--room--fav";
+  link.href = "/chat?roomid=" + favroom;
+  link.innerHTML = favroom;
+  span.className = "ion-android-delete icon__del";
+  span.innerHTML = '';
+  link.appendChild(span);
+  li.appendChild(link);
+
+  favroomDiv.appendChild(li);
+  // console.log('favroom', favroom);
+
+  module.exports = { connection: connection, userObject: userObject }; // export module to recall
 }).catch(function (e) {
   alert("Login Fail");
+  localStorage.clear();
   window.location = "/";
 });
 

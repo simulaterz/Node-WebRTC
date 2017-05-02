@@ -2,6 +2,7 @@ module.exports = {
   entry: {
         Main: "./public/assets/scripts/Main.js",
         Chat: "./public/assets/scripts/Chat.js",
+        Login: "./public/assets/scripts/Login.js",
   },
   output: {
     path: "./public/temp/scripts"

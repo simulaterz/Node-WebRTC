@@ -1,5 +1,6 @@
 require('./config/config');
 
+// not use > validator
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
@@ -13,8 +14,9 @@ const {ObjectID} = require('mongodb');
 const {mongoose} = require('./db/mongoose');
 const {Todo} = require('./models/todo');
 const {User} = require('./models/user');
-const {authenticate} = require('./middleware/authenticate');
+// const {authenticate} = require('./middleware/authenticate');
 const {authUser} = require('./middleware/authUser');
+const {addRoom} = require('./middleware/addRoom');
 
 const publicPath = path.join(__dirname, '..', '/public');
 const viewPath = path.join(__dirname, '..', '/views');
@@ -26,14 +28,12 @@ const server = http.createServer(app);
 app.use(express.static(publicPath));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use(cookieParser());
 
 app.set('views', viewPath);
 app.set('view engine', 'ejs');
 
 // mongoose zone // ------------------------------------------------------------
-
 // app.post('/todos', (req, res) => {
 //   var todo = new Todo({
 //     text: req.body.text
@@ -148,8 +148,19 @@ app.set('view engine', 'ejs');
 //     res.status(400).send();
 //   });
 // });
-
 // end mongoose zone // --------------------------------------------------------
+
+// POST /users
+app.post('/users', (req, res) => {
+  var body = _.pick(req.body, ['username', 'password']);
+  var user = new User(body);
+
+  user.save().then((user) => {
+    res.send(user);
+  }).catch((e) => {
+    res.status(400).send(e);
+  })
+});
 
 app.get('/', (req, res) => {
   res.render('login');
@@ -159,11 +170,9 @@ app.post('/main', (req, res) => {
   var body = _.pick(req.body, ['username', 'password']); // pure123 , 123abc
   User.findByCredentials(body.username, body.password).then((user) => {
     user.generateAuthToken().then((token) => {
-      res.cookie( 'token', token, { maxAge: 1000 * 60 * 10, httpOnly: false })
-      .render('main');
+      res.cookie( 'token', token, { maxAge: 1000 * 1 * 1, httpOnly: false }).render('main');
     })
   }).catch((e) => {
-    console.log('Error ', e);
     res.redirect('/');
   });
 });
@@ -172,9 +181,12 @@ app.get('/main', (req, res) => {
   res.render('main');
 });
 
-app.get('/check/:id', authUser, (req, res) => {
-  console.log(req.user);
-  var id = req.user._id.toHexString();
+app.get('/check/:token', authUser, (req, res) => {
+  res.send({ user : req.user});
+});
+
+// GET /addroom/:token/:room
+app.get('/addroom/:token/:room', authUser, addRoom, (req, res) => {
   res.send({ user : req.user});
 });
 
