@@ -166,6 +166,7 @@ app.get('/', (req, res) => {
   res.render('login');
 });
 
+// POST /main
 app.post('/main', (req, res) => {
   var body = _.pick(req.body, ['username', 'password']); // pure123 , 123abc
   User.findByCredentials(body.username, body.password).then((user) => {
@@ -177,16 +178,18 @@ app.post('/main', (req, res) => {
   });
 });
 
+// GET /main
 app.get('/main', (req, res) => {
   res.render('main');
 });
 
+// GET /check/:token
 app.get('/check/:token', authUser, (req, res) => {
   res.send({ user : req.user});
 });
 
-// GET /addroom/:token/:room
-app.get('/addroom/:token/:room', authUser, addRoom, (req, res) => {
+// GET /addroom/:token/:roomname/:roomid
+app.get('/addroom/:token/:roomname/:roomid', authUser, addRoom, (req, res) => {
   res.send({ user : req.user});
 });
 

@@ -18,8 +18,14 @@ var UserSchema = new mongoose.Schema({
     minlength: 6
   },
   favroom: {
-    type: String,
-    default: null,
+    roomid: {
+      type: String,
+      default: null,
+    },
+    roomname: {
+      type: String,
+      default: null,
+    }
   },
   tokens: [{
     access: {
@@ -32,10 +38,6 @@ var UserSchema = new mongoose.Schema({
     }
   }]
 });
-
-function arrayLimit(val) {
-  return val.length <= 3;
-}
 
 UserSchema.methods.toJSON = function () { // override
   var user = this;
@@ -59,9 +61,10 @@ UserSchema.methods.generateAuthToken = function () {
   });
 };
 
-UserSchema.methods.addFavRoom = function (room) {
+UserSchema.methods.addFavRoom = function (roomname, roomid) {
   var user = this;
-  user.favroom = room;
+  user.favroom.roomid = roomid;
+  user.favroom.roomname = roomname;
   return user.save().then((user) => {
     return user;
   });

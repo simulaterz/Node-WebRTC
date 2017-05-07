@@ -19,14 +19,15 @@
   <div id="content" class="container container--main-site" style="visibility:hidden">
     <div class="site-main">
       <div class="site-main__header">
-        <span class="site-main__header__uname"> Hello: <span id="userSpan">TestUser</span></span>
+        <span class="site-main__header__uname"> Hello: <span id="userSpan"></span></span>
         <a href="#" class="btn btn--main-logout">LogOut</a>
       </div>
       <div class="site-main__content">
         <div class="row row--main-content">
           <div class="row__col-2-in-3">
             <div class="content-create">
-              <input id="room-id" class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room Name'" />
+              <input id="roomname" class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name of Room'" />
+              <!-- <input id="room-id" class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room Name'" /> -->
               <button id="open-public-room" class="btn btn--create">Create Public Room</button>
               <button id="testing" class="btn btn--create">Create Private Room</button>
             </div>

@@ -2,74 +2,80 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
-    <title>Chat Room | WebChat</title>
-    <link rel="stylesheet" href="https://cdn.WebRTC-Experiment.com/getMediaElement.css">
-    <link rel="stylesheet" href="temp/styles/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
+  <title>Chat Room | WebChat</title>
+  <link rel="stylesheet" href="https://cdn.WebRTC-Experiment.com/getMediaElement.css">
+  <link rel="stylesheet" href="temp/styles/styles.css">
 </head>
 
 <body>
-    <div class="container container--chat-site">
-        <div class="site-chat">
-            <div class="site-chat__header">
-                <span class="site-chat__header__uname"> Hello: TestUser </span>
-                <a href="#" class="btn btn--main-logout">LogOut</a>
-            </div>
-            <div class="site-chat__content">
-                <div class="row row--main-content row--main-content--main-chat">
-                    <div class="row__col-1-in-4 row__col-1-in-4--border-right">
-                        <div class="online-list">
-                            <div class="online-list__header">
-                                <i class="ion-android-contact icon__online-list"></i>
-                                <h2>Online Member</h2>
-                            </div>
-                            <div class="online-list__content">
-                                <ul id="audios-container">
-                                    <!-- <li>
-                                        <div class="btn btn--online-list">testuserja<span class="ion-mic-a icon__mic"></span> </div>
-                                    </li> -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row__col-3-in-4">
-                        <div class="chat-box">
-                            <div class="chat-box__header">
-                                <span class="ion-android-bookmark icon__fav"></span><i class="ion-chatboxes icon__head-chat-box"></i>
-                                <h2>testing room</h2>
-                            </div>
-                            <div class="chat-box__content">
-                                <ol class="chat-box__content__chat">
-                                    <!-- <li>
-                                        <div class="btn btn--message">
-                                            <div class="btn btn--message btn--message--title">
-                                                testuser
-                                            <span class="btn--message--title--time">19.35pm</span>
-                                            </div>
-                                            <span>
-                                              text
-                                            </span>
-                                        </div>
-                                    </li> -->
-                                </ol>
-                                <div class="chat-box__content__input">
-                                        <input id="input-text-chat" type="text" placeholder="Message" autofocus/>
-                                        <button id="send-text" class="btn btn--send">Send</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div id="loading" class="cssload-thecube">
+    <div class="cssload-cube cssload-c1"></div>
+    <div class="cssload-cube cssload-c2"></div>
+    <div class="cssload-cube cssload-c4"></div>
+    <div class="cssload-cube cssload-c3"></div>
+  </div>
 
+  <div id="content" class="container container--chat-site" style="visibility:hidden">
+    <div class="site-chat">
+      <div class="site-main__header">
+        <span class="site-main__header__uname"> Hello: <span id="userSpan"></span></span>
+        <a href="#" class="btn btn--main-logout">LogOut</a>
+      </div>
+      <div class="site-chat__content">
+        <div class="row row--main-content row--main-content--main-chat">
+          <div class="row__col-1-in-4 row__col-1-in-4--border-right">
+            <div class="online-list">
+              <div class="online-list__header">
+                <i class="ion-android-contact icon__online-list"></i>
+                <h2>Online Member</h2>
+              </div>
+              <div class="online-list__content">
+                <ul id="audios-container">
+                  <!-- <li>
+                  <div class="btn btn--online-list">testuserja<span class="ion-mic-a icon__mic"></span> </div>
+                </li> -->
+              </ul>
             </div>
+          </div>
         </div>
+        <div class="row__col-3-in-4">
+          <div class="chat-box">
+            <div class="chat-box__header">
+              <span class="ion-android-bookmark icon__fav"></span><i class="ion-chatboxes icon__head-chat-box"></i>
+              <h2>testing room</h2>
+            </div>
+            <div class="chat-box__content">
+              <ol class="chat-box__content__chat">
+                <!-- <li>
+                <div class="btn btn--message">
+                <div class="btn btn--message btn--message--title">
+                testuser
+                <span class="btn--message--title--time">19.35pm</span>
+              </div>
+              <span>
+              text
+            </span>
+          </div>
+        </li> -->
+      </ol>
+      <div class="chat-box__content__input">
+        <input id="input-text-chat" type="text" placeholder="Message" autofocus/>
+        <button id="send-text" class="btn btn--send">Send</button>
+      </div>
     </div>
+  </div>
+</div>
+</div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
+</div>
+</div>
+</div>
 
-    <script src="temp/scripts/Chat.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
+<script src="temp/scripts/Chat.js"></script>
 </body>
 
 </html>

@@ -9,20 +9,8 @@ function loopCheckUser() {
   connection.getAllParticipants().forEach(function(participantId) {
     var user = connection.peers[participantId];
     var hisUID = user.extra.uname;
-
-    if (connection.extra.uname === hisUID) return;
+    if (connection.extra.uname === hisUID) return; // return if same uname
     listUser(hisUID);
-    // var li = document.createElement('li');
-    // var link = document.createElement('a');
-    // var span = document.createElement('span');
-
-    // link.className = "btn btn--online";
-    // link.innerHTML = hisUID;
-    // span.className = "ion-ios-chatbubble icon__status";
-    // span.innerHTML = '';
-    // link.appendChild(span);
-    // li.appendChild(link);
-    // onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
   });
   setTimeout(loopCheckUser, 3000);
 };

@@ -5,7 +5,7 @@ module.exports = {
         Login: "./public/assets/scripts/Login.js",
   },
   output: {
-    path: "./public/temp/scripts"
+    path: "./public/temp/scripts/"
   },
   module: {
     loaders: [

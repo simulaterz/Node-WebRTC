@@ -8,10 +8,14 @@ function loopCheckRoom() {
     array.forEach(function(moderator) {
       var li = document.createElement('li');
       var link = document.createElement('a');
+      var uname = moderator.extra.uname;
+      var roomid = moderator.extra.roomid;
+      var roomname = moderator.extra.roomname;
+
       link.id = moderator.userid;
       link.className = "btn btn--room btn--room--main";
-      link.href = '/chat?roomid='+ moderator.userid; // send params to join
-      link.innerHTML = 'Create by ' + moderator.extra.uname;
+      link.href = '/chat?roomid='+ roomid + '&roomname=' + roomname; // send params to join
+      link.innerHTML = roomname + ' By ' + uname;
       li.appendChild(link);
       publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
     });
