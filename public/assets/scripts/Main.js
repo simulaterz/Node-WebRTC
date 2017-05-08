@@ -1,13 +1,15 @@
 const connection = new RTCMultiConnection();
 const $ = require('jquery');
 
+const { authUser } = require('./modules/_authUser');
+const { getParams } = require('./modules/_getParams');
+const { clientToken} = require('./modules/_setLocalStorage');
+
+const { handleRoomid } = require('./modules/_handleRoomid');
 const { checkRoom } = require('./modules/_checkRoom');
 const { checkUser } = require('./modules/_checkUser');
-const { getParams } = require('./modules/_getParams');
-const { handleRoomid } = require('./modules/_handleRoomid');
-const { clientToken} = require('./modules/_setLocalStorage');
-const { authUser } = require('./modules/_authUser');
 const { renderMain } = require('./modules/_renderMain');
+const { showLoadContent } = require('./modules/_showLoadContent');
 
 console.log(clientToken);
 if (!clientToken) { alert("Please Login"); window.location = "/"; }
@@ -18,24 +20,12 @@ $.when(authUser(clientToken)).then((res) => {
 
   connection.socketURL = '/';
   connection.autoCloseEntireSession = false;
-  connection.socketMessageEvent = 'Main-RoomList'; // for setting params roomid
   connection.session = { data: true };
   connection.enableLogs = false;
-  connection.userid = userObject.username; // seting form authUser = Math Random
+  connection.userid = userObject.username;
   connection.extra = { uname: userObject.username };
 
-  connection.openOrJoin('Main' , function() { // Callback to show content
-    var loading = document.getElementById('loading');
-    var content = document.getElementById('content');
-
-    loading.className += ' animated';
-    loading.className += ' fadeOut';
-    content.className += ' animated';
-    content.className += ' fadeIn';
-    content.style.visibility = 'visible';
-
-    console.log('Connected to Server');
-  });
+  connection.openOrJoin('Main' , showLoadContent);
 
   checkUser();
   checkRoom();
@@ -43,7 +33,7 @@ $.when(authUser(clientToken)).then((res) => {
   handleRoomid();
   renderMain();
 
-  module.exports = {connection, userObject}; // export module to recall
+  module.exports = { connection, userObject };
 }).catch((e) => {
   alert("Login Status = Fail");
   localStorage.clear();

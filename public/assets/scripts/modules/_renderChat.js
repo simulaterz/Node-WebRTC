@@ -1,4 +1,48 @@
-function renderChatZone(event) {
+function waiting() {
+  const { userObject, connection } = require('./../Chat');
+  const moment = require('moment-timezone');
+
+  var time = function() { return moment().tz('Asia/Bangkok').format('LT'); }
+
+  var userSpan = document.getElementById('userSpan');
+  userSpan.innerHTML = userObject.username;
+
+  var roomdiv = document.getElementById('room-name');
+  roomdiv.innerHTML = 'Room : ' + window.params.roomname.toUpperCase();
+
+  document.getElementById('input-text-chat').onkeyup = function(e) {
+    if (e.keyCode != 13) return;
+    this.value = this.value.replace(/^\s+|\s+$/g, '');
+    if (!this.value.length) return;
+
+    sendAndCreate(this.value);
+    this.value = '';
+  };
+
+  document.getElementById('send-text').onclick = function() {
+    var textfield = document.getElementById('input-text-chat');
+    var text = textfield.value.replace(/^\s+|\s+$/g, '');
+    if (!text.length) return;
+
+    sendAndCreate(text);
+    textfield.value = '';
+  };
+
+  function sendAndCreate(text) {
+    connection.send({
+      sender: connection.extra.uname,
+      text: text,
+      time: time()
+    });
+    renderChatBox({
+      sender: connection.extra.uname,
+      text: text,
+      time: time()
+    });
+  };
+};
+
+function renderChatBox(event) {
   var chatContainer = document.querySelector('.chat-box__content__chat');
   var div = document.createElement('div');
   div.className = "btn btn--message";
@@ -27,18 +71,10 @@ function renderChatZone(event) {
   div.tabIndex = 0;
   div.focus();
   document.getElementById('input-text-chat').focus();
-}
-
-function renderChat() {
-  var { userObject } = require('./../Main');
-  console.log('+++++++++++++++');
-
-  // var userSpan = document.getElementById('userSpan');
-  // userSpan.innerHTML = userObject.username;
-}
+};
 
 function renderChatPage() {
-  setTimeout(renderChat , 1);
-}
+  setTimeout(waiting , 1);
+};
 
-module.exports = { renderChatPage, renderChatZone };
+module.exports = { renderChatPage, renderChatBox };

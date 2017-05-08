@@ -168,7 +168,7 @@ app.get('/', (req, res) => {
 
 // POST /main
 app.post('/main', (req, res) => {
-  var body = _.pick(req.body, ['username', 'password']); // pure123 , 123abc
+  var body = _.pick(req.body, ['username', 'password']);
   User.findByCredentials(body.username, body.password).then((user) => {
     user.generateAuthToken().then((token) => {
       res.cookie( 'token', token, { maxAge: 1000 * 1 * 1, httpOnly: false }).render('main');

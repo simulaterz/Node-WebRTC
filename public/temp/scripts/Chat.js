@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 133);
+/******/ 	return __webpack_require__(__webpack_require__.s = 137);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1899,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(131)("./" + name);
+            __webpack_require__(135)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4534,84 +4534,10 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(132)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(136)(module)))
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var connection = new RTCMultiConnection();
-var $ = __webpack_require__(2);
-
-var _require = __webpack_require__(6),
-    checkRoom = _require.checkRoom;
-
-var _require2 = __webpack_require__(7),
-    checkUser = _require2.checkUser;
-
-var _require3 = __webpack_require__(4),
-    getParams = _require3.getParams;
-
-var _require4 = __webpack_require__(8),
-    handleRoomid = _require4.handleRoomid;
-
-var _require5 = __webpack_require__(5),
-    clientToken = _require5.clientToken;
-
-var _require6 = __webpack_require__(3),
-    authUser = _require6.authUser;
-
-var _require7 = __webpack_require__(9),
-    renderMain = _require7.renderMain;
-
-console.log(clientToken);
-if (!clientToken) {
-  alert("Please Login");window.location = "/";
-}
-
-$.when(authUser(clientToken)).then(function (res) {
-  var userObject = res.user;
-  console.log('res ******', res); // Checking RES
-
-  connection.socketURL = '/';
-  connection.autoCloseEntireSession = false;
-  connection.socketMessageEvent = 'Main-RoomList'; // for setting params roomid
-  connection.session = { data: true };
-  connection.enableLogs = false;
-  connection.userid = userObject.username; // seting form authUser = Math Random
-  connection.extra = { uname: userObject.username };
-
-  connection.openOrJoin('Main', function () {
-    // Callback to show content
-    var loading = document.getElementById('loading');
-    var content = document.getElementById('content');
-
-    loading.className += ' animated';
-    loading.className += ' fadeOut';
-    content.className += ' animated';
-    content.className += ' fadeIn';
-    content.style.visibility = 'visible';
-
-    console.log('Connected to Server');
-  });
-
-  checkUser();
-  checkRoom();
-  getParams();
-  handleRoomid();
-  renderMain();
-
-  module.exports = { connection: connection, userObject: userObject }; // export module to recall
-}).catch(function (e) {
-  alert("Login Status = Fail");
-  localStorage.clear();
-  window.location = "/";
-});
-
-/***/ }),
+/* 1 */,
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14845,15 +14771,129 @@ return jQuery;
 "use strict";
 
 
+var connection = new RTCMultiConnection();
+var $ = __webpack_require__(2);
+var moment = __webpack_require__(10);
+var time = function time() {
+  return moment().tz('Asia/Bangkok').format('LT');
+};
+
+var _require = __webpack_require__(4),
+    authUser = _require.authUser;
+
+var _require2 = __webpack_require__(7),
+    getParams = _require2.getParams;
+
+var _require3 = __webpack_require__(8),
+    clientToken = _require3.clientToken;
+
+var _require4 = __webpack_require__(130),
+    renderChatPage = _require4.renderChatPage,
+    renderChatBox = _require4.renderChatBox;
+
+var _require5 = __webpack_require__(132),
+    showUserOnline = _require5.showUserOnline;
+
+var _require6 = __webpack_require__(9),
+    showLoadContent = _require6.showLoadContent;
+
+console.log(clientToken);
+if (!clientToken) {
+  alert("Please Login");window.location = "/";
+}
+
+$.when(authUser(clientToken)).then(function (res) {
+  var userObject = res.user;
+  console.log('res ******', res); // Checking RES
+
+  getParams();
+
+  var roomid = window.params.roomid;
+  var roomname = window.params.roomname;
+  if (!(roomid && roomname)) window.location = "/";
+
+  connection.socketURL = '/';
+  connection.autoCloseEntireSession = false;
+  connection.session = {
+    audio: true,
+    data: true
+  };
+  connection.mediaConstraints = {
+    audio: true,
+    video: false
+  };
+  connection.sdpConstraints.mandatory = {
+    OfferToReceiveAudio: true,
+    OfferToReceiveVideo: false
+  };
+  connection.bandwidth = {
+    audio: 128
+  };
+  connection.maxParticipantsAllowed = 4;
+  connection.enableLogs = false;
+  connection.extra = {
+    uname: userObject.username,
+    roomid: roomid,
+    roomname: roomname
+  };
+  connection.onopen = function (event) {
+    // fire when open connection
+    document.getElementById('input-text-chat').disabled = false;
+    document.getElementById('send-text').disabled = false;
+
+    connection.send({
+      sender: "Server",
+      text: "User " + connection.extra.uname + " connected",
+      time: time()
+    });
+  };
+  connection.onleave = function (event) {
+    if (event.extra.uname === undefined) return;
+    renderChatBox({
+      sender: "Server",
+      text: "User " + event.extra.uname + " disconnected",
+      time: time()
+    });
+  };
+  connection.onmessage = renderChatBox;
+  connection.checkPresence(roomid, function (isRoomExist, roomid) {
+    if (isRoomExist) {
+      console.log('JOIN');
+      connection.join(roomid, showLoadContent);
+    } else {
+      connection.open(roomid, showLoadContent);
+      connection.becomePublicModerator();
+      renderChatBox({
+        sender: "Server",
+        text: "Welcome to ChatRoom",
+        time: time()
+      });
+    }
+  });
+
+  renderChatPage();
+  showUserOnline();
+
+  module.exports = { connection: connection, userObject: userObject };
+}).catch(function (e) {
+  alert("Login Status = Fail");
+  localStorage.clear();
+  window.location = "/";
+});
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var $ = __webpack_require__(2);
 
 function authUser(clientToken) {
   return $.ajax({
-    url: "/check/" + clientToken, type: "get",
-    success: function success(res) {
-      // var num = Math.floor(Math.random() * 3) + 1;
-      // res.user.username = num.toString(); // rewrite userid
-    },
+    url: "/check/" + clientToken,
+    type: "get",
     error: function error(err) {
       window.location = "/";
     }
@@ -14863,231 +14903,7 @@ function authUser(clientToken) {
 module.exports = { authUser: authUser };
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var getParams = function getParams() {
-  var params = {},
-      r = /([^&=]+)=?([^&]*)/g;
-
-  function d(s) {
-    return decodeURIComponent(s.replace(/\+/g, ' '));
-  }
-  var match,
-      search = window.location.search;
-  while (match = r.exec(search.substring(1))) {
-    params[d(match[1])] = d(match[2]);
-  }window.params = params;
-};
-
-module.exports = { getParams: getParams };
-
-/***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _require = __webpack_require__(11),
-    getCookies = _require.getCookies;
-
-var _require2 = __webpack_require__(10),
-    deleteAllCookies = _require2.deleteAllCookies;
-
-if (getCookies().token) {
-  localStorage.setItem("RTCToken", getCookies().token);
-}
-var clientToken = localStorage.getItem("RTCToken");
-deleteAllCookies();
-
-module.exports = { clientToken: clientToken };
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var publicRoomsDiv = document.getElementById('public-rooms');
-
-function loopCheckRoom() {
-  var _require = __webpack_require__(1),
-      connection = _require.connection;
-
-  connection.getPublicModerators(function (array) {
-    publicRoomsDiv.innerHTML = '';
-    array.forEach(function (moderator) {
-      var li = document.createElement('li');
-      var link = document.createElement('a');
-      var uname = moderator.extra.uname;
-      var roomid = moderator.extra.roomid;
-      var roomname = moderator.extra.roomname;
-
-      link.id = moderator.userid;
-      link.className = "btn btn--room btn--room--main";
-      link.href = '/chat?roomid=' + roomid + '&roomname=' + roomname; // send params to join
-      link.innerHTML = roomname + ' By ' + uname;
-      li.appendChild(link);
-      publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
-    });
-    setTimeout(loopCheckRoom, 1000);
-  });
-};
-
-function checkRoom() {
-  setTimeout(loopCheckRoom, 1);
-}
-
-module.exports = { checkRoom: checkRoom };
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var onlineListDiv = document.getElementById('online-list');
-
-function loopCheckUser() {
-  var _require = __webpack_require__(1),
-      connection = _require.connection,
-      userObject = _require.userObject;
-
-  onlineListDiv.innerHTML = '';
-
-  listUser(userObject.username);
-
-  connection.getAllParticipants().forEach(function (participantId) {
-    var user = connection.peers[participantId];
-    var hisUID = user.extra.uname;
-    if (connection.extra.uname === hisUID) return; // return if same uname
-    listUser(hisUID);
-  });
-  setTimeout(loopCheckUser, 3000);
-};
-
-function listUser(username) {
-  var li = document.createElement('li');
-  var link = document.createElement('a');
-  var span = document.createElement('span');
-
-  link.className = "btn btn--online";
-  link.innerHTML = username;
-  span.className = "ion-ios-chatbubble icon__status";
-  span.innerHTML = '';
-  link.appendChild(span);
-  li.appendChild(link);
-  onlineListDiv.insertBefore(li, onlineListDiv.firstChild);
-}
-
-function checkUser() {
-  setTimeout(loopCheckUser, 1); // setTimeout
-};
-
-module.exports = { checkUser: checkUser };
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var checkRoomid = function checkRoomid() {
-  var _require = __webpack_require__(1),
-      connection = _require.connection;
-
-  var roomid = connection.token();
-
-  // document.getElementById('roomname').onkeyup = function() { // insert roomid to localStorage
-  //   localStorage.setItem("roomname", this.value);
-  // };
-
-  document.getElementById('open-public-room').onclick = function () {
-    var roomname = document.getElementById('roomname').value;
-    if (!roomname) {
-      alert("Please typing room name");
-      return;
-    }
-    location.href = '/chat?roomid=' + roomid + '&roomname=' + roomname;
-  };
-
-  // if (localStorage.getItem(connection.socketMessageEvent)) { // check room name in localStorage
-  //   roomid = localStorage.getItem(connection.socketMessageEvent);
-  // } else {
-  //   roomid = connection.token();
-  // }
-  //
-  // document.getElementById('room-id').value = roomid; // setting roomid to input
-  //
-  // document.getElementById('room-id').onkeyup = function() { // insert roomid to localStorage
-  //   localStorage.setItem(connection.socketMessageEvent, this.value);
-  // };
-  //
-  // document.getElementById('open-public-room').onclick = function() {
-  //   this.disabled = true;
-  //   var isPublicModerator = true;
-  //   location.href='/chat?roomid='+ document.getElementById('room-id').value;
-  // };
-};
-
-function handleRoomid() {
-  setTimeout(checkRoomid, 1);
-}
-
-module.exports = { handleRoomid: handleRoomid };
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function renderMainPage() {
-  var _require = __webpack_require__(1),
-      userObject = _require.userObject;
-
-  var favroomID = userObject.favroom.roomid;
-  var favroomName = userObject.favroom.roomname;
-
-  var userSpan = document.getElementById('userSpan');
-  userSpan.innerHTML = userObject.username;
-
-  if (favroomID && favroomName) {
-    var favroomDiv = document.getElementById('favroomDiv');
-    favroomDiv.innerHTML = '';
-
-    var li = document.createElement('li');
-    var link = document.createElement('a');
-    var span = document.createElement('span');
-
-    link.className = "btn btn--room btn--room--fav";
-    link.href = "/chat?roomid=" + favroomID;
-    link.innerHTML = favroomName;
-    span.className = "ion-android-delete icon__del";
-    span.innerHTML = '';
-    link.appendChild(span);
-    li.appendChild(link);
-
-    favroomDiv.appendChild(li);
-  }
-}
-
-function renderMain() {
-  setTimeout(renderMainPage, 1);
-}
-
-module.exports = { renderMain: renderMain };
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15107,7 +14923,7 @@ function deleteAllCookies() {
 module.exports = { deleteAllCookies: deleteAllCookies };
 
 /***/ }),
-/* 11 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15153,7 +14969,82 @@ function getCookies() {
 module.exports = { getCookies: getCookies };
 
 /***/ }),
-/* 12 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var getParams = function getParams() {
+  var params = {},
+      r = /([^&=]+)=?([^&]*)/g;
+
+  function d(s) {
+    return decodeURIComponent(s.replace(/\+/g, ' '));
+  }
+  var match,
+      search = window.location.search;
+  while (match = r.exec(search.substring(1))) {
+    params[d(match[1])] = d(match[2]);
+  }window.params = params;
+};
+
+module.exports = { getParams: getParams };
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(6),
+    getCookies = _require.getCookies;
+
+var _require2 = __webpack_require__(5),
+    deleteAllCookies = _require2.deleteAllCookies;
+
+if (getCookies().token) {
+  localStorage.setItem("RTCToken", getCookies().token);
+}
+
+var clientToken = localStorage.getItem("RTCToken");
+deleteAllCookies();
+
+module.exports = { clientToken: clientToken };
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function showLoadContent() {
+  var loading = document.getElementById('loading');
+  var content = document.getElementById('content');
+
+  loading.className += ' animated';
+  loading.className += ' fadeOut';
+  content.className += ' animated';
+  content.className += ' fadeIn';
+  content.style.visibility = 'visible';
+
+  console.log('Connected to Server');
+};
+
+module.exports = { showLoadContent: showLoadContent };
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var moment = module.exports = __webpack_require__(134);
+moment.tz.load(__webpack_require__(133));
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15231,7 +15122,7 @@ return af;
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15295,7 +15186,7 @@ return arDz;
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15359,7 +15250,7 @@ return arKw;
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15490,7 +15381,7 @@ return arLy;
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15555,7 +15446,7 @@ return arMa;
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15665,7 +15556,7 @@ return arSa;
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15729,7 +15620,7 @@ return arTn;
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15876,7 +15767,7 @@ return ar;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15986,7 +15877,7 @@ return az;
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16125,7 +16016,7 @@ return be;
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16220,7 +16111,7 @@ return bg;
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16344,7 +16235,7 @@ return bn;
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16468,7 +16359,7 @@ return bo;
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16581,7 +16472,7 @@ return br;
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16729,7 +16620,7 @@ return bs;
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16822,7 +16713,7 @@ return ca;
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16999,7 +16890,7 @@ return cs;
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17067,7 +16958,7 @@ return cv;
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17153,7 +17044,7 @@ return cy;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17218,7 +17109,7 @@ return da;
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17302,7 +17193,7 @@ return deAt;
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17385,7 +17276,7 @@ return deCh;
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17468,7 +17359,7 @@ return de;
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17573,7 +17464,7 @@ return dv;
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17678,7 +17569,7 @@ return el;
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17750,7 +17641,7 @@ return enAu;
 
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17818,7 +17709,7 @@ return enCa;
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17890,7 +17781,7 @@ return enGb;
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17962,7 +17853,7 @@ return enIe;
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18034,7 +17925,7 @@ return enNz;
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18112,7 +18003,7 @@ return eo;
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18199,7 +18090,7 @@ return esDo;
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18287,7 +18178,7 @@ return es;
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18372,7 +18263,7 @@ return et;
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18443,7 +18334,7 @@ return eu;
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18555,7 +18446,7 @@ return fa;
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18667,7 +18558,7 @@ return fi;
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18732,7 +18623,7 @@ return fo;
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18811,7 +18702,7 @@ return frCa;
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18894,7 +18785,7 @@ return frCh;
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18982,7 +18873,7 @@ return fr;
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19062,7 +18953,7 @@ return fy;
 
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19143,7 +19034,7 @@ return gd;
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19225,7 +19116,7 @@ return gl;
 
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19352,7 +19243,7 @@ return gomLatn;
 
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19456,7 +19347,7 @@ return he;
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19585,7 +19476,7 @@ return hi;
 
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19735,7 +19626,7 @@ return hr;
 
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19849,7 +19740,7 @@ return hu;
 
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19949,7 +19840,7 @@ return hyAm;
 
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20037,7 +19928,7 @@ return id;
 
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20169,7 +20060,7 @@ return is;
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20244,7 +20135,7 @@ return it;
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20329,7 +20220,7 @@ return ja;
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20417,7 +20308,7 @@ return jv;
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20511,7 +20402,7 @@ return ka;
 
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20603,7 +20494,7 @@ return kk;
 
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20666,7 +20557,7 @@ return km;
 
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20797,7 +20688,7 @@ return kn;
 
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20871,7 +20762,7 @@ return ko;
 
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20964,7 +20855,7 @@ return ky;
 
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21106,7 +20997,7 @@ return lb;
 
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21181,7 +21072,7 @@ return lo;
 
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21303,7 +21194,7 @@ return lt;
 
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21405,7 +21296,7 @@ return lv;
 
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21521,7 +21412,7 @@ return me;
 
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21590,7 +21481,7 @@ return mi;
 
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21685,7 +21576,7 @@ return mk;
 
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21771,7 +21662,7 @@ return ml;
 
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21935,7 +21826,7 @@ return mr;
 
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22023,7 +21914,7 @@ return msMy;
 
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22110,7 +22001,7 @@ return ms;
 
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22211,7 +22102,7 @@ return my;
 
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22279,7 +22170,7 @@ return nb;
 
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22407,7 +22298,7 @@ return ne;
 
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22500,7 +22391,7 @@ return nlBe;
 
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22593,7 +22484,7 @@ return nl;
 
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22658,7 +22549,7 @@ return nn;
 
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22787,7 +22678,7 @@ return paIn;
 
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22899,7 +22790,7 @@ return pl;
 
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22965,7 +22856,7 @@ return ptBr;
 
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23035,7 +22926,7 @@ return pt;
 
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23115,7 +23006,7 @@ return ro;
 
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23303,7 +23194,7 @@ return ru;
 
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23406,7 +23297,7 @@ return sd;
 
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23472,7 +23363,7 @@ return se;
 
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23548,7 +23439,7 @@ return si;
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23703,7 +23594,7 @@ return sk;
 
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23870,7 +23761,7 @@ return sl;
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23945,7 +23836,7 @@ return sq;
 
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24060,7 +23951,7 @@ return srCyrl;
 
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24175,7 +24066,7 @@ return sr;
 
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24269,7 +24160,7 @@ return ss;
 
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24343,7 +24234,7 @@ return sv;
 
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24407,7 +24298,7 @@ return sw;
 
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24542,7 +24433,7 @@ return ta;
 
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24636,7 +24527,7 @@ return te;
 
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24709,7 +24600,7 @@ return tet;
 
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24781,7 +24672,7 @@ return th;
 
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24848,7 +24739,7 @@ return tlPh;
 
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24973,7 +24864,7 @@ return tlh;
 
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25068,7 +24959,7 @@ return tr;
 
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25164,7 +25055,7 @@ return tzl;
 
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25227,7 +25118,7 @@ return tzmLatn;
 
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25290,7 +25181,7 @@ return tzm;
 
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25446,7 +25337,7 @@ return uk;
 
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25550,7 +25441,7 @@ return ur;
 
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25613,7 +25504,7 @@ return uzLatn;
 
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25676,7 +25567,7 @@ return uz;
 
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25760,7 +25651,7 @@ return vi;
 
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25833,7 +25724,7 @@ return xPseudo;
 
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25898,7 +25789,7 @@ return yo;
 
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26014,7 +25905,7 @@ return zhCn;
 
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26124,7 +26015,7 @@ return zhHk;
 
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26233,13 +26124,66 @@ return zhTw;
 
 
 /***/ }),
-/* 127 */
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-function renderChatZone(event) {
+function waiting() {
+  var _require = __webpack_require__(3),
+      userObject = _require.userObject,
+      connection = _require.connection;
+
+  var moment = __webpack_require__(10);
+
+  var time = function time() {
+    return moment().tz('Asia/Bangkok').format('LT');
+  };
+
+  var userSpan = document.getElementById('userSpan');
+  userSpan.innerHTML = userObject.username;
+
+  var roomdiv = document.getElementById('room-name');
+  roomdiv.innerHTML = 'Room : ' + window.params.roomname.toUpperCase();
+
+  document.getElementById('input-text-chat').onkeyup = function (e) {
+    if (e.keyCode != 13) return;
+    this.value = this.value.replace(/^\s+|\s+$/g, '');
+    if (!this.value.length) return;
+
+    sendAndCreate(this.value);
+    this.value = '';
+  };
+
+  document.getElementById('send-text').onclick = function () {
+    var textfield = document.getElementById('input-text-chat');
+    var text = textfield.value.replace(/^\s+|\s+$/g, '');
+    if (!text.length) return;
+
+    sendAndCreate(text);
+    textfield.value = '';
+  };
+
+  function sendAndCreate(text) {
+    connection.send({
+      sender: connection.extra.uname,
+      text: text,
+      time: time()
+    });
+    renderChatBox({
+      sender: connection.extra.uname,
+      text: text,
+      time: time()
+    });
+  };
+};
+
+function renderChatBox(event) {
   var chatContainer = document.querySelector('.chat-box__content__chat');
   var div = document.createElement('div');
   div.className = "btn btn--message";
@@ -26268,34 +26212,63 @@ function renderChatZone(event) {
   div.tabIndex = 0;
   div.focus();
   document.getElementById('input-text-chat').focus();
-}
-
-function renderChat() {
-  var _require = __webpack_require__(1),
-      userObject = _require.userObject;
-
-  console.log('+++++++++++++++');
-
-  // var userSpan = document.getElementById('userSpan');
-  // userSpan.innerHTML = userObject.username;
-}
+};
 
 function renderChatPage() {
-  setTimeout(renderChat, 1);
-}
+  setTimeout(waiting, 1);
+};
 
-module.exports = { renderChatPage: renderChatPage, renderChatZone: renderChatZone };
+module.exports = { renderChatPage: renderChatPage, renderChatBox: renderChatBox };
 
 /***/ }),
-/* 128 */
+/* 131 */,
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var moment = module.exports = __webpack_require__(130);
-moment.tz.load(__webpack_require__(129));
+"use strict";
 
+
+function waiting() {
+  var _require = __webpack_require__(3),
+      userObject = _require.userObject,
+      connection = _require.connection;
+
+  var audiosContainer = document.getElementById('audios-container');
+
+  connection.onstream = function (event) {
+    var mediaElement = document.createElement('li');
+    var span = document.createElement('span');
+    var div = document.createElement('div');
+
+    mediaElement.id = event.streamid;
+    span.className = "ion-mic-a icon__mic";
+    span.id = "mute";
+    div.className = "btn btn--online-list";
+    span.innerHTML = '';
+
+    div.innerHTML = event.extra.uname;
+
+    div.appendChild(span);
+    mediaElement.appendChild(div);
+    audiosContainer.appendChild(mediaElement);
+  };
+
+  connection.onstreamended = function (event) {
+    var mediaElement = document.getElementById(event.streamid);
+    if (mediaElement) {
+      mediaElement.parentNode.removeChild(mediaElement);
+    }
+  };
+}
+
+function showUserOnline() {
+  setTimeout(waiting, 1);
+}
+
+module.exports = { showUserOnline: showUserOnline };
 
 /***/ }),
-/* 129 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -26900,7 +26873,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 130 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone.js
@@ -27510,240 +27483,240 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 131 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 12,
-	"./af.js": 12,
-	"./ar": 19,
-	"./ar-dz": 13,
-	"./ar-dz.js": 13,
-	"./ar-kw": 14,
-	"./ar-kw.js": 14,
-	"./ar-ly": 15,
-	"./ar-ly.js": 15,
-	"./ar-ma": 16,
-	"./ar-ma.js": 16,
-	"./ar-sa": 17,
-	"./ar-sa.js": 17,
-	"./ar-tn": 18,
-	"./ar-tn.js": 18,
-	"./ar.js": 19,
-	"./az": 20,
-	"./az.js": 20,
-	"./be": 21,
-	"./be.js": 21,
-	"./bg": 22,
-	"./bg.js": 22,
-	"./bn": 23,
-	"./bn.js": 23,
-	"./bo": 24,
-	"./bo.js": 24,
-	"./br": 25,
-	"./br.js": 25,
-	"./bs": 26,
-	"./bs.js": 26,
-	"./ca": 27,
-	"./ca.js": 27,
-	"./cs": 28,
-	"./cs.js": 28,
-	"./cv": 29,
-	"./cv.js": 29,
-	"./cy": 30,
-	"./cy.js": 30,
-	"./da": 31,
-	"./da.js": 31,
-	"./de": 34,
-	"./de-at": 32,
-	"./de-at.js": 32,
-	"./de-ch": 33,
-	"./de-ch.js": 33,
-	"./de.js": 34,
-	"./dv": 35,
-	"./dv.js": 35,
-	"./el": 36,
-	"./el.js": 36,
-	"./en-au": 37,
-	"./en-au.js": 37,
-	"./en-ca": 38,
-	"./en-ca.js": 38,
-	"./en-gb": 39,
-	"./en-gb.js": 39,
-	"./en-ie": 40,
-	"./en-ie.js": 40,
-	"./en-nz": 41,
-	"./en-nz.js": 41,
-	"./eo": 42,
-	"./eo.js": 42,
-	"./es": 44,
-	"./es-do": 43,
-	"./es-do.js": 43,
-	"./es.js": 44,
-	"./et": 45,
-	"./et.js": 45,
-	"./eu": 46,
-	"./eu.js": 46,
-	"./fa": 47,
-	"./fa.js": 47,
-	"./fi": 48,
-	"./fi.js": 48,
-	"./fo": 49,
-	"./fo.js": 49,
-	"./fr": 52,
-	"./fr-ca": 50,
-	"./fr-ca.js": 50,
-	"./fr-ch": 51,
-	"./fr-ch.js": 51,
-	"./fr.js": 52,
-	"./fy": 53,
-	"./fy.js": 53,
-	"./gd": 54,
-	"./gd.js": 54,
-	"./gl": 55,
-	"./gl.js": 55,
-	"./gom-latn": 56,
-	"./gom-latn.js": 56,
-	"./he": 57,
-	"./he.js": 57,
-	"./hi": 58,
-	"./hi.js": 58,
-	"./hr": 59,
-	"./hr.js": 59,
-	"./hu": 60,
-	"./hu.js": 60,
-	"./hy-am": 61,
-	"./hy-am.js": 61,
-	"./id": 62,
-	"./id.js": 62,
-	"./is": 63,
-	"./is.js": 63,
-	"./it": 64,
-	"./it.js": 64,
-	"./ja": 65,
-	"./ja.js": 65,
-	"./jv": 66,
-	"./jv.js": 66,
-	"./ka": 67,
-	"./ka.js": 67,
-	"./kk": 68,
-	"./kk.js": 68,
-	"./km": 69,
-	"./km.js": 69,
-	"./kn": 70,
-	"./kn.js": 70,
-	"./ko": 71,
-	"./ko.js": 71,
-	"./ky": 72,
-	"./ky.js": 72,
-	"./lb": 73,
-	"./lb.js": 73,
-	"./lo": 74,
-	"./lo.js": 74,
-	"./lt": 75,
-	"./lt.js": 75,
-	"./lv": 76,
-	"./lv.js": 76,
-	"./me": 77,
-	"./me.js": 77,
-	"./mi": 78,
-	"./mi.js": 78,
-	"./mk": 79,
-	"./mk.js": 79,
-	"./ml": 80,
-	"./ml.js": 80,
-	"./mr": 81,
-	"./mr.js": 81,
-	"./ms": 83,
-	"./ms-my": 82,
-	"./ms-my.js": 82,
-	"./ms.js": 83,
-	"./my": 84,
-	"./my.js": 84,
-	"./nb": 85,
-	"./nb.js": 85,
-	"./ne": 86,
-	"./ne.js": 86,
-	"./nl": 88,
-	"./nl-be": 87,
-	"./nl-be.js": 87,
-	"./nl.js": 88,
-	"./nn": 89,
-	"./nn.js": 89,
-	"./pa-in": 90,
-	"./pa-in.js": 90,
-	"./pl": 91,
-	"./pl.js": 91,
-	"./pt": 93,
-	"./pt-br": 92,
-	"./pt-br.js": 92,
-	"./pt.js": 93,
-	"./ro": 94,
-	"./ro.js": 94,
-	"./ru": 95,
-	"./ru.js": 95,
-	"./sd": 96,
-	"./sd.js": 96,
-	"./se": 97,
-	"./se.js": 97,
-	"./si": 98,
-	"./si.js": 98,
-	"./sk": 99,
-	"./sk.js": 99,
-	"./sl": 100,
-	"./sl.js": 100,
-	"./sq": 101,
-	"./sq.js": 101,
-	"./sr": 103,
-	"./sr-cyrl": 102,
-	"./sr-cyrl.js": 102,
-	"./sr.js": 103,
-	"./ss": 104,
-	"./ss.js": 104,
-	"./sv": 105,
-	"./sv.js": 105,
-	"./sw": 106,
-	"./sw.js": 106,
-	"./ta": 107,
-	"./ta.js": 107,
-	"./te": 108,
-	"./te.js": 108,
-	"./tet": 109,
-	"./tet.js": 109,
-	"./th": 110,
-	"./th.js": 110,
-	"./tl-ph": 111,
-	"./tl-ph.js": 111,
-	"./tlh": 112,
-	"./tlh.js": 112,
-	"./tr": 113,
-	"./tr.js": 113,
-	"./tzl": 114,
-	"./tzl.js": 114,
-	"./tzm": 116,
-	"./tzm-latn": 115,
-	"./tzm-latn.js": 115,
-	"./tzm.js": 116,
-	"./uk": 117,
-	"./uk.js": 117,
-	"./ur": 118,
-	"./ur.js": 118,
-	"./uz": 120,
-	"./uz-latn": 119,
-	"./uz-latn.js": 119,
-	"./uz.js": 120,
-	"./vi": 121,
-	"./vi.js": 121,
-	"./x-pseudo": 122,
-	"./x-pseudo.js": 122,
-	"./yo": 123,
-	"./yo.js": 123,
-	"./zh-cn": 124,
-	"./zh-cn.js": 124,
-	"./zh-hk": 125,
-	"./zh-hk.js": 125,
-	"./zh-tw": 126,
-	"./zh-tw.js": 126
+	"./af": 11,
+	"./af.js": 11,
+	"./ar": 18,
+	"./ar-dz": 12,
+	"./ar-dz.js": 12,
+	"./ar-kw": 13,
+	"./ar-kw.js": 13,
+	"./ar-ly": 14,
+	"./ar-ly.js": 14,
+	"./ar-ma": 15,
+	"./ar-ma.js": 15,
+	"./ar-sa": 16,
+	"./ar-sa.js": 16,
+	"./ar-tn": 17,
+	"./ar-tn.js": 17,
+	"./ar.js": 18,
+	"./az": 19,
+	"./az.js": 19,
+	"./be": 20,
+	"./be.js": 20,
+	"./bg": 21,
+	"./bg.js": 21,
+	"./bn": 22,
+	"./bn.js": 22,
+	"./bo": 23,
+	"./bo.js": 23,
+	"./br": 24,
+	"./br.js": 24,
+	"./bs": 25,
+	"./bs.js": 25,
+	"./ca": 26,
+	"./ca.js": 26,
+	"./cs": 27,
+	"./cs.js": 27,
+	"./cv": 28,
+	"./cv.js": 28,
+	"./cy": 29,
+	"./cy.js": 29,
+	"./da": 30,
+	"./da.js": 30,
+	"./de": 33,
+	"./de-at": 31,
+	"./de-at.js": 31,
+	"./de-ch": 32,
+	"./de-ch.js": 32,
+	"./de.js": 33,
+	"./dv": 34,
+	"./dv.js": 34,
+	"./el": 35,
+	"./el.js": 35,
+	"./en-au": 36,
+	"./en-au.js": 36,
+	"./en-ca": 37,
+	"./en-ca.js": 37,
+	"./en-gb": 38,
+	"./en-gb.js": 38,
+	"./en-ie": 39,
+	"./en-ie.js": 39,
+	"./en-nz": 40,
+	"./en-nz.js": 40,
+	"./eo": 41,
+	"./eo.js": 41,
+	"./es": 43,
+	"./es-do": 42,
+	"./es-do.js": 42,
+	"./es.js": 43,
+	"./et": 44,
+	"./et.js": 44,
+	"./eu": 45,
+	"./eu.js": 45,
+	"./fa": 46,
+	"./fa.js": 46,
+	"./fi": 47,
+	"./fi.js": 47,
+	"./fo": 48,
+	"./fo.js": 48,
+	"./fr": 51,
+	"./fr-ca": 49,
+	"./fr-ca.js": 49,
+	"./fr-ch": 50,
+	"./fr-ch.js": 50,
+	"./fr.js": 51,
+	"./fy": 52,
+	"./fy.js": 52,
+	"./gd": 53,
+	"./gd.js": 53,
+	"./gl": 54,
+	"./gl.js": 54,
+	"./gom-latn": 55,
+	"./gom-latn.js": 55,
+	"./he": 56,
+	"./he.js": 56,
+	"./hi": 57,
+	"./hi.js": 57,
+	"./hr": 58,
+	"./hr.js": 58,
+	"./hu": 59,
+	"./hu.js": 59,
+	"./hy-am": 60,
+	"./hy-am.js": 60,
+	"./id": 61,
+	"./id.js": 61,
+	"./is": 62,
+	"./is.js": 62,
+	"./it": 63,
+	"./it.js": 63,
+	"./ja": 64,
+	"./ja.js": 64,
+	"./jv": 65,
+	"./jv.js": 65,
+	"./ka": 66,
+	"./ka.js": 66,
+	"./kk": 67,
+	"./kk.js": 67,
+	"./km": 68,
+	"./km.js": 68,
+	"./kn": 69,
+	"./kn.js": 69,
+	"./ko": 70,
+	"./ko.js": 70,
+	"./ky": 71,
+	"./ky.js": 71,
+	"./lb": 72,
+	"./lb.js": 72,
+	"./lo": 73,
+	"./lo.js": 73,
+	"./lt": 74,
+	"./lt.js": 74,
+	"./lv": 75,
+	"./lv.js": 75,
+	"./me": 76,
+	"./me.js": 76,
+	"./mi": 77,
+	"./mi.js": 77,
+	"./mk": 78,
+	"./mk.js": 78,
+	"./ml": 79,
+	"./ml.js": 79,
+	"./mr": 80,
+	"./mr.js": 80,
+	"./ms": 82,
+	"./ms-my": 81,
+	"./ms-my.js": 81,
+	"./ms.js": 82,
+	"./my": 83,
+	"./my.js": 83,
+	"./nb": 84,
+	"./nb.js": 84,
+	"./ne": 85,
+	"./ne.js": 85,
+	"./nl": 87,
+	"./nl-be": 86,
+	"./nl-be.js": 86,
+	"./nl.js": 87,
+	"./nn": 88,
+	"./nn.js": 88,
+	"./pa-in": 89,
+	"./pa-in.js": 89,
+	"./pl": 90,
+	"./pl.js": 90,
+	"./pt": 92,
+	"./pt-br": 91,
+	"./pt-br.js": 91,
+	"./pt.js": 92,
+	"./ro": 93,
+	"./ro.js": 93,
+	"./ru": 94,
+	"./ru.js": 94,
+	"./sd": 95,
+	"./sd.js": 95,
+	"./se": 96,
+	"./se.js": 96,
+	"./si": 97,
+	"./si.js": 97,
+	"./sk": 98,
+	"./sk.js": 98,
+	"./sl": 99,
+	"./sl.js": 99,
+	"./sq": 100,
+	"./sq.js": 100,
+	"./sr": 102,
+	"./sr-cyrl": 101,
+	"./sr-cyrl.js": 101,
+	"./sr.js": 102,
+	"./ss": 103,
+	"./ss.js": 103,
+	"./sv": 104,
+	"./sv.js": 104,
+	"./sw": 105,
+	"./sw.js": 105,
+	"./ta": 106,
+	"./ta.js": 106,
+	"./te": 107,
+	"./te.js": 107,
+	"./tet": 108,
+	"./tet.js": 108,
+	"./th": 109,
+	"./th.js": 109,
+	"./tl-ph": 110,
+	"./tl-ph.js": 110,
+	"./tlh": 111,
+	"./tlh.js": 111,
+	"./tr": 112,
+	"./tr.js": 112,
+	"./tzl": 113,
+	"./tzl.js": 113,
+	"./tzm": 115,
+	"./tzm-latn": 114,
+	"./tzm-latn.js": 114,
+	"./tzm.js": 115,
+	"./uk": 116,
+	"./uk.js": 116,
+	"./ur": 117,
+	"./ur.js": 117,
+	"./uz": 119,
+	"./uz-latn": 118,
+	"./uz-latn.js": 118,
+	"./uz.js": 119,
+	"./vi": 120,
+	"./vi.js": 120,
+	"./x-pseudo": 121,
+	"./x-pseudo.js": 121,
+	"./yo": 122,
+	"./yo.js": 122,
+	"./zh-cn": 123,
+	"./zh-cn.js": 123,
+	"./zh-hk": 124,
+	"./zh-hk.js": 124,
+	"./zh-tw": 125,
+	"./zh-tw.js": 125
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -27759,11 +27732,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 131;
+webpackContext.id = 135;
 
 
 /***/ }),
-/* 132 */
+/* 136 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -27791,169 +27764,11 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 133 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+module.exports = __webpack_require__(3);
 
-
-var connection = new RTCMultiConnection('Main');
-var $ = __webpack_require__(2);
-var moment = __webpack_require__(128);
-var time = function time() {
-  return moment().tz('Asia/Bangkok').format('LT');
-};
-
-var _require = __webpack_require__(3),
-    authUser = _require.authUser;
-
-var _require2 = __webpack_require__(5),
-    clientToken = _require2.clientToken;
-
-var _require3 = __webpack_require__(4),
-    getParams = _require3.getParams;
-
-var _require4 = __webpack_require__(127),
-    renderChatPage = _require4.renderChatPage,
-    renderChatZone = _require4.renderChatZone;
-
-console.log(clientToken);
-if (!clientToken) {
-  alert("Please Login");window.location = "/";
-}
-
-$.when(authUser(clientToken)).then(function (res) {
-  var userObject = res.user;
-  console.log('res ******', res); // Checking RES
-  getParams(); // GET params
-  var roomid = window.params.roomid;
-  var roomname = window.params.roomname;
-
-  connection.socketURL = '/';
-  connection.autoCloseEntireSession = false;
-  connection.socketMessageEvent = 'ChatRoom';
-  connection.session = { audio: true, data: true };
-  connection.mediaConstraints = { audio: true, video: false };
-  connection.sdpConstraints.mandatory = {
-    OfferToReceiveAudio: true,
-    OfferToReceiveVideo: false
-  };
-  connection.maxParticipantsAllowed = 4;
-  connection.enableLogs = false;
-  connection.extra = {
-    uname: userObject.username,
-    roomid: roomid,
-    roomname: roomname
-  };
-
-  // who open connection will "send" this
-  connection.onopen = function (event) {
-    connection.send({
-      sender: "From Server",
-      text: "User " + connection.extra.uname + " connected",
-      time: time()
-    });
-  };
-
-  connection.onleave = function (event) {
-    if (event.extra.uname === undefined) return;
-    renderChatZone({
-      sender: "From Server",
-      text: "User " + event.extra.uname + " disconnected",
-      time: time()
-    });
-  };
-
-  connection.onmessage = renderChatZone;
-  connection.audiosContainer = document.getElementById('audios-container');
-
-  // Add User online chat
-  connection.onstream = function (event) {
-    var mediaElement = document.createElement('li');
-    var span = document.createElement('span');
-    var div = document.createElement('div');
-
-    mediaElement.id = event.streamid;
-    span.className = "ion-mic-a icon__mic";
-    span.id = "mute";
-    div.className = "btn btn--online-list";
-    span.innerHTML = '';
-
-    div.innerHTML = event.extra.uname;
-
-    div.appendChild(span);
-    mediaElement.appendChild(div);
-    connection.audiosContainer.appendChild(mediaElement);
-  };
-
-  connection.onstreamended = function (event) {
-    var mediaElement = document.getElementById(event.streamid);
-    if (mediaElement) {
-      mediaElement.parentNode.removeChild(mediaElement);
-    }
-  };
-
-  document.getElementById('input-text-chat').onkeyup = function (e) {
-    if (e.keyCode != 13) return;
-    this.value = this.value.replace(/^\s+|\s+$/g, '');
-    if (!this.value.length) return;
-
-    sendAndCreate(this.value);
-    this.value = '';
-  };
-
-  document.getElementById('send-text').onclick = function () {
-    var textfield = document.getElementById('input-text-chat');
-    var text = textfield.value.replace(/^\s+|\s+$/g, '');
-    if (!text.length) return;
-
-    sendAndCreate(text);
-    textfield.value = '';
-  };
-
-  function sendAndCreate(text) {
-    connection.send({
-      sender: connection.extra.uname,
-      text: text,
-      time: time()
-    });
-    renderChatZone({
-      sender: connection.extra.uname,
-      text: text,
-      time: time()
-    });
-  };
-
-  function showContent() {
-    var loading = document.getElementById('loading');
-    var content = document.getElementById('content');
-
-    loading.className += ' animated';
-    loading.className += ' fadeOut';
-    content.className += ' animated';
-    content.className += ' fadeIn';
-    content.style.visibility = 'visible';
-
-    console.log('Connected to Server');
-  };
-
-  connection.checkPresence(roomid, function (isRoomExist, roomid) {
-    if (isRoomExist === true) {
-      connection.join(roomid, showContent());
-    } else {
-      connection.open(roomid, true);
-      showContent();
-    }
-  });
-
-  renderChatPage();
-
-  module.exports = { connection: connection, userObject: userObject }; // export module to recall
-}).catch(function (e) {
-  alert("Login Status = Fail");
-  localStorage.clear();
-  window.location = "/";
-});
 
 /***/ })
 /******/ ]);

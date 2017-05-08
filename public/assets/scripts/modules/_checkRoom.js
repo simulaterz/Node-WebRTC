@@ -19,7 +19,7 @@ function loopCheckRoom() {
       li.appendChild(link);
       publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
     });
-    setTimeout(loopCheckRoom, 1000);
+    setTimeout(loopCheckRoom, 3000);
   });
 };
 
