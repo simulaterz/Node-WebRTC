@@ -27,6 +27,8 @@ $.when(authUser(clientToken)).then((res) => {
   // connection.extra = { uname: num };
   connection.extra = { uname: userObject.username };
 
+  console.log(connection.extra);
+
   connection.openOrJoin('Main' , showLoadContent);
 
   checkUser();
