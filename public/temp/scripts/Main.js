@@ -115,9 +115,7 @@ $.when(authUser(clientToken)).then(function (res) {
   connection.session = { data: true };
   connection.enableLogs = false;
   connection.userid = userObject.username;
-  var num = Math.floor(Math.random() * 3) + 1;
-  connection.extra = { uname: num };
-  // connection.extra = { uname: userObject.username };
+  connection.extra = { uname: userObject.username };
 
   connection.openOrJoin('Main', showLoadContent);
 
@@ -197,6 +195,8 @@ function loopCheckUser() {
   connection.getAllParticipants().forEach(function (participantId) {
     var user = connection.peers[participantId];
     var hisUID = user.extra.uname;
+
+    console.log('UID = ', hisUID);
     if (connection.extra.uname === hisUID) return; // return if same uname
     listUser(hisUID);
   });

@@ -14,8 +14,6 @@ const { showLoadContent } = require('./modules/_showLoadContent');
 console.log(clientToken);
 if (!clientToken) { alert("Please Login"); window.location = "/"; }
 
-console.log("TEST LOG");
-
 $.when(authUser(clientToken)).then((res) => {
   var userObject = res.user;
   console.log('res ******',res); // Checking RES
@@ -25,11 +23,7 @@ $.when(authUser(clientToken)).then((res) => {
   connection.session = { data: true };
   connection.enableLogs = false;
   connection.userid = userObject.username;
-  var num = Math.floor(Math.random() * 3) + 1;
-  // connection.extra = { uname: num };
   connection.extra = { uname: userObject.username };
-
-  console.log('CE = 'connection.extra);
 
   connection.openOrJoin('Main' , showLoadContent);
 
