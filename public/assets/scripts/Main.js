@@ -14,6 +14,8 @@ const { showLoadContent } = require('./modules/_showLoadContent');
 console.log(clientToken);
 if (!clientToken) { alert("Please Login"); window.location = "/"; }
 
+console.log("TEST LOG");
+
 $.when(authUser(clientToken)).then((res) => {
   var userObject = res.user;
   console.log('res ******',res); // Checking RES
