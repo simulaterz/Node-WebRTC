@@ -10,6 +10,8 @@ function loopCheckUser() {
   connection.getAllParticipants().forEach(function(participantId) {
     var user = connection.peers[participantId];
     var hisUID = user.extra.uname;
+
+    console.log('UID = ',hisUID);
     if (connection.extra.uname === hisUID) return; // return if same uname
     listUser(hisUID);
   });
