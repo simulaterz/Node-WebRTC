@@ -19,17 +19,15 @@
   <div id="content" class="container container--main-site" style="visibility:hidden">
     <div class="site-main">
       <div class="site-main__header">
-        <span class="site-main__header__uname"> Hello: <span id="userSpan"></span></span>
+        <span class="site-main__header__uname"> Hello : <span id="userSpan"></span></span>
         <a href="#" class="btn btn--main-logout">LogOut</a>
       </div>
       <div class="site-main__content">
         <div class="row row--main-content">
           <div class="row__col-2-in-3">
             <div class="content-create">
-              <input id="roomname" class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name of Room'" />
-              <!-- <input id="room-id" class="room-input" type="text" maxlength="15" placeholder="Room Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Room Name'" /> -->
-              <button id="open-public-room" class="btn btn--create">Create Public Room</button>
-              <button id="testing" class="btn btn--create">Create Private Room</button>
+              <input id="roomname" class="room-input" type="text" maxlength="15" placeholder="RoomName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RoomName'" />
+              <button id="open-public-room" class="btn btn--create">Create Room</button>
             </div>
             <div class="content-roomlist">
               <div class="content-roomlist__header">
@@ -38,52 +36,54 @@
               </div>
               <div class="content-roomlist__field-room">
                 <ul id="public-rooms">
-                  <!-- <li>
-                  <a href="/chat" class="btn btn--room btn--room--main">abcde</a>
-                </li> -->
-              </ul>
+                  <!-- <li><a href="/chat" class="btn btn--room btn--room--main">abcde</a></li> -->
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row__col-1-in-3 row__col-1-in-3--border-left">
-          <div class="content-fav">
-            <div class="content-fav__header">
-              <i class="ion-android-bookmark icon__header-right"></i>
-              <h3>Favorite Room</h3>
+          <div class="row__col-1-in-3 row__col-1-in-3--border-left">
+            <div class="content-fav">
+              <div class="content-fav__header">
+                <i class="ion-android-bookmark icon__header-right"></i>
+                <h3>Favorite Room</h3>
+                <span id="delSpan"></span>
+              </div>
+              <div class="content-fav__field-room">
+                <ul id="favroomDiv">
+                  <li id="nofav">
+                    <span>Have No Favorite Room</span>
+                  </li>
+                  <!-- <li> -->
+                  <!-- <a href="/chat" class="btn btn--room btn--room--fav">abcde -->
+                  <!-- <span class="ion-android-delete icon__del"></span> -->
+                  <!-- </a> -->
+                  <!-- </li> -->
+                </ul>
+              </div>
             </div>
-            <div class="content-fav__field-room">
-              <ul id="favroomDiv">
-                <!-- <li>
-                  <a href="/chat" class="btn btn--room btn--room--fav">abcde
-                    <span class="ion-android-delete icon__del"></span>
-                  </a>
-                </li> -->
-              </ul>
+            <div class="content-useronline">
+              <div class="content-useronline__header">
+                <i class="ion-android-contacts icon__header-right"></i>
+                <h3>Online User List</h3>
+              </div>
+              <div class="content-useronline__field-user">
+                <ul id="online-list">
+                  <!-- <li> -->
+                  <!-- <a href="#" class="btn btn--online"> -->
+                  <!-- <span class="ion-ios-chatbubble icon__status"></span>myuser -->
+                  <!-- </a> -->
+                  <!-- </li> -->
+                </ul>
+              </div>
             </div>
           </div>
-          <div class="content-useronline">
-            <div class="content-useronline__header">
-              <i class="ion-android-contacts icon__header-right"></i>
-              <h3>Online User List</h3>
-            </div>
-            <div class="content-useronline__field-user">
-              <ul id="online-list">
-                <!-- <li>
-                <a href="#" class="btn btn--online">
-                <span class="ion-ios-chatbubble icon__status"></span>myuser
-              </a>
-            </li> -->
-          </ul>
         </div>
       </div>
     </div>
-  </div>
-</div>
-</div>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
-<script src="temp/scripts/Main.js"></script>
-</body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="assets/scripts/api/RTCMultiConnection.min.js"></script>
+    <script src="temp/scripts/Main.js"></script>
+  </body>
 
-</html>
+  </html>

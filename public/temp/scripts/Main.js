@@ -115,7 +115,9 @@ $.when(authUser(clientToken)).then(function (res) {
   connection.session = { data: true };
   connection.enableLogs = false;
   connection.userid = userObject.username;
-  connection.extra = { uname: userObject.username };
+  var num = Math.floor(Math.random() * 3) + 1;
+  connection.extra = { uname: num };
+  // connection.extra = { uname: userObject.username };
 
   connection.openOrJoin('Main', showLoadContent);
 
@@ -153,12 +155,12 @@ function loopCheckRoom() {
       var link = document.createElement('a');
       var uname = moderator.extra.uname;
       var roomid = moderator.extra.roomid;
-      var roomname = moderator.extra.roomname;
+      var roomname = moderator.extra.roomname.toUpperCase();
 
       link.id = moderator.userid;
       link.className = "btn btn--room btn--room--main";
       link.href = '/chat?roomid=' + roomid + '&roomname=' + roomname; // send params to join
-      link.innerHTML = roomname + ' By ' + uname;
+      link.innerHTML = roomname + ' | ' + uname;
       li.appendChild(link);
       publicRoomsDiv.insertBefore(li, publicRoomsDiv.firstChild);
     });
@@ -189,6 +191,7 @@ function loopCheckUser() {
 
   onlineListDiv.innerHTML = '';
 
+  console.log('userObject.username', userObject.username);
   listUser(userObject.username);
 
   connection.getAllParticipants().forEach(function (participantId) {
@@ -237,7 +240,7 @@ var checkRoomid = function checkRoomid() {
   document.getElementById('open-public-room').onclick = function () {
     var roomname = document.getElementById('roomname').value;
     if (!roomname) {
-      alert("Please typing room name");
+      alert("Please Enter Room Name");
       return;
     }
     location.href = '/chat?roomid=' + roomid + '&roomname=' + roomname;
@@ -262,28 +265,32 @@ function renderMainPage() {
   var _require = __webpack_require__(1),
       userObject = _require.userObject;
 
-  var favroomID = userObject.favroom.roomid;
-  var favroomName = userObject.favroom.roomname;
+  var roomid = userObject.favroom.roomid;
+  var roomname = userObject.favroom.roomname;
 
   var userSpan = document.getElementById('userSpan');
   userSpan.innerHTML = userObject.username;
 
-  if (favroomID && favroomName) {
+  var nofav = document.getElementById('nofav');
+  nofav.className = "content-fav__no-fav";
+
+  if (roomid && roomname) {
+
+    var delSpan = document.getElementById('delSpan');
+    delSpan.className = "ion-android-delete icon__del";
+    delSpan.innerHTML = '';
+
     var favroomDiv = document.getElementById('favroomDiv');
     favroomDiv.innerHTML = '';
 
     var li = document.createElement('li');
     var link = document.createElement('a');
-    var span = document.createElement('span');
 
     link.className = "btn btn--room btn--room--fav";
-    link.href = "/chat?roomid=" + favroomID;
-    link.innerHTML = favroomName;
-    span.className = "ion-android-delete icon__del";
-    span.innerHTML = '';
-    link.appendChild(span);
-    li.appendChild(link);
+    link.href = '/chat?roomid=' + roomid + '&roomname=' + roomname;
+    link.innerHTML = roomname;
 
+    li.appendChild(link);
     favroomDiv.appendChild(li);
   }
 }

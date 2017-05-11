@@ -71,6 +71,11 @@ $.when(authUser(clientToken)).then((res) => {
     if (isRoomExist) {
       console.log('JOIN');
       connection.join(roomid, showLoadContent);
+      renderChatBox({
+        sender: "Server",
+        text: "Welcome to ChatRoom",
+        time: time()
+      });
     } else {
       connection.open(roomid, showLoadContent);
       connection.becomePublicModerator();

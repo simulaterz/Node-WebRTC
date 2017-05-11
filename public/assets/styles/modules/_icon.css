@@ -37,12 +37,9 @@
   }
 
   &__del {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+    font-size: 2rem;
+    margin-left: auto;
     color: rgba(#2C3E50, .65);
-    margin: auto 1rem;
     opacity: .85;
   }
 
@@ -68,12 +65,6 @@
   }
 
   &__online-list {
-    font-size: 1.8rem;
-    margin-right: .5rem;
-    color: rgba($mainRed, .9);
-  }
-
-  &__head-chat-box {
     font-size: 1.8rem;
     margin-right: .5rem;
     color: rgba($mainRed, .9);

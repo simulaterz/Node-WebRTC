@@ -20,21 +20,14 @@
     flex-shrink: 0;
     align-items: center;
     width: 100%;
-    padding-bottom: 5px;
-    border-bottom: 1px solid $bdGray;
-
-    @mixin atMedium {
-      padding-bottom: 9px;
-      border-bottom: 1.3px solid $bdGray;
-    }
 
     &__uname {
       vertical-align: middle;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
 
       @mixin atMedium {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
     }
   }

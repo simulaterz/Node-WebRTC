@@ -5,7 +5,7 @@ var checkRoomid = function() {
   document.getElementById('open-public-room').onclick = function() {
     var roomname = document.getElementById('roomname').value;
     if(!roomname) {
-      alert("Please typing room name")
+      alert("Please Enter Room Name")
       return;
     }
     location.href='/chat?roomid='+ roomid + '&roomname=' + roomname;

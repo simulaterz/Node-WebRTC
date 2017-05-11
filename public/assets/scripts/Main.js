@@ -23,7 +23,9 @@ $.when(authUser(clientToken)).then((res) => {
   connection.session = { data: true };
   connection.enableLogs = false;
   connection.userid = userObject.username;
-  connection.extra = { uname: userObject.username };
+  var num = Math.floor(Math.random() * 3) + 1;
+  connection.extra = { uname: num };
+  // connection.extra = { uname: userObject.username };
 
   connection.openOrJoin('Main' , showLoadContent);
 

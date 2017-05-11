@@ -45,11 +45,11 @@
     height: 100%;
     background-color: #fff;
     border-radius: .3rem;
-    padding: 1rem 1rem .7rem 1rem;
+    padding: .7rem 1rem .7rem 1rem;
 
     @mixin atMedium {
       border-radius: .4rem;
-      padding: 1.1rem 1.2rem .9rem 1.2rem;
+      padding: .8rem 1.2rem .9rem 1.2rem;
     }
 
     &--main-chat {

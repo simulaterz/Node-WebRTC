@@ -31,7 +31,7 @@
     font-weight: 400;
     vertical-align: middle;
     padding: .2rem .7rem .3rem .7rem;
-    margin-left: .3rem;
+    margin-left: .7rem;
     border-radius: 0.2rem;
     background: rgba($mainRed, .85);
 
@@ -45,17 +45,18 @@
   }
 
   &--create {
+    font-weight: 600;
     font-size: .7rem;
-    padding: .5rem;
+    padding: .4rem 1.5rem;
     margin-left: .8rem;
     border-radius: .3rem;
     background: rgba($Green, 0.85);
-    border: 2px solid #E8E8E8;
+    border: 2px solid rgba(#e8e8e8, 0.3);
     cursor: pointer;
 
     @mixin atMedium {
-      padding: .5rem .8rem;
-      font-size: .9rem;
+      padding: .33rem 3rem;
+      font-size: 1rem;
       border-radius: 0.4rem;
       margin-left: 1rem;
     }
@@ -76,8 +77,7 @@
   &--room {
     font-size: 1.7rem;
     color: rgba($mainBlack, .85);
-    background: rgba(#BDC3C7, .15);
-    /*background: rgba(#c9f7c6, 0.15);*/
+    background: rgba(#BDC3C7, .2);
     border-radius: .3rem;
 
     @mixin atMedium {
@@ -87,7 +87,6 @@
 
     &:hover {
       background: rgba(#BDC3C7, .4);
-      /*background: rgba(#c9f7c6, 0.55);*/
     }
 
     &--main {
@@ -103,10 +102,18 @@
       width: 100%;
       position: relative;
       font-size: 1.5rem;
-      padding: .7rem 0 .7rem .7rem;
+      padding: .85rem 0 .85rem .7rem;
+      border: .1rem solid rgba($midOrange, .7);
+      background: #fff;
+      text-transform: uppercase;
+
+      &:hover {
+        background: #F9690E;
+        color: #fff;
+      }
 
       @mixin atMedium {
-        padding: .75rem 0 .75rem .7rem;
+        padding: .85rem 0 .85rem .7rem;
       }
     }
   }
