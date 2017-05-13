@@ -10,6 +10,7 @@ const { checkRoom } = require('./modules/_checkRoom');
 const { checkUser } = require('./modules/_checkUser');
 const { renderMain } = require('./modules/_renderMain');
 const { showLoadContent } = require('./modules/_showLoadContent');
+const { logout } = require('./modules/_logout');
 
 console.log(clientToken);
 if (!clientToken) { alert("Please Login"); window.location = "/"; }

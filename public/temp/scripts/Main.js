@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 139);
+/******/ 	return __webpack_require__(__webpack_require__.s = 140);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -83,23 +83,26 @@ var _require = __webpack_require__(4),
 var _require2 = __webpack_require__(7),
     getParams = _require2.getParams;
 
-var _require3 = __webpack_require__(8),
+var _require3 = __webpack_require__(9),
     clientToken = _require3.clientToken;
 
-var _require4 = __webpack_require__(129),
+var _require4 = __webpack_require__(130),
     handleRoomid = _require4.handleRoomid;
 
-var _require5 = __webpack_require__(127),
+var _require5 = __webpack_require__(128),
     checkRoom = _require5.checkRoom;
 
-var _require6 = __webpack_require__(128),
+var _require6 = __webpack_require__(129),
     checkUser = _require6.checkUser;
 
-var _require7 = __webpack_require__(131),
+var _require7 = __webpack_require__(132),
     renderMain = _require7.renderMain;
 
-var _require8 = __webpack_require__(9),
+var _require8 = __webpack_require__(10),
     showLoadContent = _require8.showLoadContent;
+
+var _require9 = __webpack_require__(8),
+    logout = _require9.logout;
 
 console.log(clientToken);
 if (!clientToken) {
@@ -134,7 +137,30 @@ $.when(authUser(clientToken)).then(function (res) {
 
 /***/ }),
 
-/***/ 127:
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function showLoadContent() {
+  var loading = document.getElementById('loading');
+  var content = document.getElementById('content');
+
+  loading.className += ' animated';
+  loading.className += ' fadeOut';
+  content.className += ' animated';
+  content.className += ' fadeIn';
+  content.style.visibility = 'visible';
+
+  console.log('Connected to Server');
+};
+
+module.exports = { showLoadContent: showLoadContent };
+
+/***/ }),
+
+/***/ 128:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -186,7 +212,7 @@ module.exports = { checkRoom: checkRoom };
 
 /***/ }),
 
-/***/ 128:
+/***/ 129:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -235,7 +261,7 @@ module.exports = { checkUser: checkUser };
 
 /***/ }),
 
-/***/ 129:
+/***/ 130:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -265,7 +291,7 @@ module.exports = { handleRoomid: handleRoomid };
 
 /***/ }),
 
-/***/ 131:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -313,7 +339,7 @@ module.exports = { renderMain: renderMain };
 
 /***/ }),
 
-/***/ 139:
+/***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(1);
@@ -10669,6 +10695,25 @@ module.exports = { getParams: getParams };
 "use strict";
 
 
+var logoutButton = document.getElementById('logout');
+logoutButton.style.cursor = 'pointer';
+
+var logout = logoutButton.onclick = function () {
+  alert("Logout Complete");
+  localStorage.clear();
+  window.location = "/";
+};
+
+module.exports = { logout: logout };
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _require = __webpack_require__(6),
     getCookies = _require.getCookies;
 
@@ -10683,29 +10728,6 @@ var clientToken = localStorage.getItem("RTCToken");
 deleteAllCookies();
 
 module.exports = { clientToken: clientToken };
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function showLoadContent() {
-  var loading = document.getElementById('loading');
-  var content = document.getElementById('content');
-
-  loading.className += ' animated';
-  loading.className += ' fadeOut';
-  content.className += ' animated';
-  content.className += ' fadeIn';
-  content.style.visibility = 'visible';
-
-  console.log('Connected to Server');
-};
-
-module.exports = { showLoadContent: showLoadContent };
 
 /***/ })
 
