@@ -8,7 +8,7 @@ function renderMainPage() {
   userSpan.innerHTML = userObject.username;
 
   var nofav = document.getElementById('nofav');
-  nofav.className = "content-fav__no-fav"
+  nofav.className = "content-fav__no-fav";
 
   if(roomid && roomname) {
 

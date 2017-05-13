@@ -194,7 +194,6 @@ app.get('/addroom/:token/:roomname/:roomid', authUser, addRoom, (req, res) => {
 });
 
 app.get('/chat', (req, res) => {
-  console.log(req.headers['x-auth']);
   res.render('chat');
 });
 

@@ -6450,6 +6450,21 @@ ul,ol {
   margin-top: 0;
 }
 
+.content-roomlist__no-room {
+  font-size: 5rem;
+  text-align: center;
+  padding-top: 130px;
+  color: #BDC3C7;
+}
+
+@media (min-width: 1300px) {
+
+  .content-roomlist__no-room {
+    font-size: 4rem;
+    padding-top: 110px;
+  }
+}
+
 .online-list {
   display: -webkit-box;
   display: -ms-flexbox;

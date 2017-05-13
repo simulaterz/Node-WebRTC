@@ -140,14 +140,26 @@ $.when(authUser(clientToken)).then(function (res) {
 "use strict";
 
 
-var publicRoomsDiv = document.getElementById('public-rooms');
-
 function loopCheckRoom() {
   var _require = __webpack_require__(1),
       connection = _require.connection;
 
+  var publicRoomsDiv = document.getElementById('public-rooms');
+
   connection.getPublicModerators(function (array) {
+
     publicRoomsDiv.innerHTML = '';
+
+    if (array.length === 0) {
+      var li = document.createElement('li');
+      li.className = 'content-roomlist__no-room';
+      var span = document.createElement('span');
+      span.innerHTML = "No Room Open";
+
+      li.appendChild(span);
+      publicRoomsDiv.appendChild(li);
+    }
+
     array.forEach(function (moderator) {
       var li = document.createElement('li');
       var link = document.createElement('a');
@@ -189,14 +201,12 @@ function loopCheckUser() {
 
   onlineListDiv.innerHTML = '';
 
-  console.log('userObject.username', userObject.username);
   listUser(userObject.username);
 
   connection.getAllParticipants().forEach(function (participantId) {
     var user = connection.peers[participantId];
     var hisUID = user.extra.uname;
 
-    console.log('UID = ', hisUID);
     if (connection.extra.uname === hisUID) return; // return if same uname
     listUser(hisUID);
   });

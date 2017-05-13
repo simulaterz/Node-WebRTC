@@ -1,10 +1,21 @@
-var publicRoomsDiv = document.getElementById('public-rooms');
-
 function loopCheckRoom() {
   var {connection} = require('./../Main');
+  var publicRoomsDiv = document.getElementById('public-rooms');
 
   connection.getPublicModerators(function(array) {
+
     publicRoomsDiv.innerHTML = '';
+
+    if(array.length === 0) {
+      var li = document.createElement('li');
+      li.className = 'content-roomlist__no-room';
+      var span = document.createElement('span');
+      span.innerHTML = "No Room Open";
+
+      li.appendChild(span);
+      publicRoomsDiv.appendChild(li);
+    }
+
     array.forEach(function(moderator) {
       var li = document.createElement('li');
       var link = document.createElement('a');
