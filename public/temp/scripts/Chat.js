@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 138);
+/******/ 	return __webpack_require__(__webpack_require__.s = 139);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1899,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(136)("./" + name);
+            __webpack_require__(137)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4534,11 +4534,10 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(137)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(138)(module)))
 
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -14765,6 +14764,7 @@ return jQuery;
 
 
 /***/ }),
+/* 2 */,
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14772,7 +14772,7 @@ return jQuery;
 
 
 var connection = new RTCMultiConnection();
-var $ = __webpack_require__(2);
+var $ = __webpack_require__(1);
 var moment = __webpack_require__(11);
 var time = function time() {
   return moment().tz('Asia/Bangkok').format('LT');
@@ -14787,11 +14787,11 @@ var _require2 = __webpack_require__(7),
 var _require3 = __webpack_require__(9),
     clientToken = _require3.clientToken;
 
-var _require4 = __webpack_require__(131),
+var _require4 = __webpack_require__(132),
     renderChatPage = _require4.renderChatPage,
     renderChatBox = _require4.renderChatBox;
 
-var _require5 = __webpack_require__(133),
+var _require5 = __webpack_require__(134),
     showUserOnline = _require5.showUserOnline;
 
 var _require6 = __webpack_require__(10),
@@ -14799,6 +14799,9 @@ var _require6 = __webpack_require__(10),
 
 var _require7 = __webpack_require__(8),
     logout = _require7.logout;
+
+var _require8 = __webpack_require__(130),
+    addfavroom = _require8.addfavroom;
 
 console.log(clientToken);
 if (!clientToken) {
@@ -14896,7 +14899,7 @@ $.when(authUser(clientToken)).then(function (res) {
 "use strict";
 
 
-var $ = __webpack_require__(2);
+var $ = __webpack_require__(1);
 
 function authUser(clientToken) {
   return $.ajax({
@@ -15065,8 +15068,8 @@ module.exports = { showLoadContent: showLoadContent };
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var moment = module.exports = __webpack_require__(135);
-moment.tz.load(__webpack_require__(134));
+var moment = module.exports = __webpack_require__(136);
+moment.tz.load(__webpack_require__(135));
 
 
 /***/ }),
@@ -26153,8 +26156,41 @@ return zhTw;
 /* 127 */,
 /* 128 */,
 /* 129 */,
-/* 130 */,
-/* 131 */
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var $ = __webpack_require__(1);
+
+var favBth = document.getElementById('addfavroom');
+favBth.style.cursor = 'pointer';
+
+var addfavroom = favBth.onclick = function () {
+  var clientToken = localStorage.getItem("RTCToken");
+
+  var roomname = window.params.roomname;
+  var roomid = window.params.roomid;
+
+  $.ajax({
+    url: '/addroom/' + clientToken + '/' + roomname + '/' + roomid,
+    type: "get",
+    success: function success() {
+      alert("Add Room Complete");
+    },
+    error: function error(err) {
+      alert("Error to add favRoom");
+      window.location = "/";
+    }
+  });
+};
+
+module.exports = { addfavroom: addfavroom };
+
+/***/ }),
+/* 131 */,
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26247,8 +26283,8 @@ function renderChatPage() {
 module.exports = { renderChatPage: renderChatPage, renderChatBox: renderChatBox };
 
 /***/ }),
-/* 132 */,
-/* 133 */
+/* 133 */,
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26294,7 +26330,7 @@ function showUserOnline() {
 module.exports = { showUserOnline: showUserOnline };
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -26899,7 +26935,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//! moment-timezone.js
@@ -27509,7 +27545,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -27758,11 +27794,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 136;
+webpackContext.id = 137;
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -27790,7 +27826,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(3);

@@ -11,6 +11,7 @@ const { renderChatPage, renderChatBox } = require('./modules/_renderChat');
 const { showUserOnline } = require('./modules/_showUserOnline');
 const { showLoadContent } = require('./modules/_showLoadContent');
 const { logout } = require('./modules/_logout');
+const { addfavroom } = require('./modules/_handleFavroom');
 
 console.log(clientToken);
 if (!clientToken) { alert("Please Login"); window.location = "/"; }
