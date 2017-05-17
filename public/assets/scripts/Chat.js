@@ -54,12 +54,6 @@ $.when(authUser(clientToken)).then((res) => {
   connection.onopen = function(event) { // fire when open connection
     document.getElementById('input-text-chat').disabled = false;
     document.getElementById('send-text').disabled = false;
-
-    connection.send({
-      sender: "Server",
-      text: "User " + connection.extra.uname + " connected",
-      time: time()
-    });
   };
   connection.onleave = function(event) {
     if (event.extra.uname === undefined) return;
