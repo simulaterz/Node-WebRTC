@@ -8,7 +8,7 @@ function waiting() {
     var div = document.createElement('div');
 
     mediaElement.id = event.streamid;
-    span.className = "ion-mic-a icon__mic";
+    span.className = "ion-android-contact icon__mic";
     span.id = "mute";
     div.className = "btn btn--online-list";
     span.innerHTML = '';

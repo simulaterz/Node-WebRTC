@@ -30,6 +30,19 @@
         font-size: 1.4rem;
       }
     }
+
+    &__homepage {
+      vertical-align: middle;
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-left: .5rem;
+      color: #67809F;
+
+      @mixin atMedium {
+        margin-left: .7rem;
+        font-size: 2rem;
+      }
+    }
   }
 
   &__content {

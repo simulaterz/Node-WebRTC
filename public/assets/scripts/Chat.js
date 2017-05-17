@@ -21,6 +21,7 @@ $.when(authUser(clientToken)).then((res) => {
   console.log('res ******',res); // Checking RES
 
   getParams();
+  connection.iceServers = [];
 
   var roomid = window.params.roomid;
   var roomname = window.params.roomname;
@@ -79,6 +80,7 @@ $.when(authUser(clientToken)).then((res) => {
         time: time()
       });
     } else {
+      console.log('OPEN');
       connection.open(roomid, showLoadContent);
       connection.becomePublicModerator();
       renderChatBox({

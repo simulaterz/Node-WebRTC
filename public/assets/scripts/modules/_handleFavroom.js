@@ -1,6 +1,7 @@
 const $ = require('jquery');
 
 var favBth = document.getElementById('addfavroom');
+favBth.setAttribute('title', "Add Favorite Room");
 favBth.style.cursor = 'pointer';
 
 var addfavroom = favBth.onclick = function() {

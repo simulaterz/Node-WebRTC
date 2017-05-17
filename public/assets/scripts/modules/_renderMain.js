@@ -12,11 +12,8 @@ function renderMainPage() {
 
   if(roomid && roomname) {
 
-    var delSpan = document.getElementById('delSpan');
-    delSpan.className = "ion-android-delete icon__del";
-    delSpan.innerHTML = '';
-
     var favroomDiv = document.getElementById('favroomDiv');
+    favroomDiv.setAttribute('title', `Connect to Room ${roomname}`);
     favroomDiv.innerHTML = '';
 
     var li = document.createElement('li');

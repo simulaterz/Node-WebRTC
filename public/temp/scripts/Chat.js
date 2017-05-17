@@ -14813,6 +14813,7 @@ $.when(authUser(clientToken)).then(function (res) {
   console.log('res ******', res); // Checking RES
 
   getParams();
+  connection.iceServers = [];
 
   var roomid = window.params.roomid;
   var roomname = window.params.roomname;
@@ -14872,6 +14873,7 @@ $.when(authUser(clientToken)).then(function (res) {
         time: time()
       });
     } else {
+      console.log('OPEN');
       connection.open(roomid, showLoadContent);
       connection.becomePublicModerator();
       renderChatBox({
@@ -26165,6 +26167,7 @@ return zhTw;
 var $ = __webpack_require__(1);
 
 var favBth = document.getElementById('addfavroom');
+favBth.setAttribute('title', "Add Favorite Room");
 favBth.style.cursor = 'pointer';
 
 var addfavroom = favBth.onclick = function () {
@@ -26303,7 +26306,7 @@ function waiting() {
     var div = document.createElement('div');
 
     mediaElement.id = event.streamid;
-    span.className = "ion-mic-a icon__mic";
+    span.className = "ion-android-contact icon__mic";
     span.id = "mute";
     div.className = "btn btn--online-list";
     span.innerHTML = '';

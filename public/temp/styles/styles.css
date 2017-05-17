@@ -6092,6 +6092,22 @@ ul,ol {
   }
 }
 
+.site-main__header__homepage {
+  vertical-align: middle;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-left: .5rem;
+  color: #67809F;
+}
+
+@media (min-width: 1300px) {
+
+  .site-main__header__homepage {
+    margin-left: .7rem;
+    font-size: 2rem;
+  }
+}
+
 .site-main__content {
   width: 100%;
   height: 95%;

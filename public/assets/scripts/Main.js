@@ -19,6 +19,8 @@ $.when(authUser(clientToken)).then((res) => {
   var userObject = res.user;
   console.log('res ******',res); // Checking RES
 
+  connection.iceServers = [];
+
   connection.socketURL = '/';
   connection.autoCloseEntireSession = false;
   connection.session = { data: true };
