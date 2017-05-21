@@ -1,11 +1,11 @@
 # Node-WebRTC
 This is last term Project about web application
 implement by useing 
-- WebRTC(voice chat protocol)
-- NodeJS(Server)
-- Socket.IO(Signaling)
-- Gulp(Front-End)
-- MongoDB(Database)
+- WebRTC (Voice chat protocol)
+- NodeJS (Server)
+- Socket.IO (Signaling)
+- Gulp (Front-End)
+- MongoDB (Database)
 ```
 # URL : https://devgenz.com/
 
