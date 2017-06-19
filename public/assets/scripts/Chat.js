@@ -21,7 +21,7 @@ $.when(authUser(clientToken)).then((res) => {
   console.log('res ******',res); // Checking RES
 
   getParams();
-  connection.iceServers = [];
+  // connection.iceServers = [];
 
   var roomid = window.params.roomid;
   var roomname = window.params.roomname;
